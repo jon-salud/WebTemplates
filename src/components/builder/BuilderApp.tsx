@@ -25,10 +25,30 @@ const AVAILABLE_VARIANTS: Record<string, string[]> = {
   Custom: ['default']
 };
 
+const FAMILY_NAMES: Record<string, string> = {
+  professionalServices: 'Professional Services',
+  healthWellness: 'Health & Wellness',
+  hospitalityCulinary: 'Hospitality & Culinary',
+  tradesFieldServices: 'Trades & Field Services',
+  creativeEvents: 'Creative & Events',
+  saasStartups: 'SaaS & Startups',
+  realtyArchitecture: 'Realty & Architecture',
+};
+
 const BuilderApp = () => {
   const [industryId, setIndustryId] = useState('realestate');
   const [sections, setSections] = useState<any[]>([]);
   const [iframeKey, setIframeKey] = useState(0);
+
+  // Group industries by family
+  const groupedIndustries = Object.values(industryConfigs).reduce((acc, industry) => {
+    const family = industry.templateFamily || 'professionalServices';
+    if (!acc[family]) {
+      acc[family] = [];
+    }
+    acc[family].push(industry);
+    return acc;
+  }, {} as Record<string, typeof industryConfigs[keyof typeof industryConfigs][]>);
 
   // Load initial blueprint when industry changes
   useEffect(() => {
@@ -108,8 +128,12 @@ const BuilderApp = () => {
               onChange={(e) => setIndustryId(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
-              {Object.values(industryConfigs).map((ind) => (
-                <option key={ind.id} value={ind.id}>{ind.name}</option>
+              {Object.entries(groupedIndustries).map(([family, industries]) => (
+                <optgroup key={family} label={FAMILY_NAMES[family] || family}>
+                  {industries.map((ind) => (
+                    <option key={ind.id} value={ind.id}>{ind.name}</option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </div>
