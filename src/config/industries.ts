@@ -5,7 +5,7 @@
  * Each industry has its own color scheme, copy, and imagery suggestions.
  */
 
-export type IndustryType = 'accounting' | 'law' | 'healthcare' | 'consulting' | 'financial' | 'realestate' | 'insurance' | 'architecture' | 'education' | 'recruitment' | 'restaurant' | 'boutiquehotel' | 'contractor' | 'dj' | 'fitnessstudio' | 'dental' | 'spa' | 'therapist';
+export type IndustryType = 'accounting' | 'law' | 'healthcare' | 'consulting' | 'financial' | 'realestate' | 'insurance' | 'architecture' | 'education' | 'recruitment' | 'restaurant' | 'boutiquehotel' | 'contractor' | 'dj' | 'fitnessstudio' | 'dental' | 'spa' | 'therapist' | 'electrician' | 'landscaper' | 'weddingplanner' | 'photographer' | 'eventvenue';
 
 export interface IndustryConfig {
   id: IndustryType;
@@ -1664,12 +1664,30 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     fonts: { heading: 'Fugaz One', body: 'Source Sans 3', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Fugaz+One&family=Source+Sans+3:wght@400;600&display=swap' },
     sections: {
       Hero: {
+        variant: 'bento',
         props: {
           backgroundImage: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1?auto=format&fit=crop&w=1920&q=80',
         }
       },
+      ClientMarquee: {
+        props: {
+          clients: ['Coachella', 'Boiler Room', 'Ultra Music', 'Spotify', 'Red Bull', 'Mixmag']
+        }
+      },
+      AnimatedLogoSection: {
+        props: {
+          logoId: 'pulse-mark'
+        }
+      },
       CreativeMoodboard: {
         props: {
+          title: 'Sonic Landscapes & Visual Rhythms',
+          description: 'We craft immersive audio-visual experiences that resonate with the crowd\'s energy.',
+          stats: [
+            { label: 'Genre', value: 'Deep House / Techno' },
+            { label: 'BPM', value: '124 - 132' },
+            { label: 'Vibe', value: 'Electric & Hypnotic' }
+          ],
           images: [
             'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80', // Main
             'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80', // Top 1
@@ -1680,14 +1698,34 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       },
       ShowcaseGallery: {
         props: {
+          items: [
+            { title: 'Neon Rooftop', subtitle: 'Live Mix', gradient: 'from-indigo-500/60 via-sky-400/40 to-teal-400/30' },
+            { title: 'Underground Club', subtitle: 'Techno Set', gradient: 'from-purple-900/80 via-indigo-900/60 to-black/80' },
+            { title: 'Festival Mainstage', subtitle: 'Headliner', gradient: 'from-amber-400/50 via-orange-500/40 to-pink-500/30' },
+            { title: 'Private Yacht', subtitle: 'Sunset Session', gradient: 'from-blue-400/50 via-cyan-300/40 to-teal-200/30' },
+          ],
           images: [
             'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1516280440614-6697288d5d38?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=800&q=80',
           ]
         }
-      }
+      },
+      CreativeProcess: {
+        props: {
+          steps: [
+            { title: 'Vibe Check', detail: 'We curate the perfect playlist based on your event theme.' },
+            { title: 'Sound Design', detail: 'Custom edits and transitions for a seamless flow.' },
+            { title: 'Live Performance', detail: 'High-energy mixing that reads the crowd perfectly.' },
+          ]
+        }
+      },
+      Services: { variant: 'hover-cards' },
+      Benefits: { variant: 'radial' },
+      Testimonials: { variant: 'floating-cards' },
+      CTA: { variant: 'split' },
+      Footer: { variant: 'modern-grid' }
     },
     hero: { headline: 'Live Performances & Tailored Mixes', subheadline: 'From intimate parties to sold-out shows, we bring the energy.', cta: 'Book A Show', ctaSecondary: 'Listen to Mixes' },
     services: { title: 'Services', items: [ { icon: 'music', title: 'Event DJ', description: 'Keep the crowd moving' }, { icon: 'playlist', title: 'Custom Mixes', description: 'Non-stop custom mixes' } ] },
@@ -1695,6 +1733,253 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     testimonials: { title: 'Client Reactions', items: [ { quote: 'Packed the dancefloor every set!', author: 'K. Spencer', role: 'Event Promoter', company: '' } ] },
     cta: { title: 'Hire Us For Your Next Event', subtitle: 'We tailor the vibe to your audience.', buttonText: 'Contact' },
     footer: { description: 'High-energy DJ & live performance services for events and parties.' },
+  },
+
+  weddingplanner: {
+    id: 'weddingplanner',
+    headerVariant: 'centered',
+    name: 'EverAfter Events',
+    tagline: 'Your Love, Our Canvas',
+    description: 'Bespoke wedding planning and design for modern couples.',
+    templateFamily: 'creativeEvents',
+    colors: { primary: '#BE185D', primaryLight: '#F472B6', primaryDark: '#9D174D', accent: '#FDE047' },
+    fonts: { heading: 'Playfair Display', body: 'Lato', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'image-overlap',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80',
+          showBadge: false
+        }
+      },
+      ClientMarquee: {
+        props: {
+          clients: ['Vogue Weddings', 'The Knot', 'Brides', 'Martha Stewart', 'Style Me Pretty']
+        }
+      },
+      AnimatedLogoSection: {
+        props: {
+          logoId: 'wave-ribbon'
+        }
+      },
+      CreativeMoodboard: {
+        props: {
+          title: 'Curating Your Perfect Day',
+          description: 'We blend textures, colors, and emotions to create a wedding design that feels authentically you.',
+          stats: [
+            { label: 'Palette', value: 'Blush, Sage, Gold' },
+            { label: 'Style', value: 'Romantic & Timeless' },
+            { label: 'Guests', value: 'Intimate to Grand' }
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80', // Main
+            'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80', // Detail 1
+            'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80', // Detail 2
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80', // Detail 3
+          ]
+        }
+      },
+      ShowcaseGallery: {
+        props: {
+          items: [
+            { title: 'Coastal Elegance', subtitle: 'Malibu, CA', gradient: 'from-blue-200 via-white to-sand-200' },
+            { title: 'Garden Soiree', subtitle: 'Charleston, SC', gradient: 'from-green-200 via-emerald-100 to-white' },
+            { title: 'Urban Chic', subtitle: 'New York, NY', gradient: 'from-gray-200 via-slate-100 to-white' },
+            { title: 'Mountain Retreat', subtitle: 'Aspen, CO', gradient: 'from-stone-200 via-neutral-100 to-white' },
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80',
+          ]
+        }
+      },
+      CreativeProcess: {
+        props: {
+          steps: [
+            { title: 'Vision Boarding', detail: 'We translate your love story into a cohesive design language.' },
+            { title: 'Vendor Curation', detail: 'Hand-picking the perfect team to bring the vision to life.' },
+            { title: 'Seamless Execution', detail: 'Orchestrating every moment so you can be fully present.' },
+          ]
+        }
+      },
+      Services: { variant: 'timeline' },
+      Benefits: { variant: 'icon-list' },
+      Testimonials: { variant: 'carousel' },
+      CTA: { variant: 'minimal' },
+      Footer: { variant: 'centered' }
+    },
+    hero: { headline: 'Unforgettable Weddings, Flawlessly Planned', subheadline: 'We handle the details so you can cherish the moments.', cta: 'Start Planning', ctaSecondary: 'View Portfolio' },
+    services: { title: 'Planning Packages', items: [ { icon: 'calendar', title: 'Full Service', description: 'From "Yes" to "I Do"' }, { icon: 'clock', title: 'Month-Of Coordination', description: 'Final details and execution' }, { icon: 'pen-tool', title: 'Event Design', description: 'Styling and decor curation' } ] },
+    benefits: { title: 'The EverAfter Difference', subtitle: 'Stress-free celebration', items: [ { title: 'Personalized', description: 'Unique to your story' }, { title: 'Experienced', description: '10+ years in events' } ] },
+    testimonials: { title: 'Love Notes', items: [ { quote: 'Our day was absolute magic. We didn\'t worry about a thing!', author: 'Sarah & Mike', role: 'Newlyweds', company: '' } ] },
+    cta: { title: 'Let\'s Create Magic', subtitle: 'Book your complimentary consultation.', buttonText: 'Inquire Now' },
+    footer: { description: 'Luxury wedding planning and design for timeless celebrations.' },
+  },
+
+  photographer: {
+    id: 'photographer',
+    headerVariant: 'floating',
+    name: 'Lumina Studio',
+    tagline: 'Capturing Light & Life',
+    description: 'Editorial and lifestyle photography for brands and individuals.',
+    templateFamily: 'creativeEvents',
+    colors: { primary: '#000000', primaryLight: '#333333', primaryDark: '#000000', accent: '#FFFFFF' },
+    fonts: { heading: 'Bodoni Moda', body: 'Inter', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Inter:wght@300;400&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'floating-elements',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      ClientMarquee: {
+        props: {
+          clients: ['Elle', 'GQ', 'Chanel', 'Aesop', 'Kinfolk']
+        }
+      },
+      AnimatedLogoSection: {
+        props: {
+          logoId: 'prism-stack'
+        }
+      },
+      CreativeMoodboard: {
+        props: {
+          title: 'Visual Storytelling',
+          description: 'We don\'t just take photos; we build visual narratives that define your brand\'s identity.',
+          stats: [
+            { label: 'Focus', value: 'Editorial & Lifestyle' },
+            { label: 'Light', value: 'Natural & Studio' },
+            { label: 'Output', value: 'Digital & Film' }
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80', // Main
+            'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80', // Detail 1
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80', // Detail 2
+            'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80', // Detail 3
+          ]
+        }
+      },
+      ShowcaseGallery: {
+        props: {
+          items: [
+            { title: 'Fashion Week', subtitle: 'Paris', gradient: 'from-neutral-900 to-neutral-800' },
+            { title: 'Desert Editorial', subtitle: 'Joshua Tree', gradient: 'from-orange-100 to-sand-200' },
+            { title: 'Urban Portraits', subtitle: 'Tokyo', gradient: 'from-blue-900 to-black' },
+            { title: 'Studio Minimal', subtitle: 'London', gradient: 'from-white to-gray-100' },
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=800&q=80',
+          ]
+        }
+      },
+      CreativeProcess: {
+        props: {
+          steps: [
+            { title: 'Concept Development', detail: 'Defining the visual direction and mood.' },
+            { title: 'The Shoot', detail: 'Directing talent and light to capture the perfect frame.' },
+            { title: 'Retouching', detail: 'High-end post-production for a polished look.' },
+          ]
+        }
+      },
+      Services: { variant: 'masonry' },
+      Benefits: { variant: 'stats' },
+      Testimonials: { variant: 'spotlight' },
+      CTA: { variant: 'floating' },
+      Footer: { variant: 'minimal' }
+    },
+    hero: { headline: 'Visual Storytelling for Modern Brands', subheadline: 'Creating imagery that resonates, inspires, and converts.', cta: 'View Portfolio', ctaSecondary: 'Book Session' },
+    services: { title: 'Photography Services', items: [ { icon: 'camera', title: 'Editorial', description: 'Magazine and campaign shoots' }, { icon: 'user', title: 'Portrait', description: 'Professional headshots and branding' }, { icon: 'shopping-bag', title: 'Product', description: 'E-commerce and lifestyle' } ] },
+    benefits: { title: 'Why Lumina', subtitle: 'Artistry & Professionalism', items: [ { title: 'Published', description: 'Work featured globally' }, { title: 'Fast Turnaround', description: 'Images ready in 48hrs' } ] },
+    testimonials: { title: 'Client Love', items: [ { quote: 'The photos completely elevated our brand identity.', author: 'Creative Director', role: 'Fashion Label', company: '' } ] },
+    cta: { title: 'Ready to Shoot?', subtitle: 'Let\'s discuss your project.', buttonText: 'Get in Touch' },
+    footer: { description: 'Professional photography studio specializing in fashion, lifestyle, and branding.' },
+  },
+
+  eventvenue: {
+    id: 'eventvenue',
+    headerVariant: 'mega',
+    name: 'The Glasshouse',
+    tagline: 'Where Memories Are Made',
+    description: 'A premier event space for weddings, corporate galas, and private parties.',
+    templateFamily: 'creativeEvents',
+    colors: { primary: '#1F2937', primaryLight: '#374151', primaryDark: '#111827', accent: '#D4AF37' },
+    fonts: { heading: 'Cinzel', body: 'Open Sans', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@300;400&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'video-bg',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      ClientMarquee: {
+        props: {
+          clients: ['TechCrunch', 'TEDx', 'Local Charity Gala', 'Chamber of Commerce', 'Film Festival']
+        }
+      },
+      AnimatedLogoSection: {
+        props: {
+          logoId: 'orbit-star'
+        }
+      },
+      CreativeMoodboard: {
+        props: {
+          title: 'Spaces That Inspire',
+          description: 'From intimate gatherings to grand galas, our versatile spaces adapt to your vision.',
+          stats: [
+            { label: 'Capacity', value: 'Up to 500 Guests' },
+            { label: 'Spaces', value: 'Indoor & Outdoor' },
+            { label: 'Style', value: 'Modern & Elegant' }
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80', // Main
+            'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80', // Detail 1
+            'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80', // Detail 2
+            'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80', // Detail 3
+          ]
+        }
+      },
+      ShowcaseGallery: {
+        props: {
+          items: [
+            { title: 'Grand Ballroom', subtitle: 'Capacity: 500', gradient: 'from-gold-200 to-white' },
+            { title: 'Garden Terrace', subtitle: 'Capacity: 200', gradient: 'from-green-100 to-white' },
+            { title: 'The Lounge', subtitle: 'Capacity: 80', gradient: 'from-gray-800 to-black' },
+            { title: 'Rooftop Deck', subtitle: 'Capacity: 150', gradient: 'from-blue-100 to-white' },
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1561489396-888724a1543d?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1560624052-449f5ddf0c31?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80',
+          ]
+        }
+      },
+      CreativeProcess: {
+        props: {
+          steps: [
+            { title: 'Tour & Consult', detail: 'Walk the space and discuss your event needs.' },
+            { title: 'Layout Design', detail: 'Custom floor plans to maximize flow and guest experience.' },
+            { title: 'Day-Of Support', detail: 'On-site venue manager to ensure everything runs smoothly.' },
+          ]
+        }
+      },
+      Services: { variant: 'cards' },
+      Benefits: { variant: 'features' },
+      Testimonials: { variant: 'quote-slider' },
+      CTA: { variant: 'with-form' },
+      Footer: { variant: 'split-brand' }
+    },
+    hero: { headline: 'The Perfect Backdrop for Your Event', subheadline: 'Elegant spaces, exceptional service, and unforgettable experiences.', cta: 'Book a Tour', ctaSecondary: 'Venue Details' },
+    services: { title: 'Venue Features', items: [ { icon: 'layout', title: 'Flexible Spaces', description: 'Indoor and outdoor options' }, { icon: 'mic', title: 'AV Included', description: 'State-of-the-art sound and lighting' }, { icon: 'coffee', title: 'Catering Prep', description: 'Full commercial kitchen access' } ] },
+    benefits: { title: 'Why Choose The Glasshouse', subtitle: 'Premier Event Destination', items: [ { title: 'Location', description: 'Heart of the city' }, { title: 'Parking', description: 'Valet available' } ] },
+    testimonials: { title: 'Client Reviews', items: [ { quote: 'The venue was stunning and the staff went above and beyond.', author: 'Corporate Planner', role: 'Tech Company', company: '' } ] },
+    cta: { title: 'Host Your Event Here', subtitle: 'Check availability for your dates.', buttonText: 'Inquire Now' },
+    footer: { description: 'Premier event venue for weddings, corporate events, and private celebrations.' },
   },
 
   fitnessstudio: {

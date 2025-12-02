@@ -21,7 +21,7 @@ const HeaderBold: React.FC<HeaderProps> = ({ industry }) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 mix-blend-difference text-white py-6">
+      <header className="fixed top-0 left-0 right-0 z-50 py-6 bg-black/20 backdrop-blur-md border-b border-white/10 text-white transition-all duration-300">
         <Container>
           <div className="flex items-center justify-between">
             <a href="/" className="text-3xl font-black uppercase tracking-tighter">
