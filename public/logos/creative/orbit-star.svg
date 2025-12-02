@@ -6,5 +6,7 @@
     <path d="M100 50 L100 40" />
     <path d="M150 100 L160 100" />
   </g>
+  <path class="logo-outline" fill="none" stroke="#D97706" stroke-width="5" stroke-linejoin="round"
+    d="M100 68 L107 88 L128 88 L111 100 L118 120 L100 108 L82 120 L89 100 L72 88 L93 88 Z" />
   <path class="logo-fill" fill="#FCD34D" fill-opacity="0.4" d="M100 68 L107 88 L128 88 L111 100 L118 120 L100 108 L82 120 L89 100 L72 88 L93 88 Z" />
 </svg>

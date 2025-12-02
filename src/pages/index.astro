@@ -1,64 +1,160 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navigation from '../components/layout/Navigation';
-import { Hero, Services, Benefits, Testimonials, CTA, LogoMarquee, Footer } from '../components/sections';
-import TemplateShortcut from '../components/ui/TemplateShortcut.astro';
-import { getIndustryConfig, getAllIndustries, type IndustryType } from '../config/industries';
+import TemplateCard from '../components/TemplateCard.astro';
+import { getAllIndustries, getIndustryConfig } from '../config/industries';
 
-// Default to accounting industry, can be changed via query param or props
-const industryParam = Astro.url.searchParams.get('industry') as IndustryType | null;
-const industry = getIndustryConfig(industryParam || 'accounting');
 const allIndustries = getAllIndustries();
+const defaultIndustry = getIndustryConfig('accounting');
+const industryList = allIndustries.map((id) => getIndustryConfig(id));
+
+// Pre-filter industries by category
+const professionalServices = industryList.filter((industry) => ['accounting', 'law', 'consulting', 'financial', 'insurance'].includes(industry.id));
+const healthWellness = industryList.filter((industry) => ['healthcare', 'fitnessstudio'].includes(industry.id));
+const hospitalityCulinary = industryList.filter((industry) => ['restaurant', 'boutiquehotel'].includes(industry.id));
+const tradesServices = industryList.filter((industry) => ['contractor'].includes(industry.id));
+const creativeEvents = industryList.filter((industry) => ['dj'].includes(industry.id));
+const realtyArchitecture = industryList.filter((industry) => ['realestate', 'architecture'].includes(industry.id));
+const otherServices = industryList.filter((industry) => ['education', 'recruitment'].includes(industry.id));
 ---
 
 <BaseLayout 
-  title={industry.hero.headline}
-  description={industry.hero.subheadline}
-  industry={industry.name}
-  industryConfig={industry}
+  title="Template Library | Professional Website Templates"
+  description="Browse our collection of industry-specific website templates designed for professional service businesses"
+  industry="accounting"
+  industryConfig={defaultIndustry}
 >
-  <TemplateShortcut label="Open Template Library" />
+  
+  <main class="flex-1 bg-gradient-to-b from-neutral-50 to-white">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden border-b border-neutral-200 bg-white py-20">
+      <div class="container mx-auto px-4">
+        <div class="mx-auto max-w-3xl text-center">
+          <h1 class="mb-6 text-5xl font-bold tracking-tight text-neutral-900 sm:text-6xl">
+            Choose Your Template
+          </h1>
+          <p class="text-xl text-neutral-600">
+            15 professionally designed templates across 7 industry categories. Each template is fully customizable and optimized for conversions.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <Navigation client:load industry={industry} />
-  
-  <main class="flex-1">
-    <Hero 
-      client:load 
-      industry={industry} 
-      showBadge={true}
-      badgeText="Trusted by 1000+ clients"
-      variant="default"
-    />
-    
-    <LogoMarquee 
-      client:visible 
-      title="Trusted by leading organizations"
-    />
-    
-    <Services 
-      client:visible 
-      industry={industry}
-      columns={3}
-    />
-    
-    <Benefits 
-      client:visible 
-      industry={industry}
-      variant="stats"
-    />
-    
-    <Testimonials 
-      client:visible 
-      industry={industry}
-      variant="carousel"
-    />
-    
-    <CTA 
-      client:visible 
-      industry={industry}
-      variant="default"
-    />
+    <!-- Template Grid -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        
+        <!-- Professional Services -->
+        <div class="mb-20">
+          <div class="mb-8">
+            <h2 class="mb-2 text-3xl font-bold text-neutral-900">Professional Services</h2>
+            <p class="text-lg text-neutral-600">Classic, trustworthy templates for service-based businesses</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {professionalServices.map((industry) => (
+              <TemplateCard industry={industry} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Health & Wellness -->
+        <div class="mb-20">
+          <div class="mb-8">
+            <h2 class="mb-2 text-3xl font-bold text-neutral-900">Health & Wellness</h2>
+            <p class="text-lg text-neutral-600">Clean, calming templates for healthcare and fitness</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {healthWellness.map((industry) => (
+              <TemplateCard industry={industry} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Hospitality & Culinary -->
+        <div class="mb-20">
+          <div class="mb-8">
+            <h2 class="mb-2 text-3xl font-bold text-neutral-900">Hospitality & Culinary</h2>
+            <p class="text-lg text-neutral-600">Elegant, appetizing templates for food and lodging</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {hospitalityCulinary.map((industry) => (
+              <TemplateCard industry={industry} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Trades & Field Services -->
+        <div class="mb-20">
+          <div class="mb-8">
+            <h2 class="mb-2 text-3xl font-bold text-neutral-900">Trades & Field Services</h2>
+            <p class="text-lg text-neutral-600">Bold, dependable templates for contractors and tradespeople</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {tradesServices.map((industry) => (
+              <TemplateCard industry={industry} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Creative & Events -->
+        <div class="mb-20">
+          <div class="mb-8">
+            <h2 class="mb-2 text-3xl font-bold text-neutral-900">Creative & Events</h2>
+            <p class="text-lg text-neutral-600">Vibrant, energetic templates for creative professionals</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {creativeEvents.map((industry) => (
+              <TemplateCard industry={industry} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Realty & Architecture -->
+        <div class="mb-20">
+          <div class="mb-8">
+            <h2 class="mb-2 text-3xl font-bold text-neutral-900">Realty & Architecture</h2>
+            <p class="text-lg text-neutral-600">Sophisticated templates for property and design professionals</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {realtyArchitecture.map((industry) => (
+              <TemplateCard industry={industry} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Other Services -->
+        <div class="mb-20">
+          <div class="mb-8">
+            <h2 class="mb-2 text-3xl font-bold text-neutral-900">Other Services</h2>
+            <p class="text-lg text-neutral-600">Specialized templates for various industries</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {otherServices.map((industry) => (
+              <TemplateCard industry={industry} />
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="border-t border-neutral-200 bg-neutral-50 py-16">
+      <div class="container mx-auto px-4">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="mb-4 text-3xl font-bold text-neutral-900">
+            Need a Custom Template?
+          </h2>
+          <p class="mb-8 text-lg text-neutral-600">
+            We can create a bespoke template tailored to your specific industry and requirements.
+          </p>
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 rounded-lg bg-brand-primary px-8 py-4 font-semibold text-white transition hover:bg-brand-primary-dark"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
-  
-  <Footer client:visible industry={industry} showNewsletter={true} />
 </BaseLayout>

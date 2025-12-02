@@ -10,6 +10,8 @@ import CertificationStrip from '../sections/custom/CertificationStrip.astro';
 import ClientMarquee from '../sections/custom/ClientMarquee.astro';
 import ShowcaseGallery from '../sections/custom/ShowcaseGallery.astro';
 import AnimatedLogoSection from '../sections/AnimatedLogoSection.astro';
+import CreativeMoodboard from '../sections/custom/CreativeMoodboard.astro';
+import CreativeProcess from '../sections/custom/CreativeProcess.astro';
 
 export interface Props {
   industryConfig: IndustryConfig;
@@ -64,6 +66,8 @@ const renderedSections = blueprint.map((bp) => {
     if (rs.name === 'ClientMarquee') return <ClientMarquee key={i} industry={industryConfig} {...props} />;
     if (rs.name === 'ShowcaseGallery') return <ShowcaseGallery key={i} industry={industryConfig} {...props} />;
     if (rs.name === 'AnimatedLogoSection') return <AnimatedLogoSection key={i} industry={industryConfig} {...props} />;
+    if (rs.name === 'CreativeMoodboard') return <CreativeMoodboard key={i} industry={industryConfig} {...props} />;
+    if (rs.name === 'CreativeProcess') return <CreativeProcess key={i} industry={industryConfig} {...props} />;
 
     return null;
   })}

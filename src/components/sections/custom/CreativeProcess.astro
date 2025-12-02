@@ -1,0 +1,37 @@
+---
+import type { IndustryConfig } from '@/config/industries';
+
+interface Props {
+  industry: IndustryConfig;
+}
+
+const { industry } = Astro.props as Props;
+const steps = [
+  { title: 'Concept Lab', detail: 'We anchor your vibe in a cinematic storyline + sonic palette.' },
+  { title: 'Experience Boards', detail: 'Motion mocks, lighting passes, and space plans arrive within 72 hours.' },
+  { title: 'Showtime Ops', detail: 'Run-of-show, talent wrangling, and live mix cues synced in one dashboard.' },
+];
+---
+
+<section class="py-24 bg-white" aria-label="Creative Process">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-4">
+        <p class="text-xs uppercase tracking-[0.3em] text-neutral-400">How it happens</p>
+        <h2 class="text-4xl font-bold text-neutral-900">A boutique process tuned for spectacle.</h2>
+        <p class="text-lg text-neutral-600">From storyboards to light plots, every phase keeps art direction and logistics in the same room so nothing gets lost in translation.</p>
+      </div>
+      <div class="space-y-6">
+        {steps.map((step, idx) => (
+          <div class="flex gap-5 items-start">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center text-sm font-semibold" style={`background:${industry.colors.primary}15;color:${industry.colors.primary}`}>{String(idx + 1).padStart(2,'0')}</div>
+            <div>
+              <h3 class="text-xl font-semibold text-neutral-900">{step.title}</h3>
+              <p class="text-neutral-500">{step.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

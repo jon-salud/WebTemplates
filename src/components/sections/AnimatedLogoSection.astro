@@ -1,13 +1,33 @@
 ---
-import AnimatedLogo from '../ui/AnimatedLogo';
+import ScrollAnimatedLogo from '../ui/ScrollAnimatedLogo';
+import { creativeLogos, getCreativeLogo } from '@/config/creativeLogos';
 
-const { industry } = Astro.props;
+interface Props {
+  industry: any;
+  logos?: string[]; // backward compat for older overrides
+  logoId?: string;
+}
+
+const { industry, logos, logoId } = Astro.props as Props;
+const resolvedLogo = logoId
+  ? getCreativeLogo(logoId)
+  : logos && logos.length > 0
+    ? { id: 'custom', label: 'Custom Logo', description: 'Provided via props', src: logos[0] }
+    : creativeLogos[0];
 ---
 
-<section class="relative py-12">
-  <div class="container">
-    <div class="sticky top-[65vh] flex justify-center items-center">
-      <AnimatedLogo client:visible src="/logos/creative/pulse-mark.svg" />
+<!-- Outer wrapper creates the scroll height for the sticky effect -->
+<div class="scroll-logo-wrapper relative" style="height: 200vh;">
+  <!-- Sticky container stays fixed while user scrolls through the wrapper -->
+  <section class="sticky top-0 h-screen flex items-center justify-center bg-gradient-to-b from-rose-50 via-white to-rose-100 overflow-hidden">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-md mx-auto">
+        <div class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.3em] text-rose-300">{resolvedLogo.label}</p>
+          <ScrollAnimatedLogo client:visible src={resolvedLogo.src} />
+          <p class="text-base text-neutral-500 max-w-sm mx-auto">{resolvedLogo.description}</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

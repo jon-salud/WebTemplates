@@ -5,6 +5,9 @@
     <path d="M60 95 L140 95 L100 145 Z" />
     <path d="M60 145 L140 145 L100 175 Z" />
   </g>
+  <path class="logo-outline" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linejoin="round" d="M60 45 L140 45 L100 95 Z" />
+  <path class="logo-outline" fill="none" stroke="#6D28D9" stroke-width="5" stroke-linejoin="round" d="M60 95 L140 95 L100 145 Z" />
+  <path class="logo-outline" fill="none" stroke="#4C1D95" stroke-width="5" stroke-linejoin="round" d="M60 145 L140 145 L100 175 Z" />
   <path class="logo-fill" fill="#A78BFA" fill-opacity="0.35" d="M60 45 L140 45 L100 95 Z" />
   <path class="logo-fill" fill="#7C3AED" fill-opacity="0.3" d="M60 95 L140 95 L100 145 Z" />
   <path class="logo-fill" fill="#5B21B6" fill-opacity="0.25" d="M60 145 L140 145 L100 175 Z" />

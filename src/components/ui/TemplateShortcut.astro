@@ -1,13 +1,14 @@
 ---
 interface Props {
   label?: string;
+  href?: string;
 }
 
-const { label = 'Explore Templates' } = Astro.props;
+const { label = 'Explore Templates', href = '/' } = Astro.props;
 ---
 
 <a
-  href="/"
+  href={href}
   class="fixed bottom-4 right-4 z-50 inline-flex items-center gap-3 rounded-full bg-white/95 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-card-hover ring-1 ring-white/60 backdrop-blur transition hover:-translate-y-0.5 hover:text-brand-primary"
 >
   <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">

@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navigation from '../../components/layout/Navigation';
-import { Footer } from '../../components/sections';
 import TemplateShortcut from '../../components/ui/TemplateShortcut.astro';
 import TemplateRenderer from '../../components/layout/TemplateRenderer.astro';
 import { getAllIndustries, getIndustryConfig } from '../../config/industries';
@@ -26,5 +25,4 @@ const { industryConfig: industry } = Astro.props;
     <TemplateRenderer industryConfig={industry} />
   </main>
 
-  <Footer client:visible industry={industry} showNewsletter={true} />
 </BaseLayout>

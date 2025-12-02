@@ -47,14 +47,22 @@ export const templateBlueprints: Record<TemplateFamily, SectionBlueprint[]> = {
     { component: 'Footer', variant: 'simple-dark' },
   ],
   creativeEvents: [
-    { component: 'Hero', variant: 'bento' },
-    { component: 'Custom', props: { component: 'ClientMarquee' } },
-    { component: 'Services', variant: 'hover-cards' },
+    { component: 'Hero', variant: 'image-overlap', props: { showBadge: false } },
+    { component: 'Custom', props: { component: 'CreativeMoodboard' } },
     { component: 'Custom', props: { component: 'ShowcaseGallery' } },
-    { component: 'Custom', props: { component: 'AnimatedLogoSection' } },
-    { component: 'Benefits', variant: 'radial' },
+    {
+      component: 'Custom',
+      props: {
+        component: 'AnimatedLogoSection',
+        logoId: 'pulse-mark',
+      },
+    },
+    { component: 'Services', variant: 'hover-cards', props: { renameTo: 'Signature Experiences' } },
+    { component: 'Custom', props: { component: 'CreativeProcess' } },
+    { component: 'Custom', props: { component: 'ClientMarquee' } },
+    { component: 'Benefits', variant: 'radial', props: { renameTo: 'Experience Highlights' } },
     { component: 'Testimonials', variant: 'floating-cards' },
-    { component: 'CTA', variant: 'split' },
+    { component: 'CTA', variant: 'split', props: { emphasis: 'high-contrast' } },
     { component: 'Footer', variant: 'modern-grid' },
   ],
   saasStartups: [

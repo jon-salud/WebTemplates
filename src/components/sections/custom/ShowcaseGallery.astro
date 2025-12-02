@@ -1,14 +1,45 @@
----
-const { industry } = Astro.props;
----
-<section class="py-8" aria-label="Showcase gallery">
-  <div class="container">
-    <h3 class="text-lg font-semibold mb-4">Showcase</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="h-36 bg-neutral-100 rounded"></div>
-      <div class="h-36 bg-neutral-100 rounded"></div>
-      <div class="h-36 bg-neutral-100 rounded"></div>
-      <div class="h-36 bg-neutral-100 rounded"></div>
+<section class="py-20" aria-label="Showcase gallery">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <p class="text-xs uppercase tracking-[0.4em] text-neutral-400 mb-3">Showcase</p>
+        <h3 class="text-3xl md:text-4xl font-semibold text-neutral-900">Spaces we designed this season</h3>
+      </div>
+      <span class="hidden md:inline-flex text-sm font-medium text-neutral-500">Scroll to explore →</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="h-48 md:h-64 rounded-3xl overflow-hidden relative shadow-xl bg-gradient-to-br from-indigo-500/60 via-sky-400/40 to-teal-400/30" aria-label="Neon Rooftop">
+        <div class="absolute inset-0 opacity-30 bg-gradient-to-b from-white/30 to-transparent"></div>
+        <div class="absolute inset-0 opacity-60" style="background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white flex items-center justify-between text-sm">
+          <span class="font-semibold drop-shadow">Neon Rooftop</span>
+          <span class="opacity-80 drop-shadow">Live Mix</span>
+        </div>
+      </div>
+      <div class="h-48 md:h-64 rounded-3xl overflow-hidden relative shadow-xl bg-gradient-to-br from-fuchsia-500/50 via-rose-500/40 to-amber-400/30" aria-label="Immersive Atrium">
+        <div class="absolute inset-0 opacity-30 bg-gradient-to-b from-white/30 to-transparent"></div>
+        <div class="absolute inset-0 opacity-60" style="background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white flex items-center justify-between text-sm">
+          <span class="font-semibold drop-shadow">Immersive Atrium</span>
+          <span class="opacity-80 drop-shadow">Stage Build</span>
+        </div>
+      </div>
+      <div class="h-48 md:h-64 rounded-3xl overflow-hidden relative shadow-xl bg-gradient-to-br from-amber-400/50 via-orange-500/40 to-pink-500/30" aria-label="Festival Courtyard">
+        <div class="absolute inset-0 opacity-30 bg-gradient-to-b from-white/30 to-transparent"></div>
+        <div class="absolute inset-0 opacity-60" style="background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white flex items-center justify-between text-sm">
+          <span class="font-semibold drop-shadow">Festival Courtyard</span>
+          <span class="opacity-80 drop-shadow">Lighting Pass</span>
+        </div>
+      </div>
+      <div class="h-48 md:h-64 rounded-3xl overflow-hidden relative shadow-xl bg-gradient-to-br from-emerald-500/50 via-lime-400/40 to-yellow-300/30" aria-label="Art Basel Loft">
+        <div class="absolute inset-0 opacity-30 bg-gradient-to-b from-white/30 to-transparent"></div>
+        <div class="absolute inset-0 opacity-60" style="background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white flex items-center justify-between text-sm">
+          <span class="font-semibold drop-shadow">Art Basel Loft</span>
+          <span class="opacity-80 drop-shadow">Install Prep</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>

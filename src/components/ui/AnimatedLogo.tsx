@@ -60,8 +60,8 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({ src, className }) => {
   }, [svg]);
 
   return (
-    <div ref={containerRef} className={`animated-logo ${className || ''}`} aria-hidden>
-      {svg ? <div dangerouslySetInnerHTML={{ __html: svg }} /> : <div className="w-20 h-20 bg-neutral-200 rounded" />}
+    <div ref={containerRef} className={`animated-logo ${className || ''} [&_svg]:w-full [&_svg]:h-full`} aria-hidden>
+      {svg ? <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: svg }} /> : <div className="w-20 h-20 bg-neutral-800 rounded animate-pulse" />}
     </div>
   );
 };
