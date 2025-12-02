@@ -129,6 +129,24 @@ All fonts are loaded from Google Fonts for optimal performance and are configure
 
 ## �📂 Available Variants
 
+### Header Variants (13)
+
+| Variant    | Description                                       |
+| ---------- | ------------------------------------------------- |
+| `minimal`  | Clean, single-line layout with essential links    |
+| `centered` | Logo centered with navigation on sides            |
+| `double`   | Two-row layout for information-dense needs        |
+| `floating` | Floats above content with glassmorphism effect    |
+| `glass`    | Transparent, blurry background for immersive feel |
+| `split`    | Logo left, navigation right, distinct separation  |
+| `bold`     | High-impact, large typography for creative brands |
+| `mega`     | Includes mega-menu capabilities for large sites   |
+| `sidebar`  | Vertical navigation sidebar (desktop)             |
+| `search`   | Prominent search bar (Real Estate/Retail)         |
+| `gradient` | Gradient background for modern tech/SaaS          |
+| `bordered` | High-contrast borders for industrial/trades       |
+| `default`  | Standard professional layout                      |
+
 ### Hero Variants (10)
 
 | Variant             | Description                                 |

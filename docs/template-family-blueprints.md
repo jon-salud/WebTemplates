@@ -247,11 +247,11 @@ Extras: `IntegrationGrid`, `PricingSummary`, `TemplateShortcut`
 
 Use the checklist below to track delivery of the first wave of non-professional templates. Each item lists the template family and the exact scaffolding (section order + key variants) that should be wired via the blueprint registry.
 
--   [ ] **Restaurant** — `hospitalityCulinary`; Hero (video-bg) → AwardsBadges → Experiences (image-cards) → MenuHighlights (bento) → MenuPreview (custom) → Testimonials (quote-slider) → CTA (dual-action) → Footer (split-brand)
--   [ ] **Boutique Hotel** — `hospitalityCulinary`; Hero (image-overlap) → AwardsBadges → Experiences (spotlight) → GalleryCarousel (custom) → Testimonials (quote-slider) → CTA (dual-action) → Footer (split-brand)
--   [ ] **Contractor** — `tradesFieldServices`; Hero (minimal-centered) → CertificationStrip → Services (cards) → ProcessSteps (custom) → Benefits (icon-list) → Testimonials (side-scroll) → CTA (banner) → Footer (simple-dark)
--   [ ] **DJ / Music Producer** — `creativeEvents`; Hero (bento) → ClientMarquee → Services (hover-cards packages) → ShowcaseGallery (custom) → Benefits (radial stats) → Testimonials (floating-cards) → CTA (split) → Footer (modern-grid)
--   [ ] **Fitness Studio** — `healthWellness`; Hero (diagonal-split) → LogoMarquee (partners) → Services (icon-grid) → FeaturedPrograms (custom) → Benefits (timeline) → Testimonials (carousel) → CTA (with-form) → Footer (centered)
+-   [x] **Restaurant** — `hospitalityCulinary`; Hero (video-bg) → AwardsBadges → Experiences (image-cards) → MenuHighlights (bento) → MenuPreview (custom) → Testimonials (quote-slider) → CTA (dual-action) → Footer (split-brand)
+-   [x] **Boutique Hotel** — `hospitalityCulinary`; Hero (image-overlap) → AwardsBadges → Experiences (spotlight) → GalleryCarousel (custom) → Testimonials (quote-slider) → CTA (dual-action) → Footer (split-brand)
+-   [x] **Contractor** — `tradesFieldServices`; Hero (minimal-centered) → CertificationStrip → Services (cards) → ProcessSteps (custom) → Benefits (icon-list) → Testimonials (side-scroll) → CTA (banner) → Footer (simple-dark)
+-   [x] **DJ / Music Producer** — `creativeEvents`; Hero (bento) → ClientMarquee → Services (hover-cards packages) → ShowcaseGallery (custom) → Benefits (radial stats) → Testimonials (floating-cards) → CTA (split) → Footer (modern-grid)
+-   [x] **Fitness Studio** — `healthWellness`; Hero (diagonal-split) → LogoMarquee (partners) → Services (icon-grid) → FeaturedPrograms (custom) → Benefits (timeline) → Testimonials (carousel) → CTA (with-form) → Footer (centered)
 
 Add additional checklist rows as new industries are planned so contributors can see progress at a glance.
 
