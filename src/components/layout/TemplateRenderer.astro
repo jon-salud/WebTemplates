@@ -50,7 +50,19 @@ const resolveVariant = (bp: any) => {
 };
 
 const resolveProps = (bp: any) => {
-  const override = getSectionOverride(bp.component);
+  let override = getSectionOverride(bp.component);
+
+  if (bp.component === 'Custom' && bp.props?.component) {
+    const specificOverride = getSectionOverride(bp.props.component);
+    if (specificOverride) {
+      override = {
+        ...(override || {}),
+        ...specificOverride,
+        props: { ...(override?.props || {}), ...(specificOverride.props || {}) }
+      };
+    }
+  }
+
   return { ...(bp.props || {}), ...(override?.props || {}) };
 };
 

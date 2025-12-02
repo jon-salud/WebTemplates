@@ -61,7 +61,7 @@ export interface IndustryConfig {
     buttonText: string;
   };
   templateFamily?: import('./templateFamilies').TemplateFamily;
-  sections?: Partial<Record<'Hero' | 'Services' | 'Benefits' | 'Testimonials' | 'CTA' | 'LogoMarquee' | 'Footer', { variant?: string; props?: Record<string, unknown> }>>;
+  sections?: Partial<Record<string, { variant?: string; props?: Record<string, unknown> }>>;
   customSections?: Array<{ slot: string; component: string; props?: Record<string, unknown> }>;
   footer: {
     description: string;
@@ -184,6 +184,13 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       description: 'Your trusted partner for comprehensive accounting, tax, and financial advisory services.',
     },
     // Accounting uses professionalServices defaults (split hero)
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920&q=80',
+        },
+      },
+    },
   },
   
   law: {
@@ -203,7 +210,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap'
     },
     sections: {
-      Hero: { variant: 'editorial' },
+      Hero: { 
+        variant: 'editorial',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
       Services: { variant: 'accordion' },
       Benefits: { variant: 'progress-bars' },
       Testimonials: { variant: 'stacked-cards' },
@@ -328,7 +340,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap'
     },
     sections: {
-      Hero: { variant: 'asymmetric' },
+      Hero: { 
+        variant: 'asymmetric',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
     },
     hero: {
       headline: 'Exceptional Healthcare, Personalized for You',
@@ -447,7 +464,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap'
     },
     sections: {
-      Hero: { variant: 'bento' },
+      Hero: { 
+        variant: 'bento',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
       Services: { variant: 'hover-cards' },
       Benefits: { variant: 'radial' },
       Testimonials: { variant: 'spotlight' },
@@ -571,7 +593,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Merriweather:wght@300;400;700&display=swap'
     },
     sections: {
-      Hero: { variant: 'centered-cards' },
+      Hero: { 
+        variant: 'centered-cards',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
       Services: { variant: 'tabs' },
       Benefits: { variant: 'comparison' },
       Testimonials: { variant: 'masonry' },
@@ -695,7 +722,13 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto:wght@400;500;700&display=swap'
     },
     sections: {
-      Hero: { variant: 'video-bg' },
+      Hero: { 
+        variant: 'video-bg',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1920&q=80',
+          videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-city-traffic-at-night-11-large.mp4',
+        }
+      },
       Services: { variant: 'image-cards' },
       Benefits: { variant: 'animated-counter' },
       Testimonials: { variant: 'floating-cards' },
@@ -819,7 +852,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Crimson+Text:wght@400;600&display=swap'
     },
     sections: {
-      Hero: { variant: 'minimal-centered' },
+      Hero: { 
+        variant: 'minimal-centered',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
       Services: { variant: 'cards' },
       Benefits: { variant: 'bento' },
       Testimonials: { variant: 'quote-slider' },
@@ -943,7 +981,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Libre+Baskerville:wght@400;700&display=swap'
     },
     sections: {
-      Hero: { variant: 'image-overlap' },
+      Hero: { 
+        variant: 'image-overlap',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
       Services: { variant: 'timeline' },
       Benefits: { variant: 'features' },
       Testimonials: { variant: 'cards-row' },
@@ -1067,7 +1110,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap'
     },
     sections: {
-      Hero: { variant: 'diagonal-split' },
+      Hero: { 
+        variant: 'diagonal-split',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
       Services: { variant: 'masonry' },
       Benefits: { variant: 'stats' },
       Testimonials: { variant: 'centered-quote' },
@@ -1191,7 +1239,12 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap'
     },
     sections: {
-      Hero: { variant: 'floating-elements' },
+      Hero: { 
+        variant: 'floating-elements',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
       Services: { variant: 'spotlight' },
       Benefits: { variant: 'icon-list' },
       Testimonials: { variant: 'side-scroll' },
@@ -1316,6 +1369,23 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       body: 'Source Sans 3',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Source+Sans+3:wght@400;600&display=swap'
     },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      Custom: {
+        props: {
+          images: [
+            'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80', // Interior
+            'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80', // Food
+            'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80', // Drink
+            'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80', // Atmosphere
+          ]
+        }
+      }
+    },
     hero: {
       headline: 'Seasonal Dishes, Unforgettable Nights',
       subheadline: 'Reserve your table for a curated dining experience that blends farm-fresh ingredients with innovative techniques.',
@@ -1365,6 +1435,23 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       body: 'Lora',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap'
     },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      Custom: {
+        props: {
+          images: [
+            'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', // Hotel Lobby
+            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80', // Room
+            'https://images.unsplash.com/photo-1571896349842-6e53ce41e86a?auto=format&fit=crop&w=800&q=80', // Pool/Spa
+            'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80', // Detail
+          ]
+        }
+      }
+    },
     hero: { headline: 'Curated Stays & Bespoke Comfort', subheadline: 'Enjoy local art, elevated hospitality, and an attentive experience.', cta: 'Book a Room', ctaSecondary: 'View Rooms' },
     services: { title: 'Guest Services', items: [ { icon: 'home', title: 'Concierge', description: 'Local experiences and tailored itineraries' }, { icon: 'room-service', title: 'Room Service', description: 'Seasonal, locally sourced menus' } ] },
     benefits: { title: 'Why Guests Love Us', subtitle: 'Luxury with personality', items: [ { title: 'Location', description: 'Walkable to local attractions' }, { title: 'Design', description: 'Thoughtful interiors by local artists' } ] },
@@ -1381,6 +1468,23 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     templateFamily: 'tradesFieldServices',
     colors: { primary: '#EA580C', primaryLight: '#F97316', primaryDark: '#C2410C', accent: '#111827' },
     fonts: { heading: 'Zilla Slab', body: 'Inter', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap' },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      ProcessSteps: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
+        }
+      },
+      ServiceAreaMap: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1920&q=80',
+        }
+      }
+    },
     hero: { headline: 'Reliable Contracting For Your Project', subheadline: 'Skilled crews, transparent quoting, and proven delivery.', cta: 'Get A Quote', ctaSecondary: 'Our Projects' },
     services: { title: 'Contractor Services', items: [ { icon: 'home', title: 'Renovation', description: 'Full-service home remodeling' }, { icon: 'tool', title: 'Construction', description: 'Commercial buildouts' }, { icon: 'shield', title: 'Repairs', description: 'Fast and reliable repairs' } ] },
     benefits: { title: 'Our Guarantees', subtitle: 'Quality workmanship', items: [ { title: 'Licensed', description: 'Fully licensed & insured' }, { title: 'Warranty', description: 'Workmanship warranty on projects' } ] },
@@ -1397,6 +1501,33 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     templateFamily: 'creativeEvents',
     colors: { primary: '#111827', primaryLight: '#374151', primaryDark: '#0B1220', accent: '#F472B6' },
     fonts: { heading: 'Fugaz One', body: 'Source Sans 3', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Fugaz+One&family=Source+Sans+3:wght@400;600&display=swap' },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      CreativeMoodboard: {
+        props: {
+          images: [
+            'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80', // Main
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80', // Top 1
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80', // Top 2
+            'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80', // Top 3
+          ]
+        }
+      },
+      ShowcaseGallery: {
+        props: {
+          images: [
+            'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+          ]
+        }
+      }
+    },
     hero: { headline: 'Live Performances & Tailored Mixes', subheadline: 'From intimate parties to sold-out shows, we bring the energy.', cta: 'Book A Show', ctaSecondary: 'Listen to Mixes' },
     services: { title: 'Services', items: [ { icon: 'music', title: 'Event DJ', description: 'Keep the crowd moving' }, { icon: 'playlist', title: 'Custom Mixes', description: 'Non-stop custom mixes' } ] },
     benefits: { title: 'Why Book Us', subtitle: 'Professional sound & energy', items: [ { title: 'Gear', description: 'Top-tier sound and lighting' }, { title: 'Experience', description: 'Years performing live events' } ] },
@@ -1413,6 +1544,18 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     templateFamily: 'healthWellness',
     colors: { primary: '#10B981', primaryLight: '#34D399', primaryDark: '#047857', accent: '#111827' },
     fonts: { heading: 'Fredoka', body: 'Varela Round', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap' },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      TransformationStory: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80',
+        }
+      }
+    },
     hero: { headline: 'Small Group Classes & Personal Training', subheadline: 'Find your fit with expert coaches and community-driven classes.', cta: 'Try A Class', ctaSecondary: 'View Schedule' },
     services: { title: 'Classes', items: [ { icon: 'activity', title: 'HIIT', description: 'High intensity interval training' }, { icon: 'dumbbell', title: 'Strength', description: 'Resistance training' } ] },
     benefits: { title: 'Studio Benefits', subtitle: 'Community & results', items: [ { title: 'Coaches', description: 'Certifed coaches' }, { title: 'Flexible Schedule', description: 'Multiple daily classes' } ] },

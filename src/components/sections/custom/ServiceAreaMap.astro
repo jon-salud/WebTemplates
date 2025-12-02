@@ -11,9 +11,13 @@ interface Props {
       accent: string;
     };
   };
+  image?: string;
 }
 
-const { industry } = Astro.props;
+const { industry, image } = Astro.props;
+
+const defaultMapImage = "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80"; // Generic map/city
+const displayImage = image || defaultMapImage;
 
 const serviceAreas = [
   'Downtown',
@@ -31,25 +35,32 @@ const stats = [
 ];
 ---
 
-<section class="py-16 bg-amber-50" aria-label="Service Area">
+<section class="py-16" style={`background-color: ${industry.colors.primary}08`} aria-label="Service Area">
   <div class="container mx-auto px-6">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <!-- Map Placeholder -->
       <div class="relative">
-        <div class="aspect-square rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 overflow-hidden">
-          <!-- Stylized map visualization -->
+        <div class="aspect-square rounded-2xl bg-neutral-100 overflow-hidden relative group">
+          <!-- Background Image -->
+          <img 
+            src={displayImage} 
+            alt="Service Area Map" 
+            class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity grayscale hover:grayscale-0 duration-500"
+          />
+          
+          <!-- Stylized map visualization overlay -->
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="relative w-3/4 h-3/4">
               <!-- Center point -->
               <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div class="w-6 h-6 bg-amber-500 rounded-full animate-pulse"></div>
-                <div class="absolute inset-0 w-6 h-6 bg-amber-500/30 rounded-full animate-ping"></div>
+                <div class="w-6 h-6 rounded-full animate-pulse shadow-lg border-2 border-white" style={`background-color: ${industry.colors.primary}`}></div>
+                <div class="absolute inset-0 w-6 h-6 rounded-full animate-ping" style={`background-color: ${industry.colors.primary}4D`}></div>
               </div>
               
               <!-- Radius rings -->
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-amber-300/50 rounded-full"></div>
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-amber-200/40 rounded-full"></div>
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 border-amber-100/30 rounded-full"></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 rounded-full" style={`border-color: ${industry.colors.primary}4D; background-color: ${industry.colors.primary}0D`}></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 rounded-full" style={`border-color: ${industry.colors.primary}33`}></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 rounded-full" style={`border-color: ${industry.colors.primary}1A`}></div>
             </div>
           </div>
         </div>
@@ -63,7 +74,7 @@ const stats = [
 
       <!-- Content -->
       <div>
-        <p class="text-xs uppercase tracking-[0.3em] text-amber-600 mb-3">Service Area</p>
+        <p class="text-xs uppercase tracking-[0.3em] mb-3" style={`color: ${industry.colors.primary}`}>Service Area</p>
         <h2 class="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4">
           We Come to You
         </h2>
@@ -78,7 +89,7 @@ const stats = [
               {area}
             </span>
           ))}
-          <span class="px-4 py-2 bg-amber-500 text-white rounded-full text-sm font-medium">
+          <span class="px-4 py-2 text-white rounded-full text-sm font-medium" style={`background-color: ${industry.colors.primary}`}>
             + More
           </span>
         </div>
@@ -94,7 +105,7 @@ const stats = [
         </div>
 
         <div class="mt-8">
-          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 text-white rounded-full font-medium hover:bg-amber-600 transition-colors">
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-opacity hover:opacity-90" style={`background-color: ${industry.colors.primary}`}>
             Check Your Area
             <span>→</span>
           </a>
