@@ -183,6 +183,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     footer: {
       description: 'Your trusted partner for comprehensive accounting, tax, and financial advisory services.',
     },
+    // Accounting uses professionalServices defaults (split hero)
   },
   
   law: {
@@ -200,6 +201,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       heading: 'Playfair Display',
       body: 'Lora',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap'
+    },
+    sections: {
+      Hero: { variant: 'editorial' },
+      Services: { variant: 'accordion' },
+      Benefits: { variant: 'progress-bars' },
+      Testimonials: { variant: 'stacked-cards' },
+      CTA: { variant: 'minimal' },
+      Footer: { variant: 'minimal' },
     },
     hero: {
       headline: 'Trusted Legal Counsel for Complex Challenges',
@@ -306,6 +315,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     name: 'Healthcare Practice',
     tagline: 'Compassionate Care, Advanced Medicine',
     description: 'Patient-centered healthcare with cutting-edge treatment',
+    templateFamily: 'healthWellness',
     colors: {
       primary: '#00A89D',
       primaryLight: '#20C8BD',
@@ -316,6 +326,9 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       heading: 'Montserrat',
       body: 'Open Sans',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap'
+    },
+    sections: {
+      Hero: { variant: 'asymmetric' },
     },
     hero: {
       headline: 'Exceptional Healthcare, Personalized for You',
@@ -433,6 +446,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       body: 'Source Sans 3',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap'
     },
+    sections: {
+      Hero: { variant: 'bento' },
+      Services: { variant: 'hover-cards' },
+      Benefits: { variant: 'radial' },
+      Testimonials: { variant: 'spotlight' },
+      CTA: { variant: 'floating' },
+      Footer: { variant: 'mega' },
+    },
     hero: {
       headline: 'Strategic Consulting for Business Excellence',
       subheadline: 'Partner with our expert consultants to unlock growth, optimize operations, and navigate complex business challenges.',
@@ -548,6 +569,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       heading: 'EB Garamond',
       body: 'Merriweather',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Merriweather:wght@300;400;700&display=swap'
+    },
+    sections: {
+      Hero: { variant: 'centered-cards' },
+      Services: { variant: 'tabs' },
+      Benefits: { variant: 'comparison' },
+      Testimonials: { variant: 'masonry' },
+      CTA: { variant: 'stats-cta' },
+      Footer: { variant: 'dark-gradient' },
     },
     hero: {
       headline: 'Expert Financial Planning for Your Future',
@@ -665,6 +694,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       body: 'Roboto',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Roboto:wght@400;500;700&display=swap'
     },
+    sections: {
+      Hero: { variant: 'video-bg' },
+      Services: { variant: 'image-cards' },
+      Benefits: { variant: 'animated-counter' },
+      Testimonials: { variant: 'floating-cards' },
+      CTA: { variant: 'dual-action' },
+      Footer: { variant: 'split-brand' },
+    },
     hero: {
       headline: 'Find Your Dream Property with Expert Guidance',
       subheadline: 'Whether buying, selling, or investing, our experienced agents provide personalized service to achieve your real estate goals.',
@@ -780,6 +817,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       heading: 'PT Serif',
       body: 'Crimson Text',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Crimson+Text:wght@400;600&display=swap'
+    },
+    sections: {
+      Hero: { variant: 'minimal-centered' },
+      Services: { variant: 'cards' },
+      Benefits: { variant: 'bento' },
+      Testimonials: { variant: 'quote-slider' },
+      CTA: { variant: 'default' },
+      Footer: { variant: 'simple-dark' },
     },
     hero: {
       headline: 'Protect What Matters Most to You',
@@ -897,6 +942,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       body: 'Libre Baskerville',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Libre+Baskerville:wght@400;700&display=swap'
     },
+    sections: {
+      Hero: { variant: 'image-overlap' },
+      Services: { variant: 'timeline' },
+      Benefits: { variant: 'features' },
+      Testimonials: { variant: 'cards-row' },
+      CTA: { variant: 'centered' },
+      Footer: { variant: 'columns-light' },
+    },
     hero: {
       headline: 'Visionary Architecture for Modern Living',
       subheadline: 'We create thoughtful, sustainable designs that transform spaces and enhance lives. From concept to completion, excellence in every detail.',
@@ -1013,6 +1066,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       body: 'Varela Round',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap'
     },
+    sections: {
+      Hero: { variant: 'diagonal-split' },
+      Services: { variant: 'masonry' },
+      Benefits: { variant: 'stats' },
+      Testimonials: { variant: 'centered-quote' },
+      CTA: { variant: 'split' },
+      Footer: { variant: 'stacked' },
+    },
     hero: {
       headline: 'Unlock Your Child\'s Full Potential',
       subheadline: 'Personalized education programs that inspire curiosity, build confidence, and prepare students for success in an ever-changing world.',
@@ -1128,6 +1189,14 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
       heading: 'Zilla Slab',
       body: 'Inter',
       googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap'
+    },
+    sections: {
+      Hero: { variant: 'floating-elements' },
+      Services: { variant: 'spotlight' },
+      Benefits: { variant: 'icon-list' },
+      Testimonials: { variant: 'side-scroll' },
+      CTA: { variant: 'banner' },
+      Footer: { variant: 'modern-grid' },
     },
     hero: {
       headline: 'Find Exceptional Talent, Build Winning Teams',
