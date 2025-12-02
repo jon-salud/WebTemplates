@@ -5,7 +5,7 @@
  * Each industry has its own color scheme, copy, and imagery suggestions.
  */
 
-export type IndustryType = 'accounting' | 'law' | 'healthcare' | 'consulting' | 'financial' | 'realestate' | 'insurance' | 'architecture' | 'education' | 'recruitment' | 'restaurant' | 'boutiquehotel' | 'contractor' | 'dj' | 'fitnessstudio';
+export type IndustryType = 'accounting' | 'law' | 'healthcare' | 'consulting' | 'financial' | 'realestate' | 'insurance' | 'architecture' | 'education' | 'recruitment' | 'restaurant' | 'boutiquehotel' | 'contractor' | 'dj' | 'fitnessstudio' | 'dental' | 'spa' | 'therapist';
 
 export interface IndustryConfig {
   id: IndustryType;
@@ -1578,6 +1578,93 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     testimonials: { title: 'Success Stories', items: [ { quote: 'I transformed my fitness journey here.', author: 'L. Morales', role: 'Member', company: '' } ] },
     cta: { title: 'Start Your Journey', subtitle: 'Book a free trial class.', buttonText: 'Book Trial' },
     footer: { description: 'Local fitness studio focusing on results and community.' },
+  },
+
+  dental: {
+    id: 'dental',
+    headerVariant: 'minimal',
+    name: 'BrightSmile Dental',
+    tagline: 'Confidence in Every Smile',
+    description: 'Comprehensive dental care for the whole family in a comfortable environment.',
+    templateFamily: 'healthWellness',
+    colors: { primary: '#0EA5E9', primaryLight: '#38BDF8', primaryDark: '#0284C7', accent: '#F472B6' },
+    fonts: { heading: 'Inter', body: 'Open Sans', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap' },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      TransformationStory: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80',
+        }
+      }
+    },
+    hero: { headline: 'Modern Dentistry, Gentle Care', subheadline: 'Experience state-of-the-art dental treatments designed for your comfort and long-term oral health.', cta: 'Book Appointment', ctaSecondary: 'Our Services' },
+    services: { title: 'Dental Services', items: [ { icon: 'smile', title: 'Cosmetic', description: 'Veneers, whitening, and smile makeovers' }, { icon: 'shield', title: 'Preventive', description: 'Cleanings, exams, and sealants' }, { icon: 'tool', title: 'Restorative', description: 'Implants, crowns, and bridges' } ] },
+    benefits: { title: 'Why Choose Us', subtitle: 'Patient-first approach', items: [ { title: 'Technology', description: 'Latest digital imaging' }, { title: 'Comfort', description: 'Sedation options available' } ] },
+    testimonials: { title: 'Patient Reviews', items: [ { quote: 'The most painless dental experience I have ever had.', author: 'M. Davis', role: 'Patient', company: '' } ] },
+    cta: { title: 'Ready for a Brighter Smile?', subtitle: 'New patients welcome.', buttonText: 'Schedule Visit' },
+    footer: { description: 'Family dentistry providing comprehensive oral healthcare.' },
+  },
+
+  spa: {
+    id: 'spa',
+    headerVariant: 'glass',
+    name: 'Serenity Spa',
+    tagline: 'Escape. Relax. Rejuvenate.',
+    description: 'A sanctuary for wellness and relaxation offering premium spa treatments.',
+    templateFamily: 'healthWellness',
+    colors: { primary: '#57534E', primaryLight: '#78716C', primaryDark: '#44403C', accent: '#D6D3D1' },
+    fonts: { heading: 'Cormorant Garamond', body: 'Lato', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400&display=swap' },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      TransformationStory: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80',
+        }
+      }
+    },
+    hero: { headline: 'Restore Your Natural Balance', subheadline: 'Immerse yourself in tranquility with our curated selection of massages, facials, and body treatments.', cta: 'View Menu', ctaSecondary: 'Book Treatment' },
+    services: { title: 'Spa Menu', items: [ { icon: 'sun', title: 'Massage', description: 'Deep tissue, Swedish, and hot stone' }, { icon: 'droplet', title: 'Facials', description: 'Rejuvenating organic skincare' }, { icon: 'wind', title: 'Hydrotherapy', description: 'Thermal pools and steam rooms' } ] },
+    benefits: { title: 'The Serenity Experience', subtitle: 'Pure relaxation', items: [ { title: 'Organic', description: '100% natural products' }, { title: 'Therapists', description: 'Master certified practitioners' } ] },
+    testimonials: { title: 'Guest Words', items: [ { quote: 'An absolute oasis of calm. I left feeling like a new person.', author: 'S. Miller', role: 'Guest', company: '' } ] },
+    cta: { title: 'Book Your Escape', subtitle: 'Gift cards available.', buttonText: 'Book Now' },
+    footer: { description: 'Luxury wellness spa dedicated to holistic relaxation.' },
+  },
+
+  therapist: {
+    id: 'therapist',
+    headerVariant: 'centered',
+    name: 'Mindful Path',
+    tagline: 'Guidance for Life\'s Journey',
+    description: 'Professional counseling and therapy services for individuals and couples.',
+    templateFamily: 'healthWellness',
+    colors: { primary: '#0D9488', primaryLight: '#14B8A6', primaryDark: '#0F766E', accent: '#F59E0B' },
+    fonts: { heading: 'Merriweather', body: 'Source Sans 3', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Source+Sans+3:wght@400;600&display=swap' },
+    sections: {
+      Hero: {
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      TransformationStory: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=800&q=80',
+        }
+      }
+    },
+    hero: { headline: 'Find Clarity and Inner Peace', subheadline: 'Compassionate, evidence-based therapy to help you navigate life\'s challenges and thrive.', cta: 'Schedule Consultation', ctaSecondary: 'Learn More' },
+    services: { title: 'Areas of Focus', items: [ { icon: 'user', title: 'Individual Therapy', description: 'Anxiety, depression, and personal growth' }, { icon: 'users', title: 'Couples Counseling', description: 'Communication and relationship strengthening' }, { icon: 'heart', title: 'Trauma Recovery', description: 'Healing from past experiences' } ] },
+    benefits: { title: 'My Approach', subtitle: 'Safe & supportive', items: [ { title: 'Confidential', description: 'Private and secure environment' }, { title: 'Tailored', description: 'Personalized treatment plans' } ] },
+    testimonials: { title: 'Client Stories', items: [ { quote: 'Therapy here gave me the tools I needed to manage my anxiety effectively.', author: 'Anonymous', role: 'Client', company: '' } ] },
+    cta: { title: 'Take the First Step', subtitle: 'Free 15-minute phone consultation.', buttonText: 'Contact Me' },
+    footer: { description: 'Licensed clinical therapy and counseling services.' },
   },
 };
 
