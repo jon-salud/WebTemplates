@@ -1,13 +1,62 @@
 ---
-const { industry } = Astro.props;
+interface MenuItem {
+  name: string;
+  description?: string;
+  price?: string;
+}
+
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+  title?: string;
+  items?: MenuItem[];
+}
+
+const { industry, title = "Menu Highlights", items = [] } = Astro.props;
+
+const defaultItems = [
+  { name: 'Seared Scallops', description: 'Lemon beurre blanc, herb oil', price: '$24' },
+  { name: 'Braised Short Rib', description: 'Red wine reduction, polenta', price: '$38' },
+  { name: 'Wild Mushroom Risotto', description: 'Truffle oil, parmesan crisp', price: '$32' },
+  { name: 'Molten Chocolate Cake', description: 'Sea salt caramel, vanilla bean', price: '$14' },
+];
+
+const displayItems = items.length > 0 ? items : defaultItems;
 ---
-<section class="py-8 bg-neutral-50" aria-label="Menu preview">
-  <div class="container">
-    <h3 class="text-lg font-semibold mb-4">Menu Highlights</h3>
-    <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <li class="p-4 bg-white rounded shadow">Seared Scallops — Lemon & Herb</li>
-      <li class="p-4 bg-white rounded shadow">Braised Short Rib — Red Wine</li>
-      <li class="p-4 bg-white rounded shadow">Molten Chocolate Cake — Sea Salt</li>
-    </ul>
+
+<section class="py-20 bg-neutral-50" aria-label={title}>
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="w-px h-12 bg-neutral-300 block mx-auto mb-6"></span>
+      <h2 class="text-3xl md:text-4xl font-serif text-neutral-900 mb-4 italic">
+        {title}
+      </h2>
+      <p class="text-neutral-500 text-sm uppercase tracking-widest">Curated Selections</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-x-16 gap-y-12">
+      {displayItems.map((item) => (
+        <div class="group">
+          <div class="flex justify-between items-baseline mb-2 border-b border-neutral-200 pb-2 group-hover:border-neutral-400 transition-colors">
+            <h3 class="text-lg font-medium text-neutral-900">{item.name}</h3>
+            {item.price && <span class="text-neutral-500 font-serif italic">{item.price}</span>}
+          </div>
+          {item.description && (
+            <p class="text-neutral-600 text-sm leading-relaxed">{item.description}</p>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <a href="#full-menu" class="inline-block border border-neutral-900 px-8 py-3 text-sm uppercase tracking-widest hover:bg-neutral-900 hover:text-white transition-colors">
+        View Full Collection
+      </a>
+    </div>
   </div>
 </section>

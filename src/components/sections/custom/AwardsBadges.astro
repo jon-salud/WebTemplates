@@ -1,13 +1,42 @@
 ---
-const { industry } = Astro.props;
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+  awards?: string[];
+}
+
+const { industry, awards = [] } = Astro.props;
+
+const defaultAwards = [
+  'Michelin Guide 2024',
+  'James Beard Nominee',
+  'Top 50 Restaurants',
+  'Wine Spectator Award'
+];
+
+const displayAwards = awards.length > 0 ? awards : defaultAwards;
 ---
-<section class="py-8" aria-label="Awards and recognitions">
-  <div class="container">
-    <h3 class="text-lg font-semibold mb-4">Recognitions</h3>
-    <div class="flex items-center gap-4 flex-wrap">
-      <div class="p-3 bg-white rounded shadow text-sm">Michelin Pick</div>
-      <div class="p-3 bg-white rounded shadow text-sm">Top Chef 2024</div>
-      <div class="p-3 bg-white rounded shadow text-sm">Best New Restaurant</div>
+
+<section class="py-12 border-b border-neutral-100" aria-label="Awards and recognitions">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center md:text-left">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400 font-semibold">Recognized By</p>
+      
+      <div class="flex flex-wrap justify-center gap-6 md:gap-12">
+        {displayAwards.map((award) => (
+          <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+            <div class="w-8 h-8 rounded-full bg-neutral-200 flex items-center justify-center text-neutral-500">
+              ★
+            </div>
+            <span class="font-serif text-lg text-neutral-800">{award}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
