@@ -11,9 +11,10 @@ interface Props {
       accent: string;
     };
   };
+  image?: string;
 }
 
-const { industry } = Astro.props;
+const { industry, image } = Astro.props;
 ---
 
 <section class="py-20 bg-gradient-to-b from-white to-neutral-50" aria-label="Transformation Story">
@@ -61,15 +62,23 @@ const { industry } = Astro.props;
 
       <!-- Visual Element -->
       <div class="relative">
-        <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-100 overflow-hidden">
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="text-center">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
-                <span class="text-4xl">🌱</span>
+        <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-100 overflow-hidden relative">
+          {image ? (
+            <img 
+              src={image} 
+              alt="Transformation journey" 
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-center">
+                <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
+                  <span class="text-4xl">🌱</span>
+                </div>
+                <p class="text-neutral-700 font-medium">Your Journey Starts Here</p>
               </div>
-              <p class="text-neutral-700 font-medium">Your Journey Starts Here</p>
             </div>
-          </div>
+          )}
         </div>
         <!-- Floating stat -->
         <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl">

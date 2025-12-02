@@ -978,7 +978,19 @@ const Hero: React.FC<HeroProps> = ({
   // ============================================
   const renderImageOverlapHero = () => (
     <div className="relative min-h-screen py-20 lg:py-0">
-      <div className="absolute inset-0 bg-neutral-900" />
+      {/* Dynamic dark background */}
+      <div 
+        className="absolute inset-0" 
+        style={{ 
+          background: `linear-gradient(to bottom right, ${industry.colors.primaryDark}, #000000)` 
+        }} 
+      />
+      
+      {/* Ambient background effects */}
+      <div className="absolute inset-0 opacity-30">
+        <GradientMeshBackground />
+      </div>
+
       <Container className="relative z-10 min-h-screen flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full">
           {/* Text side */}
