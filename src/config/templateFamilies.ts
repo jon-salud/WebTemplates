@@ -6,7 +6,8 @@ export type TemplateFamily =
   | 'hospitalityCulinary'
   | 'tradesFieldServices'
   | 'creativeEvents'
-  | 'saasStartups';
+  | 'saasStartups'
+  | 'realtyArchitecture';
 
 export const templateBlueprints: Record<TemplateFamily, SectionBlueprint[]> = {
   /**
@@ -115,6 +116,23 @@ export const templateBlueprints: Record<TemplateFamily, SectionBlueprint[]> = {
     { component: 'Custom', props: { component: 'FAQ' } },
     { component: 'CTA', variant: 'with-form' },
     { component: 'Footer', variant: 'mega' },
+  ],
+
+  /**
+   * Realty & Architecture (Real Estate, Architects, Interior Design)
+   * Psychology: Aspirational & visual; buyers need to envision themselves in the space
+   * Flow: Immersive visual → Featured properties/projects → Services → Social proof → Trust → Convert
+   */
+  realtyArchitecture: [
+    { component: 'Hero', variant: 'video-bg' },
+    { component: 'Custom', props: { component: 'ShowcaseGallery' } },
+    { component: 'Services', variant: 'image-cards' },
+    { component: 'Custom', props: { component: 'AwardsBadges' } },
+    { component: 'Testimonials', variant: 'masonry' },
+    { component: 'Custom', props: { component: 'ServiceAreaMap' } },
+    { component: 'Custom', props: { component: 'TeamCredentials' } },
+    { component: 'CTA', variant: 'dual-action' },
+    { component: 'Footer', variant: 'columns-light' },
   ],
 };
 

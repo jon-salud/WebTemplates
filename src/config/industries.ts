@@ -5,7 +5,7 @@
  * Each industry has its own color scheme, copy, and imagery suggestions.
  */
 
-export type IndustryType = 'accounting' | 'law' | 'healthcare' | 'consulting' | 'financial' | 'realestate' | 'insurance' | 'architecture' | 'education' | 'recruitment' | 'restaurant' | 'boutiquehotel' | 'contractor' | 'dj' | 'fitnessstudio' | 'dental' | 'spa' | 'therapist' | 'electrician' | 'landscaper' | 'weddingplanner' | 'photographer' | 'eventvenue';
+export type IndustryType = 'accounting' | 'law' | 'healthcare' | 'consulting' | 'financial' | 'realestate' | 'insurance' | 'architecture' | 'education' | 'recruitment' | 'restaurant' | 'boutiquehotel' | 'contractor' | 'dj' | 'fitnessstudio' | 'dental' | 'spa' | 'therapist' | 'electrician' | 'landscaper' | 'weddingplanner' | 'photographer' | 'eventvenue' | 'saas' | 'fintech' | 'cybersecurity' | 'devtools' | 'interiordesign';
 
 export interface IndustryConfig {
   id: IndustryType;
@@ -717,6 +717,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     tagline: 'Finding Your Perfect Place',
     headerVariant: 'search',
     description: 'Expert real estate services for buyers, sellers, and investors',
+    templateFamily: 'realtyArchitecture',
     colors: {
       primary: '#DC2626',
       primaryLight: '#EF4444',
@@ -736,11 +737,46 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
           videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-city-traffic-at-night-11-large.mp4',
         }
       },
+      ShowcaseGallery: {
+        props: {
+          title: 'Featured Properties',
+          items: [
+            { title: 'Modern Downtown Loft', subtitle: '$1,250,000 • 2 Bed, 2 Bath', gradient: 'from-neutral-900 to-neutral-800' },
+            { title: 'Suburban Family Home', subtitle: '$850,000 • 4 Bed, 3 Bath', gradient: 'from-blue-900 to-slate-800' },
+            { title: 'Waterfront Villa', subtitle: '$3,500,000 • 5 Bed, 6 Bath', gradient: 'from-cyan-900 to-blue-900' },
+            { title: 'Historic Brownstone', subtitle: '$2,100,000 • 3 Bed, 2.5 Bath', gradient: 'from-stone-800 to-stone-900' },
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80',
+          ]
+        }
+      },
       Services: { variant: 'image-cards' },
-      Benefits: { variant: 'animated-counter' },
-      Testimonials: { variant: 'floating-cards' },
+      AwardsBadges: {
+        props: {
+          awards: ['Top 1% Nationwide', 'Best of Zillow', 'Luxury Portfolio Int.', 'Realtor of the Year']
+        }
+      },
+      Testimonials: { variant: 'masonry' },
+      ServiceAreaMap: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      TeamCredentials: {
+        props: {
+          members: [
+            { name: 'Sarah Jenkins', role: 'Broker / Owner', bio: '20+ years of experience in luxury real estate.' },
+            { name: 'Michael Chen', role: 'Senior Agent', bio: 'Specializing in downtown condos and investment properties.' },
+            { name: 'Jessica Williams', role: 'Buyer Specialist', bio: 'Helping first-time buyers find their dream home.' }
+          ]
+        }
+      },
       CTA: { variant: 'dual-action' },
-      Footer: { variant: 'split-brand' },
+      Footer: { variant: 'columns-light' },
     },
     hero: {
       headline: 'Find Your Dream Property with Expert Guidance',
@@ -978,6 +1014,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     headerVariant: 'sidebar',
     tagline: 'Designing Spaces That Inspire',
     description: 'Award-winning architectural design for residential and commercial projects',
+    templateFamily: 'realtyArchitecture',
     colors: {
       primary: '#0F172A',
       primaryLight: '#334155',
@@ -996,9 +1033,44 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
           backgroundImage: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1920&q=80',
         }
       },
+      ShowcaseGallery: {
+        props: {
+          title: 'Selected Works',
+          items: [
+            { title: 'The Glass Pavilion', subtitle: 'Residential • 2024', gradient: 'from-neutral-900 to-neutral-800' },
+            { title: 'Tech Hub HQ', subtitle: 'Commercial • 2023', gradient: 'from-blue-900 to-slate-800' },
+            { title: 'Urban Museum', subtitle: 'Cultural • 2022', gradient: 'from-stone-800 to-stone-900' },
+            { title: 'Eco Resort', subtitle: 'Hospitality • 2023', gradient: 'from-green-900 to-emerald-900' },
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+          ]
+        }
+      },
       Services: { variant: 'timeline' },
-      Benefits: { variant: 'features' },
+      AwardsBadges: {
+        props: {
+          awards: ['AIA Design Award', 'LEED Platinum', 'ArchDaily Building of the Year', 'Dezeen Awards']
+        }
+      },
       Testimonials: { variant: 'cards-row' },
+      ServiceAreaMap: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      TeamCredentials: {
+        props: {
+          members: [
+            { name: 'David Ross', role: 'Principal Architect', bio: 'Award-winning architect with a focus on sustainable design.' },
+            { name: 'Elena M.', role: 'Design Director', bio: 'Leading our interior architecture division.' },
+            { name: 'James K.', role: 'Project Manager', bio: 'Ensuring seamless execution from concept to completion.' }
+          ]
+        }
+      },
       CTA: { variant: 'centered' },
       Footer: { variant: 'columns-light' },
     },
@@ -2126,6 +2198,275 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     testimonials: { title: 'Client Stories', items: [ { quote: 'Therapy here gave me the tools I needed to manage my anxiety effectively.', author: 'Anonymous', role: 'Client', company: '' } ] },
     cta: { title: 'Take the First Step', subtitle: 'Free 15-minute phone consultation.', buttonText: 'Contact Me' },
     footer: { description: 'Licensed clinical therapy and counseling services.' },
+  },
+
+  // SaaS & Startups
+  saas: {
+    id: 'saas',
+    name: 'SaaS Platform',
+    headerVariant: 'mega',
+    tagline: 'Scale Your Business',
+    description: 'All-in-one platform for growing teams.',
+    templateFamily: 'saasStartups',
+    colors: { primary: '#2563EB', primaryLight: '#60A5FA', primaryDark: '#1E40AF', accent: '#F59E0B' },
+    fonts: { heading: 'Inter', body: 'Inter', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'centered-cards',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      LogoMarquee: {
+        props: {
+          logos: [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png'
+          ]
+        }
+      },
+      ProductShowcase: {},
+      Services: { variant: 'tabs' },
+      Benefits: { variant: 'comparison' },
+      PricingTeaser: {},
+      Testimonials: { variant: 'spotlight' },
+      FAQ: {
+        props: {
+          items: [
+            { question: 'How does the free trial work?', answer: 'You get 14 days of full access to all features. No credit card required.' },
+            { question: 'Can I change plans later?', answer: 'Yes, you can upgrade or downgrade at any time from your account settings.' },
+            { question: 'Is my data secure?', answer: 'We use bank-level encryption and are SOC2 compliant.' }
+          ]
+        }
+      },
+      CTA: { variant: 'with-form' },
+      Footer: { variant: 'mega' }
+    },
+    hero: { headline: 'The Operating System for Modern Teams', subheadline: 'Streamline workflows, automate tasks, and drive growth with our intelligent platform.', cta: 'Start Free Trial', ctaSecondary: 'View Demo' },
+    services: { title: 'Platform Features', items: [ { icon: 'zap', title: 'Automation', description: 'Automate repetitive tasks' }, { icon: 'bar-chart', title: 'Analytics', description: 'Real-time insights' }, { icon: 'users', title: 'Collaboration', description: 'Work together in real-time' } ] },
+    benefits: { title: 'Why Choose Us', subtitle: 'Built for scale', items: [ { title: 'Uptime', description: '99.99% SLA' }, { title: 'Support', description: '24/7 Global Support' } ] },
+    testimonials: { title: 'Customer Love', items: [ { quote: 'This platform completely changed how we work. Highly recommended!', author: 'J. Smith', role: 'CTO', company: 'TechCorp' } ] },
+    cta: { title: 'Ready to Get Started?', subtitle: 'Join 10,000+ teams today.', buttonText: 'Sign Up Free' },
+    footer: { description: 'Empowering teams to build the future.' },
+  },
+
+  fintech: {
+    id: 'fintech',
+    headerVariant: 'mega',
+    name: 'NovaPay',
+    tagline: 'Future of Finance',
+    description: 'Next-generation banking and payments infrastructure.',
+    templateFamily: 'saasStartups',
+    colors: { primary: '#4F46E5', primaryLight: '#818CF8', primaryDark: '#3730A3', accent: '#10B981' },
+    fonts: { heading: 'Space Grotesk', body: 'Inter', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'centered-cards',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      LogoMarquee: {
+        props: {
+          logos: [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Mastercard-logo.svg/2560px-Mastercard-logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/PayPal_logo.svg/2560px-PayPal_logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1024px-Apple_logo_black.svg.png'
+          ]
+        }
+      },
+      ProductShowcase: {},
+      Services: { variant: 'tabs' },
+      Benefits: { variant: 'comparison' },
+      PricingTeaser: {},
+      Testimonials: { variant: 'spotlight' },
+      FAQ: {
+        props: {
+          items: [
+            { question: 'Is my money safe?', answer: 'Yes, all accounts are FDIC insured up to $250,000.' },
+            { question: 'What are the fees?', answer: 'We have no monthly fees or overdraft fees.' },
+            { question: 'Can I use it internationally?', answer: 'Yes, use your card anywhere Visa is accepted with no foreign transaction fees.' }
+          ]
+        }
+      },
+      CTA: { variant: 'with-form' },
+      Footer: { variant: 'mega' }
+    },
+    hero: { headline: 'Banking Built for the Digital Age', subheadline: 'Manage your money, invest, and pay with zero fees and instant transfers.', cta: 'Open Account', ctaSecondary: 'Learn More' },
+    services: { title: 'Financial Tools', items: [ { icon: 'credit-card', title: 'Smart Cards', description: 'Virtual and physical cards' }, { icon: 'trending-up', title: 'Investing', description: 'Auto-invest spare change' }, { icon: 'shield', title: 'Security', description: 'Fraud protection' } ] },
+    benefits: { title: 'Better Banking', subtitle: 'Smart features', items: [ { title: 'Interest', description: '4.5% APY' }, { title: 'Cashback', description: '2% on all purchases' } ] },
+    testimonials: { title: 'User Reviews', items: [ { quote: 'The best banking app I have ever used. Simple and powerful.', author: 'M. Chen', role: 'User', company: '' } ] },
+    cta: { title: 'Join the Revolution', subtitle: 'Open your account in 3 minutes.', buttonText: 'Get Started' },
+    footer: { description: 'Reimagining financial services for everyone.' },
+  },
+
+  cybersecurity: {
+    id: 'cybersecurity',
+    headerVariant: 'mega',
+    name: 'SecureNet',
+    tagline: 'Unbreakable Security',
+    description: 'Enterprise-grade cybersecurity and threat protection.',
+    templateFamily: 'saasStartups',
+    colors: { primary: '#0F172A', primaryLight: '#334155', primaryDark: '#020617', accent: '#EF4444' },
+    fonts: { heading: 'JetBrains Mono', body: 'Inter', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'centered-cards',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      LogoMarquee: {
+        props: {
+          logos: [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png'
+          ]
+        }
+      },
+      ProductShowcase: {},
+      Services: { variant: 'tabs' },
+      Benefits: { variant: 'comparison' },
+      PricingTeaser: {},
+      Testimonials: { variant: 'spotlight' },
+      FAQ: {
+        props: {
+          items: [
+            { question: 'How fast is deployment?', answer: 'Deploy in minutes with our lightweight agent.' },
+            { question: 'Do you offer 24/7 support?', answer: 'Yes, our SOC is active 24/7/365.' },
+            { question: 'Is it compliant?', answer: 'We support HIPAA, GDPR, SOC2, and ISO 27001.' }
+          ]
+        }
+      },
+      CTA: { variant: 'with-form' },
+      Footer: { variant: 'mega' }
+    },
+    hero: { headline: 'Secure Your Infrastructure', subheadline: 'Advanced threat detection and response for modern enterprises.', cta: 'Request Demo', ctaSecondary: 'View Features' },
+    services: { title: 'Security Suite', items: [ { icon: 'shield', title: 'Endpoint Protection', description: 'Next-gen AV' }, { icon: 'lock', title: 'Network Security', description: 'Zero trust architecture' }, { icon: 'eye', title: 'Threat Hunting', description: 'Proactive monitoring' } ] },
+    benefits: { title: 'Why SecureNet', subtitle: 'Proven protection', items: [ { title: 'Detection', description: '< 1ms latency' }, { title: 'Coverage', description: '100% endpoint visibility' } ] },
+    testimonials: { title: 'CISO Feedback', items: [ { quote: 'Stopped a ransomware attack in its tracks. Worth every penny.', author: 'S. Williams', role: 'CISO', company: 'Global Finance' } ] },
+    cta: { title: 'Stay Secure', subtitle: 'Get a free security assessment.', buttonText: 'Contact Sales' },
+    footer: { description: 'Protecting the world\'s data.' },
+  },
+
+  devtools: {
+    id: 'devtools',
+    headerVariant: 'mega',
+    name: 'CodeFlow',
+    tagline: 'Build Faster',
+    description: 'Developer tools for continuous integration and deployment.',
+    templateFamily: 'saasStartups',
+    colors: { primary: '#7C3AED', primaryLight: '#A78BFA', primaryDark: '#5B21B6', accent: '#10B981' },
+    fonts: { heading: 'Fira Code', body: 'Inter', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'centered-cards',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      LogoMarquee: {
+        props: {
+          logos: [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/2048px-GraphQL_Logo.svg.png'
+          ]
+        }
+      },
+      ProductShowcase: {},
+      Services: { variant: 'tabs' },
+      Benefits: { variant: 'comparison' },
+      PricingTeaser: {},
+      Testimonials: { variant: 'spotlight' },
+      FAQ: {
+        props: {
+          items: [
+            { question: 'Does it work with GitHub?', answer: 'Yes, we have a native GitHub app.' },
+            { question: 'Can I self-host?', answer: 'Yes, we offer an on-premise enterprise version.' },
+            { question: 'What languages are supported?', answer: 'We support all major languages and frameworks.' }
+          ]
+        }
+      },
+      CTA: { variant: 'with-form' },
+      Footer: { variant: 'mega' }
+    },
+    hero: { headline: 'Ship Code with Confidence', subheadline: 'Automated testing, building, and deployment for modern development teams.', cta: 'Start Building', ctaSecondary: 'Read Docs' },
+    services: { title: 'Dev Tools', items: [ { icon: 'git-branch', title: 'CI/CD', description: 'Fast pipelines' }, { icon: 'terminal', title: 'CLI', description: 'Powerful command line' }, { icon: 'server', title: 'Infrastructure', description: 'Infrastructure as Code' } ] },
+    benefits: { title: 'Developer Experience', subtitle: 'Built for devs', items: [ { title: 'Speed', description: '5x faster builds' }, { title: 'Integration', description: 'Works with your stack' } ] },
+    testimonials: { title: 'Dev Stories', items: [ { quote: 'The best CI/CD tool I have ever used. It just works.', author: 'D. Lee', role: 'Senior Engineer', company: 'StartupInc' } ] },
+    cta: { title: 'Ready to Ship?', subtitle: 'Free for open source projects.', buttonText: 'Get Started' },
+    footer: { description: 'Tools for the next generation of software.' },
+  },
+
+  interiordesign: {
+    id: 'interiordesign',
+    name: 'Interior Design Studio',
+    headerVariant: 'sidebar',
+    tagline: 'Curated Living Spaces',
+    description: 'Bespoke interior design for modern homes and offices.',
+    templateFamily: 'realtyArchitecture',
+    colors: { primary: '#78350F', primaryLight: '#92400E', primaryDark: '#451A03', accent: '#D97706' },
+    fonts: { heading: 'Cinzel', body: 'Lato', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'image-overlap',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      ShowcaseGallery: {
+        props: {
+          title: 'Portfolio',
+          items: [
+            { title: 'Minimalist Living', subtitle: 'Residential', gradient: 'from-stone-100 to-white' },
+            { title: 'Boho Chic Bedroom', subtitle: 'Residential', gradient: 'from-orange-50 to-white' },
+            { title: 'Modern Office', subtitle: 'Commercial', gradient: 'from-gray-100 to-white' },
+            { title: 'Luxury Kitchen', subtitle: 'Residential', gradient: 'from-slate-100 to-white' },
+          ],
+          images: [
+            'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1616137466211-f939a420be84?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80',
+          ]
+        }
+      },
+      Services: { variant: 'image-cards' },
+      AwardsBadges: {
+        props: {
+          awards: ['ASID Member', 'Best of Houzz 2024', 'Elle Decor Feature', 'AD 100']
+        }
+      },
+      Testimonials: { variant: 'masonry' },
+      ServiceAreaMap: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      TeamCredentials: {
+        props: {
+          members: [
+            { name: 'Sophia L.', role: 'Lead Designer', bio: 'Creating timeless interiors for over 15 years.' },
+            { name: 'Marcus T.', role: 'Project Manager', bio: 'Expert in sourcing and logistics.' },
+            { name: 'Chloe R.', role: 'Stylist', bio: 'Adding the final touches that make a house a home.' }
+          ]
+        }
+      },
+      CTA: { variant: 'centered' },
+      Footer: { variant: 'columns-light' }
+    },
+    hero: { headline: 'Elevate Your Everyday', subheadline: 'We design spaces that reflect your personality and enhance your lifestyle.', cta: 'View Portfolio', ctaSecondary: 'Book Consultation' },
+    services: { title: 'Services', items: [ { icon: 'layout', title: 'Full Service Design', description: 'From concept to installation' }, { icon: 'shopping-bag', title: 'E-Design', description: 'Virtual design packages' }, { icon: 'home', title: 'Renovation', description: 'Kitchen and bath remodels' } ] },
+    benefits: { title: 'Our Philosophy', subtitle: 'Beauty & Function', items: [ { title: 'Tailored', description: 'Unique to you' }, { title: 'Quality', description: 'Curated materials' } ] },
+    testimonials: { title: 'Client Love', items: [ { quote: 'Our home feels like a sanctuary now. Thank you!', author: 'L. Green', role: 'Client', company: '' } ] },
+    cta: { title: 'Ready to Transform Your Space?', subtitle: 'Let\'s discuss your project.', buttonText: 'Contact Us' },
+    footer: { description: 'Interior design studio creating beautiful, functional spaces.' },
   },
 };
 
