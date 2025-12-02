@@ -1,16 +1,25 @@
 ---
 import type { IndustryConfig } from '@/config/industries';
 
-interface Props {
-  industry: IndustryConfig;
+interface ProcessStep {
+  title: string;
+  detail: string;
 }
 
-const { industry } = Astro.props as Props;
-const steps = [
+interface Props {
+  industry: IndustryConfig;
+  steps?: ProcessStep[];
+}
+
+const { industry, steps: customSteps } = Astro.props as Props;
+
+const defaultSteps = [
   { title: 'Concept Lab', detail: 'We anchor your vibe in a cinematic storyline + sonic palette.' },
   { title: 'Experience Boards', detail: 'Motion mocks, lighting passes, and space plans arrive within 72 hours.' },
   { title: 'Showtime Ops', detail: 'Run-of-show, talent wrangling, and live mix cues synced in one dashboard.' },
 ];
+
+const steps = customSteps || defaultSteps;
 ---
 
 <section class="py-24 bg-white" aria-label="Creative Process">

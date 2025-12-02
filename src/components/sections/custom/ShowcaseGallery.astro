@@ -1,10 +1,17 @@
 ---
+interface GalleryItem {
+  title: string;
+  subtitle: string;
+  gradient?: string;
+}
+
 interface Props {
   industry?: any;
   images?: string[];
+  items?: GalleryItem[];
 }
 
-const { images } = Astro.props;
+const { images, items } = Astro.props;
 
 const defaultItems = [
   { title: 'Neon Rooftop', subtitle: 'Live Mix', gradient: 'from-indigo-500/60 via-sky-400/40 to-teal-400/30' },
@@ -12,6 +19,8 @@ const defaultItems = [
   { title: 'Festival Courtyard', subtitle: 'Lighting Pass', gradient: 'from-amber-400/50 via-orange-500/40 to-pink-500/30' },
   { title: 'Art Basel Loft', subtitle: 'Install Prep', gradient: 'from-emerald-500/50 via-lime-400/40 to-yellow-300/30' },
 ];
+
+const displayItems = items || defaultItems;
 ---
 
 <section class="py-20" aria-label="Showcase gallery">
@@ -24,7 +33,7 @@ const defaultItems = [
       <span class="hidden md:inline-flex text-sm font-medium text-neutral-500">Scroll to explore →</span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-      {defaultItems.map((item, idx) => (
+      {displayItems.map((item, idx) => (
         <div class="h-48 md:h-64 rounded-3xl overflow-hidden relative shadow-xl bg-neutral-900 group" aria-label={item.title}>
           {images && images[idx] ? (
             <img 
@@ -33,7 +42,7 @@ const defaultItems = [
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
           ) : (
-            <div class={`absolute inset-0 bg-gradient-to-br ${item.gradient}`}></div>
+            <div class={`absolute inset-0 bg-gradient-to-br ${item.gradient || 'from-gray-800 to-black'}`}></div>
           )}
           
           <div class="absolute inset-0 opacity-30 bg-gradient-to-b from-white/30 to-transparent pointer-events-none"></div>
