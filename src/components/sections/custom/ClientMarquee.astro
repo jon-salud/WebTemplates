@@ -1,13 +1,74 @@
 ---
+/**
+ * ClientMarquee - Creative & Events
+ * Scrolling logo strip of notable clients
+ */
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+}
+
 const { industry } = Astro.props;
+
+const clients = [
+  'Art Basel',
+  'Soho House',
+  'W Hotels',
+  'Nike',
+  'Spotify',
+  'Netflix',
+  'Burning Man',
+  'Coachella',
+  'SXSW',
+  'Vogue',
+  'Vice',
+  'Hypebeast',
+];
 ---
-<section class="py-8" aria-label="Clients and partners">
-  <div class="container">
-    <h3 class="text-lg font-semibold mb-4">Trusted By</h3>
-    <div class="flex gap-4 items-center overflow-x-auto">
-      <div class="p-3 bg-white rounded">Studio A</div>
-      <div class="p-3 bg-white rounded">Festival X</div>
-      <div class="p-3 bg-white rounded">BookingCo</div>
+
+<section class="py-12 bg-neutral-900 overflow-hidden" aria-label="Notable Clients">
+  <div class="container mx-auto px-6 mb-6">
+    <p class="text-xs uppercase tracking-[0.4em] text-neutral-500 text-center">Trusted By</p>
+  </div>
+  
+  <div class="relative">
+    <!-- Fade edges -->
+    <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-neutral-900 to-transparent z-10"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-neutral-900 to-transparent z-10"></div>
+    
+    <!-- Scrolling content -->
+    <div class="flex animate-marquee">
+      {[...clients, ...clients].map((client) => (
+        <div class="flex-shrink-0 px-8 md:px-12">
+          <span class="text-xl md:text-2xl font-light text-neutral-500 hover:text-white transition-colors whitespace-nowrap">
+            {client}
+          </span>
+        </div>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+  
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+/**
+ * FAQ - Addresses common objections and questions
+ * Used by: Professional Services, SaaS
+ */
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+}
+
+const { industry } = Astro.props;
+
+const faqs = [
+  {
+    question: 'How do I get started?',
+    answer: 'Getting started is simple. Schedule a free consultation where we\'ll discuss your needs, answer your questions, and outline a tailored approach. There\'s no obligation—just a conversation to see if we\'re the right fit.',
+  },
+  {
+    question: 'What makes you different from competitors?',
+    answer: 'We combine deep industry expertise with a client-first approach. Every engagement is led by senior professionals, not juniors. Our track record speaks for itself—95% client retention and consistent referrals.',
+  },
+  {
+    question: 'How long until I see results?',
+    answer: 'Timeline depends on scope, but most clients see meaningful progress within the first 30 days. We set clear milestones and provide regular updates so you\'re never in the dark.',
+  },
+  {
+    question: 'What if I\'m not satisfied?',
+    answer: 'Your satisfaction is guaranteed. If we\'re not meeting expectations, we\'ll work to make it right. We stand behind our work with clear deliverables and open communication.',
+  },
+  {
+    question: 'Do you offer flexible pricing?',
+    answer: 'Yes. We offer multiple engagement models—from fixed-fee projects to ongoing retainers. During your consultation, we\'ll find the structure that works best for your budget and goals.',
+  },
+];
+---
+
+<section class="py-20 bg-white" aria-label="Frequently Asked Questions">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-xs uppercase tracking-[0.3em] text-neutral-500 mb-3">Questions & Answers</p>
+        <h2 class="text-3xl md:text-4xl font-semibold text-neutral-900">
+          Frequently Asked Questions
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <details class="group bg-neutral-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+              <span class="font-medium text-neutral-900 pr-4">{faq.question}</span>
+              <span class="flex-shrink-0 w-8 h-8 rounded-full bg-neutral-200 flex items-center justify-center text-neutral-600 group-open:rotate-45 transition-transform">
+                +
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-neutral-600 leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-neutral-600 mb-4">Still have questions?</p>
+        <a href="#contact" class="inline-flex items-center gap-2 text-neutral-900 font-medium hover:underline">
+          Get in touch
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
