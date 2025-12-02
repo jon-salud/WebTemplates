@@ -1383,20 +1383,42 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     },
     sections: {
       Hero: {
+        variant: 'video-bg',
         props: {
           backgroundImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80',
+          videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-people-dining-in-a-restaurant-4336-large.mp4'
         }
       },
-      Custom: {
+      AwardsBadges: {
         props: {
-          images: [
-            'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80', // Interior
-            'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80', // Food
-            'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80', // Drink
-            'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80', // Atmosphere
+          awards: ['Michelin Star 2024', 'James Beard Award', '50 Best Discovery', 'Wine Spectator Grand Award']
+        }
+      },
+      Services: { variant: 'image-cards' },
+      MenuPreview: {
+        props: {
+          title: 'Signature Tasting Menu',
+          items: [
+            { name: 'Wagyu Beef Tartare', description: 'Smoked egg yolk, caper berries, sourdough crisp', price: '$28' },
+            { name: 'Pan-Seared Scallops', description: 'Cauliflower purée, truffle vinaigrette, hazelnut', price: '$34' },
+            { name: 'Herb-Crusted Lamb Rack', description: 'Fondant potato, seasonal greens, rosemary jus', price: '$42' },
+            { name: 'Dark Chocolate Ganache', description: 'Sea salt, olive oil, raspberry sorbet', price: '$16' }
           ]
         }
-      }
+      },
+      AmbientGallery: {
+        props: {
+          images: [
+            'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80', // Bar
+            'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80', // Food
+            'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80', // Cocktail
+            'https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?auto=format&fit=crop&w=800&q=80', // Atmosphere
+          ]
+        }
+      },
+      Testimonials: { variant: 'quote-slider' },
+      CTA: { variant: 'dual-action' },
+      Footer: { variant: 'split-brand' }
     },
     hero: {
       headline: 'Seasonal Dishes, Unforgettable Nights',
@@ -1450,20 +1472,41 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     },
     sections: {
       Hero: {
+        variant: 'image-overlap',
         props: {
           backgroundImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80',
         }
       },
-      Custom: {
+      AwardsBadges: {
         props: {
-          images: [
-            'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', // Hotel Lobby
-            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80', // Room
-            'https://images.unsplash.com/photo-1571896349842-6e53ce41e86a?auto=format&fit=crop&w=800&q=80', // Pool/Spa
-            'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80', // Detail
+          awards: ['Condé Nast Traveler', 'Travel + Leisure It List', 'Tablet Hotels Selection', 'Design Hotels Member']
+        }
+      },
+      Services: { variant: 'spotlight' },
+      MenuPreview: {
+        props: {
+          title: 'Accommodations',
+          items: [
+            { name: 'Ocean View Suite', description: 'Panoramic ocean views, private balcony, soaking tub.', price: 'from $450' },
+            { name: 'Garden Villa', description: 'Private garden access, outdoor shower, plunge pool.', price: 'from $650' },
+            { name: 'The Penthouse', description: 'Top floor exclusivity, wrap-around terrace, chef\'s kitchen.', price: 'from $1200' },
+            { name: 'Harbor Room', description: 'Cozy and chic, overlooking the historic harbor.', price: 'from $295' }
           ]
         }
-      }
+      },
+      AmbientGallery: {
+        props: {
+          images: [
+            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80', // Room
+            'https://images.unsplash.com/photo-1571896349842-6e53ce41e86a?auto=format&fit=crop&w=800&q=80', // Pool
+            'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80', // Detail
+            'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80', // Resort
+          ]
+        }
+      },
+      Testimonials: { variant: 'cards-row' },
+      CTA: { variant: 'minimal' },
+      Footer: { variant: 'simple-dark' }
     },
     hero: { headline: 'Curated Stays & Bespoke Comfort', subheadline: 'Enjoy local art, elevated hospitality, and an attentive experience.', cta: 'Book a Room', ctaSecondary: 'View Rooms' },
     services: { title: 'Guest Services', items: [ { icon: 'home', title: 'Concierge', description: 'Local experiences and tailored itineraries' }, { icon: 'room-service', title: 'Room Service', description: 'Seasonal, locally sourced menus' } ] },
