@@ -1527,10 +1527,18 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     fonts: { heading: 'Zilla Slab', body: 'Inter', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap' },
     sections: {
       Hero: {
+        variant: 'split',
         props: {
           backgroundImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80',
+          showUrgency: true
         }
       },
+      CertificationStrip: {
+        props: {
+          badges: ['Licensed', 'Insured', 'Bonded', 'OSHA Certified']
+        }
+      },
+      Services: { variant: 'cards' },
       ProcessSteps: {
         props: {
           image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
@@ -1540,7 +1548,11 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
         props: {
           image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1920&q=80',
         }
-      }
+      },
+      Benefits: { variant: 'icon-list' },
+      Testimonials: { variant: 'side-scroll' },
+      CTA: { variant: 'banner' },
+      Footer: { variant: 'simple-dark' }
     },
     hero: { headline: 'Reliable Contracting For Your Project', subheadline: 'Skilled crews, transparent quoting, and proven delivery.', cta: 'Get A Quote', ctaSecondary: 'Our Projects' },
     services: { title: 'Contractor Services', items: [ { icon: 'home', title: 'Renovation', description: 'Full-service home remodeling' }, { icon: 'tool', title: 'Construction', description: 'Commercial buildouts' }, { icon: 'shield', title: 'Repairs', description: 'Fast and reliable repairs' } ] },
@@ -1548,6 +1560,97 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     testimonials: { title: 'Client Feedback', items: [ { quote: 'Delivered on time and under budget — highly recommended.', author: 'S. Carter', role: 'Homeowner', company: '' } ] },
     cta: { title: 'Request A Quote', subtitle: 'Get a fast, free estimate.', buttonText: 'Request Quote' },
     footer: { description: 'Experienced general contractors serving residential & commercial clients.' },
+  },
+
+  electrician: {
+    id: 'electrician',
+    headerVariant: 'bold',
+    name: 'VoltMasters',
+    tagline: 'Powering Your World',
+    description: 'Expert electrical services for residential and commercial needs.',
+    templateFamily: 'tradesFieldServices',
+    colors: { primary: '#EAB308', primaryLight: '#FACC15', primaryDark: '#CA8A04', accent: '#1E293B' },
+    fonts: { heading: 'Chakra Petch', body: 'Roboto', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Roboto:wght@400;500&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'minimal-centered',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920&q=80',
+          showUrgency: true
+        }
+      },
+      CertificationStrip: {
+        props: {
+          badges: ['Master Electrician', '24/7 Emergency', 'Safety First']
+        }
+      },
+      Services: { variant: 'icon-grid' },
+      ProcessSteps: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?auto=format&fit=crop&w=800&q=80',
+        }
+      },
+      ServiceAreaMap: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1518259102261-b40117eabbc9?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      Benefits: { variant: 'stats' },
+      Testimonials: { variant: 'grid' },
+      CTA: { variant: 'with-form' },
+      Footer: { variant: 'simple-dark' }
+    },
+    hero: { headline: 'Fast, Safe Electrical Solutions', subheadline: 'From emergency repairs to full system upgrades, trust our certified electricians.', cta: 'Call Now', ctaSecondary: 'Schedule Service' },
+    services: { title: 'Electrical Services', items: [ { icon: 'zap', title: 'Repairs', description: 'Troubleshooting and fixing outages' }, { icon: 'sun', title: 'Lighting', description: 'Indoor and outdoor lighting installation' }, { icon: 'cpu', title: 'Panel Upgrades', description: 'Modernize your electrical system' } ] },
+    benefits: { title: 'Why Choose VoltMasters', subtitle: 'Safety & Reliability', items: [ { title: 'Response', description: 'Under 60 min emergency response' }, { title: 'Certified', description: 'Licensed Master Electricians' } ] },
+    testimonials: { title: 'Customer Reviews', items: [ { quote: 'Fixed our power outage in the middle of the night. Lifesavers!', author: 'J. Doe', role: 'Homeowner', company: '' } ] },
+    cta: { title: 'Need an Electrician?', subtitle: 'Available 24/7 for emergencies.', buttonText: 'Get Help Now' },
+    footer: { description: 'Your local expert electricians for safe and reliable power solutions.' },
+  },
+
+  landscaper: {
+    id: 'landscaper',
+    headerVariant: 'split',
+    name: 'GreenScapes',
+    tagline: 'Nature, Designed.',
+    description: 'Professional landscaping and outdoor living design.',
+    templateFamily: 'tradesFieldServices',
+    colors: { primary: '#15803D', primaryLight: '#22C55E', primaryDark: '#14532D', accent: '#A3E635' },
+    fonts: { heading: 'Bitter', body: 'Lato', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Lato:wght@400;700&display=swap' },
+    sections: {
+      Hero: {
+        variant: 'video-bg',
+        props: {
+          backgroundImage: 'https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      CertificationStrip: {
+        props: {
+          badges: ['Certified Arborist', 'Eco-Friendly', 'Award Winning']
+        }
+      },
+      Services: { variant: 'image-cards' },
+      ProcessSteps: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80',
+        }
+      },
+      ServiceAreaMap: {
+        props: {
+          image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80',
+        }
+      },
+      Benefits: { variant: 'bento' },
+      Testimonials: { variant: 'carousel' },
+      CTA: { variant: 'split' },
+      Footer: { variant: 'columns-light' }
+    },
+    hero: { headline: 'Transform Your Outdoor Space', subheadline: 'Create the garden of your dreams with our expert design and maintenance services.', cta: 'Free Consultation', ctaSecondary: 'View Portfolio' },
+    services: { title: 'Landscaping Services', items: [ { icon: 'flower', title: 'Garden Design', description: 'Custom planting and layout' }, { icon: 'scissors', title: 'Maintenance', description: 'Lawn care and pruning' }, { icon: 'droplet', title: 'Irrigation', description: 'Efficient water systems' } ] },
+    benefits: { title: 'Our Promise', subtitle: 'Beautiful & Sustainable', items: [ { title: 'Native Plants', description: 'Eco-friendly selection' }, { title: 'Expert Care', description: 'Horticulture specialists' } ] },
+    testimonials: { title: 'Happy Clients', items: [ { quote: 'Our backyard is now our favorite room in the house.', author: 'A. Smith', role: 'Client', company: '' } ] },
+    cta: { title: 'Ready to Grow?', subtitle: 'Schedule your design consultation.', buttonText: 'Start Project' },
+    footer: { description: 'Creating beautiful outdoor living spaces for homes and businesses.' },
   },
 
   dj: {
