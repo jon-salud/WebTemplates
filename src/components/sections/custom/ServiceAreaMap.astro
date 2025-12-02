@@ -1,0 +1,105 @@
+---
+/**
+ * ServiceAreaMap - Trades & Field Services
+ * Shows service coverage area for local trades
+ */
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+}
+
+const { industry } = Astro.props;
+
+const serviceAreas = [
+  'Downtown',
+  'Midtown',
+  'Uptown',
+  'West Side',
+  'East Side',
+  'Suburbs',
+];
+
+const stats = [
+  { value: '30 min', label: 'Avg. Response Time' },
+  { value: '50 mi', label: 'Service Radius' },
+  { value: '24/7', label: 'Emergency Availability' },
+];
+---
+
+<section class="py-16 bg-amber-50" aria-label="Service Area">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Map Placeholder -->
+      <div class="relative">
+        <div class="aspect-square rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 overflow-hidden">
+          <!-- Stylized map visualization -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="relative w-3/4 h-3/4">
+              <!-- Center point -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <div class="w-6 h-6 bg-amber-500 rounded-full animate-pulse"></div>
+                <div class="absolute inset-0 w-6 h-6 bg-amber-500/30 rounded-full animate-ping"></div>
+              </div>
+              
+              <!-- Radius rings -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-amber-300/50 rounded-full"></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-amber-200/40 rounded-full"></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 border-amber-100/30 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Floating badge -->
+        <div class="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-lg">
+          <p class="text-xs text-neutral-500 mb-1">Serving</p>
+          <p class="text-lg font-bold text-neutral-900">Your Area</p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-amber-600 mb-3">Service Area</p>
+        <h2 class="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4">
+          We Come to You
+        </h2>
+        <p class="text-neutral-600 mb-8">
+          Fast, reliable service across the metro area. No job too far—we'll be there when you need us.
+        </p>
+
+        <!-- Areas List -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          {serviceAreas.map((area) => (
+            <span class="px-4 py-2 bg-white rounded-full text-sm text-neutral-700 shadow-sm">
+              {area}
+            </span>
+          ))}
+          <span class="px-4 py-2 bg-amber-500 text-white rounded-full text-sm font-medium">
+            + More
+          </span>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4">
+          {stats.map((stat) => (
+            <div class="text-center p-4 bg-white rounded-xl shadow-sm">
+              <p class="text-2xl font-bold text-neutral-900">{stat.value}</p>
+              <p class="text-xs text-neutral-500">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-8">
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 text-white rounded-full font-medium hover:bg-amber-600 transition-colors">
+            Check Your Area
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

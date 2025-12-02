@@ -1,0 +1,86 @@
+---
+/**
+ * PractitionerShowcase - Health & Wellness
+ * Warm, approachable team display for wellness providers
+ */
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+}
+
+const { industry } = Astro.props;
+
+const practitioners = [
+  {
+    name: 'Dr. Maya Chen',
+    specialty: 'Holistic Medicine',
+    philosophy: 'Treating the whole person, not just symptoms',
+    certifications: ['MD', 'Integrative Health'],
+  },
+  {
+    name: 'Jordan Ellis',
+    specialty: 'Physical Therapy',
+    philosophy: 'Movement is medicine for body and mind',
+    certifications: ['DPT', 'Certified Strength Coach'],
+  },
+  {
+    name: 'Priya Sharma',
+    specialty: 'Nutrition & Wellness',
+    philosophy: 'Nourishment should be joyful and sustainable',
+    certifications: ['RD', 'Certified Health Coach'],
+  },
+];
+---
+
+<section class="py-20 bg-white" aria-label="Meet Our Practitioners">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-xs uppercase tracking-[0.3em] text-neutral-500 mb-3">Your Care Team</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4">
+        Compassionate Experts, Here for You
+      </h2>
+      <p class="text-neutral-600 max-w-2xl mx-auto">
+        Our practitioners combine clinical excellence with genuine care. Every session is tailored to your unique needs.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {practitioners.map((practitioner) => (
+        <div class="group bg-gradient-to-b from-neutral-50 to-white rounded-3xl p-8 hover:shadow-lg transition-shadow">
+          <!-- Avatar -->
+          <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-teal-200 to-emerald-200 flex items-center justify-center text-3xl">
+            {practitioner.name.split(' ').map(n => n[0]).join('')}
+          </div>
+          
+          <div class="text-center">
+            <h3 class="text-xl font-semibold text-neutral-900 mb-1">{practitioner.name}</h3>
+            <p class="text-sm text-teal-600 font-medium mb-4">{practitioner.specialty}</p>
+            
+            <p class="text-neutral-600 text-sm italic mb-6">"{practitioner.philosophy}"</p>
+            
+            <div class="flex flex-wrap justify-center gap-2">
+              {practitioner.certifications.map((cert) => (
+                <span class="px-3 py-1 bg-neutral-100 rounded-full text-xs text-neutral-600">
+                  {cert}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-neutral-600 mb-4">Ready to meet your practitioner?</p>
+      <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-neutral-900 text-white rounded-full hover:bg-neutral-800 transition-colors">
+        Book a Consultation
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>

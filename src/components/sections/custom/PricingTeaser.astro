@@ -1,0 +1,104 @@
+---
+/**
+ * PricingTeaser - SaaS & Startups
+ * Transparent pricing preview to reduce friction
+ */
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+}
+
+const { industry } = Astro.props;
+
+const plans = [
+  {
+    name: 'Starter',
+    price: 'Free',
+    period: '',
+    description: 'For individuals getting started',
+    features: ['Up to 3 projects', 'Basic analytics', 'Community support'],
+    cta: 'Get Started',
+    featured: false,
+  },
+  {
+    name: 'Pro',
+    price: '$29',
+    period: '/mo',
+    description: 'For growing teams',
+    features: ['Unlimited projects', 'Advanced analytics', 'Priority support', 'Team collaboration'],
+    cta: 'Start Free Trial',
+    featured: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    period: '',
+    description: 'For large organizations',
+    features: ['Everything in Pro', 'SSO & SAML', 'Dedicated support', 'Custom integrations'],
+    cta: 'Contact Sales',
+    featured: false,
+  },
+];
+---
+
+<section class="py-20 bg-neutral-50" aria-label="Pricing">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <p class="text-xs uppercase tracking-[0.3em] text-neutral-500 mb-3">Simple Pricing</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4">
+        Plans That Scale With You
+      </h2>
+      <p class="text-neutral-600 max-w-2xl mx-auto">
+        Start free, upgrade when you're ready. No hidden fees, no surprises.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {plans.map((plan) => (
+        <div class={`rounded-2xl p-8 ${plan.featured ? 'bg-neutral-900 text-white ring-2 ring-neutral-900 scale-105' : 'bg-white text-neutral-900'}`}>
+          <div class="mb-6">
+            <h3 class={`text-lg font-semibold mb-2 ${plan.featured ? 'text-white' : 'text-neutral-900'}`}>
+              {plan.name}
+            </h3>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold">{plan.price}</span>
+              {plan.period && <span class={`text-sm ${plan.featured ? 'text-neutral-400' : 'text-neutral-500'}`}>{plan.period}</span>}
+            </div>
+            <p class={`text-sm mt-2 ${plan.featured ? 'text-neutral-400' : 'text-neutral-600'}`}>
+              {plan.description}
+            </p>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            {plan.features.map((feature) => (
+              <li class="flex items-center gap-2 text-sm">
+                <span class={`${plan.featured ? 'text-green-400' : 'text-green-500'}`}>✓</span>
+                <span class={plan.featured ? 'text-neutral-300' : 'text-neutral-700'}>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a 
+            href="#signup" 
+            class={`block text-center py-3 px-6 rounded-full font-medium transition-colors ${
+              plan.featured 
+                ? 'bg-white text-neutral-900 hover:bg-neutral-100' 
+                : 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200'
+            }`}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-neutral-500 mt-8">
+      All plans include 14-day free trial. No credit card required.
+    </p>
+  </div>
+</section>

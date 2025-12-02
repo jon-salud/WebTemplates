@@ -1,0 +1,70 @@
+---
+/**
+ * AmbientGallery - Hospitality & Culinary
+ * Immersive sensory gallery for restaurants/hotels
+ */
+interface Props {
+  industry: {
+    name: string;
+    colors: {
+      primary: string;
+      accent: string;
+    };
+  };
+}
+
+const { industry } = Astro.props;
+
+const galleryItems = [
+  { label: 'The Ambiance', aspect: 'aspect-[4/3]', span: 'md:col-span-2' },
+  { label: 'Culinary Art', aspect: 'aspect-square', span: '' },
+  { label: 'Intimate Details', aspect: 'aspect-square', span: '' },
+  { label: 'The Experience', aspect: 'aspect-[4/3]', span: 'md:col-span-2' },
+];
+---
+
+<section class="py-20 bg-neutral-900" aria-label="Ambient Gallery">
+  <div class="container mx-auto px-6">
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-neutral-500 mb-3">Gallery</p>
+        <h2 class="text-3xl md:text-4xl font-semibold text-white">
+          A Feast for the Senses
+        </h2>
+      </div>
+      <a href="#gallery" class="hidden md:inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
+        View Full Gallery
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {galleryItems.map((item, index) => (
+        <div class={`${item.span} ${item.aspect} rounded-2xl overflow-hidden relative group cursor-pointer`}>
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-neutral-800 to-neutral-900"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          
+          <!-- Hover overlay -->
+          <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          
+          <!-- Label -->
+          <div class="absolute bottom-4 left-4 right-4">
+            <p class="text-white text-sm font-medium">{item.label}</p>
+          </div>
+          
+          <!-- Decorative corner -->
+          <div class="absolute top-4 right-4 w-8 h-8 border-t border-r border-white/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Instagram CTA -->
+    <div class="mt-12 text-center">
+      <p class="text-neutral-500 text-sm mb-3">Follow our journey</p>
+      <a href="#instagram" class="inline-flex items-center gap-2 text-white hover:text-amber-400 transition-colors">
+        <span class="text-lg">📷</span>
+        @{industry.name.toLowerCase().replace(/\s+/g, '')}
+      </a>
+    </div>
+  </div>
+</section>
