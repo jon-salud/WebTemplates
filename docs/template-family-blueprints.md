@@ -252,6 +252,9 @@ Use the checklist below to track delivery of the first wave of non-professional 
 -   [x] **Contractor** — `tradesFieldServices`; Hero (minimal-centered) → CertificationStrip → Services (cards) → ProcessSteps (custom) → Benefits (icon-list) → Testimonials (side-scroll) → CTA (banner) → Footer (simple-dark)
 -   [x] **DJ / Music Producer** — `creativeEvents`; Hero (bento) → ClientMarquee → Services (hover-cards packages) → ShowcaseGallery (custom) → Benefits (radial stats) → Testimonials (floating-cards) → CTA (split) → Footer (modern-grid)
 -   [x] **Fitness Studio** — `healthWellness`; Hero (diagonal-split) → LogoMarquee (partners) → Services (icon-grid) → FeaturedPrograms (custom) → Benefits (timeline) → Testimonials (carousel) → CTA (with-form) → Footer (centered)
+-   [x] **Dental Clinic** — `healthWellness`; Hero (diagonal-split) → TransformationStory → Benefits (timeline) → Services (icon-grid) → Testimonials (carousel) → CTA (with-form) → Footer (centered)
+-   [x] **Wellness Spa** — `healthWellness`; Hero (diagonal-split) → TransformationStory → Benefits (timeline) → Services (icon-grid) → Testimonials (carousel) → CTA (with-form) → Footer (centered)
+-   [x] **Therapist** — `healthWellness`; Hero (diagonal-split) → TransformationStory → Benefits (timeline) → Services (icon-grid) → Testimonials (carousel) → CTA (with-form) → Footer (centered)
 
 Add additional checklist rows as new industries are planned so contributors can see progress at a glance.
 
