@@ -1,0 +1,42 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TemplateRenderer from '../../components/layout/TemplateRenderer.astro';
+import HeaderSelector from '../../components/layout/HeaderSelector';
+import { getIndustryConfig, type IndustryType } from '../../config/industries';
+
+const industryId = Astro.url.searchParams.get('industry') as IndustryType;
+const blueprintParam = Astro.url.searchParams.get('blueprint');
+
+if (!industryId) {
+  return new Response('Missing industry parameter', { status: 400 });
+}
+
+const industryConfig = getIndustryConfig(industryId);
+
+if (!industryConfig) {
+  return new Response('Invalid industry parameter', { status: 400 });
+}
+
+let customBlueprint = null;
+if (blueprintParam) {
+  try {
+    customBlueprint = JSON.parse(blueprintParam);
+  } catch (e) {
+    console.error('Failed to parse blueprint', e);
+  }
+}
+---
+
+<BaseLayout 
+  title={`Preview: ${industryConfig.name}`} 
+  description="Landing Page Builder Preview" 
+  industry={industryConfig.name} 
+  industryConfig={industryConfig}
+>
+  <HeaderSelector client:load industry={industryConfig} />
+  <main class={`flex-1 ${industryConfig.headerVariant === 'sidebar' ? 'lg:pl-20' : ''}`}>
+    <TemplateRenderer industryConfig={industryConfig} customBlueprint={customBlueprint} />
+  </main>
+</BaseLayout>

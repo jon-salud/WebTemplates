@@ -34,11 +34,12 @@ import PricingTeaser from '../sections/custom/PricingTeaser.astro';
 
 export interface Props {
   industryConfig: IndustryConfig;
+  customBlueprint?: any[];
 }
 
-const { industryConfig } = Astro.props as Props;
+const { industryConfig, customBlueprint } = Astro.props as Props;
 const family = industryConfig.templateFamily || 'professionalServices';
-const blueprint = templateBlueprints[family] || [];
+const blueprint = customBlueprint || templateBlueprints[family] || [];
 
 const getSectionOverride = (component: string) => {
   return (industryConfig.sections && (industryConfig.sections as any)[component]) || null;

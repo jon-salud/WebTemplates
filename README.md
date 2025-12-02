@@ -4,7 +4,7 @@ A modern, customizable multi-industry agency template built with Astro, React, F
 
 ## 🚀 Features
 
--   **15 Industry Templates** - Pre-configured for professional services, hospitality, trades, creative, and wellness industries
+-   **20+ Industry Templates** - Pre-configured for professional services, hospitality, trades, creative, wellness, SaaS, and realty industries
 -   **60+ Unique Section Variants** - No two industries look the same
 -   **Blueprint-Driven Rendering** - Template families with reusable section configurations
 -   **Fully Responsive** - Mobile-first design
@@ -24,7 +24,7 @@ A modern, customizable multi-industry agency template built with Astro, React, F
 
 ## 🎭 Template Families
 
-The project uses a blueprint-driven architecture with 6 template families:
+The project uses a blueprint-driven architecture with 7 template families:
 
 ### Professional Services
 
@@ -50,6 +50,10 @@ Energetic, portfolio-style layouts for DJs, photographers, and event services
 
 Modern, feature-focused designs for tech companies
 
+### Realty & Architecture
+
+Visual-heavy, aspirational layouts for real estate, architecture, and interior design
+
 Each family defines a reusable blueprint of sections that can be customized per industry.
 
 ## 🏃 Quick Start
@@ -69,23 +73,25 @@ npm run build
 
 Each industry uses a unique combination of section variants to ensure visual diversity:
 
-| Industry           | Template Family      | Hero              | Services      | Benefits         | Testimonials   | CTA           | Footer        |
-| ------------------ | -------------------- | ----------------- | ------------- | ---------------- | -------------- | ------------- | ------------- |
-| **Accounting**     | professionalServices | split             | numbered-list | counter-cards    | featured       | gradient-card | default       |
-| **Architecture**   | professionalServices | image-overlap     | timeline      | features         | cards-row      | centered      | columns-light |
-| **Consulting**     | professionalServices | bento             | hover-cards   | radial           | spotlight      | floating      | mega          |
-| **Education**      | professionalServices | diagonal-split    | masonry       | stats            | centered-quote | split         | stacked       |
-| **Financial**      | professionalServices | centered-cards    | tabs          | comparison       | masonry        | stats-cta     | dark-gradient |
-| **Healthcare**     | healthWellness       | asymmetric        | icon-grid     | timeline         | carousel       | with-form     | centered      |
-| **Insurance**      | professionalServices | minimal-centered  | cards         | bento            | quote-slider   | default       | simple-dark   |
-| **Law**            | professionalServices | editorial         | accordion     | progress-bars    | stacked-cards  | minimal       | minimal       |
-| **Real Estate**    | professionalServices | video-bg          | image-cards   | animated-counter | floating-cards | dual-action   | split-brand   |
-| **Recruitment**    | professionalServices | floating-elements | spotlight     | icon-list        | side-scroll    | banner        | modern-grid   |
-| **Restaurant**     | hospitalityCulinary  | video-bg          | image-cards   | —                | quote-slider   | dual-action   | split-brand   |
-| **Boutique Hotel** | hospitalityCulinary  | image-overlap     | spotlight     | —                | quote-slider   | dual-action   | split-brand   |
-| **Contractor**     | tradesFieldServices  | minimal-centered  | cards         | icon-list        | side-scroll    | banner        | simple-dark   |
-| **DJ**             | creativeEvents       | bento             | hover-cards   | radial           | floating-cards | split         | modern-grid   |
-| **Fitness Studio** | healthWellness       | diagonal-split    | icon-grid     | timeline         | carousel       | with-form     | centered      |
+| Industry            | Template Family      | Hero              | Services      | Benefits         | Testimonials   | CTA           | Footer        |
+| ------------------- | -------------------- | ----------------- | ------------- | ---------------- | -------------- | ------------- | ------------- | --- | --------------- | ------------------ | -------- | ----------- | ---------------- | -------------- | ----------- | ----------- |
+| **Accounting**      | professionalServices | split             | numbered-list | counter-cards    | featured       | gradient-card | default       |
+| **Architecture**    | professionalServices | image-overlap     | timeline      | features         | cards-row      | centered      | columns-light |
+| **Consulting**      | professionalServices | bento             | hover-cards   | radial           | spotlight      | floating      | mega          |
+| **Education**       | professionalServices | diagonal-split    | masonry       | stats            | centered-quote | split         | stacked       |
+| **Financial**       | professionalServices | centered-cards    | tabs          | comparison       | masonry        | stats-cta     | dark-gradient |
+| **Healthcare**      | healthWellness       | asymmetric        | icon-grid     | timeline         | carousel       | with-form     | centered      |
+| **Insurance**       | professionalServices | minimal-centered  | cards         | bento            | quote-slider   | default       | simple-dark   |
+| **Law**             | professionalServices | editorial         | accordion     | progress-bars    | stacked-cards  | minimal       | minimal       |
+| **Real Estate**     | professionalServices | video-bg          | image-cards   | animated-counter | floating-cards | dual-action   | split-brand   |
+| **Recruitment**     | professionalServices | floating-elements | spotlight     | icon-list        | side-scroll    | banner        | modern-grid   |
+| **Restaurant**      | hospitalityCulinary  | video-bg          | image-cards   | —                | quote-slider   | dual-action   | split-brand   |
+| **Boutique Hotel**  | hospitalityCulinary  | image-overlap     | spotlight     | —                | quote-slider   | dual-action   | split-brand   |
+| **Contractor**      | tradesFieldServices  | minimal-centered  | cards         | icon-list        | side-scroll    | banner        | simple-dark   |
+| **DJ**              | creativeEvents       | bento             | hover-cards   | radial           | floating-cards | split         | modern-grid   |
+| **Fitness Studio**  | healthWellness       | diagonal-split    | icon-grid     | timeline         | carousel       | with-form     | centered      |     | **Real Estate** | realtyArchitecture | video-bg | image-cards | animated-counter | floating-cards | dual-action | split-brand |
+| **Architecture**    | realtyArchitecture   | image-overlap     | timeline      | features         | cards-row      | centered      | columns-light |
+| **Interior Design** | realtyArchitecture   | image-overlap     | image-cards   | bento            | masonry        | minimal       | simple-dark   |
 
 ## � Typography Matrix
 
@@ -387,6 +393,9 @@ The site will be available at `http://localhost:4321`
 -   `/contractor/` - Contractor template (new)
 -   `/dj/` - DJ/Events template (new)
 -   `/fitnessstudio/` - Fitness studio template (new)
+-   `/realestate/` - Real Estate template (updated)
+-   `/architecture/` - Architecture template (updated)
+-   `/interiordesign/` - Interior Design template (new)
 
 ### Build for Production
 
