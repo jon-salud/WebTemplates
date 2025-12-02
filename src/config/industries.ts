@@ -1590,14 +1590,24 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     colors: { primary: '#0EA5E9', primaryLight: '#38BDF8', primaryDark: '#0284C7', accent: '#F472B6' },
     fonts: { heading: 'Inter', body: 'Open Sans', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap' },
     sections: {
-      Hero: {
-        props: {
-          backgroundImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1920&q=80',
-        }
-      },
+      Hero: { variant: 'split', props: { backgroundImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1920&q=80' } },
+      Services: { variant: 'cards' },
+      Benefits: { variant: 'features' },
+      Testimonials: { variant: 'grid' },
+      CTA: { variant: 'split' },
+      Footer: { variant: 'columns-light' },
       TransformationStory: {
         props: {
           image: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80',
+        }
+      },
+      PractitionerShowcase: {
+        props: {
+          practitioners: [
+            { name: 'Dr. Sarah Jenkins', specialty: 'Cosmetic Dentist', philosophy: 'Every smile tells a story.', certifications: ['DDS', 'AACD'] },
+            { name: 'Dr. Michael Chen', specialty: 'Orthodontist', philosophy: 'Precision meets aesthetics.', certifications: ['DDS', 'MS'] },
+            { name: 'Lisa Ray', specialty: 'Lead Hygienist', philosophy: 'Prevention is the key to health.', certifications: ['RDH'] }
+          ]
         }
       }
     },
@@ -1619,14 +1629,24 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     colors: { primary: '#57534E', primaryLight: '#78716C', primaryDark: '#44403C', accent: '#D6D3D1' },
     fonts: { heading: 'Cormorant Garamond', body: 'Lato', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400&display=swap' },
     sections: {
-      Hero: {
-        props: {
-          backgroundImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80',
-        }
-      },
+      Hero: { variant: 'video-bg', props: { backgroundImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80' } },
+      Services: { variant: 'image-cards' },
+      Benefits: { variant: 'bento' },
+      Testimonials: { variant: 'quote-slider' },
+      CTA: { variant: 'minimal' },
+      Footer: { variant: 'simple-dark' },
       TransformationStory: {
         props: {
           image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80',
+        }
+      },
+      PractitionerShowcase: {
+        props: {
+          practitioners: [
+            { name: 'Elena Rossi', specialty: 'Massage Therapist', philosophy: 'Healing through touch.', certifications: ['LMT', 'Reiki Master'] },
+            { name: 'Marco Silva', specialty: 'Esthetician', philosophy: 'Radiance comes from within.', certifications: ['LE', 'Holistic Skin'] },
+            { name: 'Sarah Jones', specialty: 'Wellness Coach', philosophy: 'Balance in all things.', certifications: ['CWC'] }
+          ]
         }
       }
     },
@@ -1648,14 +1668,24 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     colors: { primary: '#0D9488', primaryLight: '#14B8A6', primaryDark: '#0F766E', accent: '#F59E0B' },
     fonts: { heading: 'Merriweather', body: 'Source Sans 3', googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Source+Sans+3:wght@400;600&display=swap' },
     sections: {
-      Hero: {
-        props: {
-          backgroundImage: 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1920&q=80',
-        }
-      },
+      Hero: { variant: 'asymmetric', props: { backgroundImage: 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1920&q=80' } },
+      Services: { variant: 'accordion' },
+      Benefits: { variant: 'icon-list' },
+      Testimonials: { variant: 'featured' },
+      CTA: { variant: 'floating' },
+      Footer: { variant: 'minimal' },
       TransformationStory: {
         props: {
           image: 'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=800&q=80',
+        }
+      },
+      PractitionerShowcase: {
+        props: {
+          practitioners: [
+            { name: 'Dr. Emily Thorne', specialty: 'Clinical Psychologist', philosophy: 'Understanding is the first step.', certifications: ['PhD', 'PsyD'] },
+            { name: 'James Wilson', specialty: 'Family Counselor', philosophy: 'Stronger together.', certifications: ['LMFT'] },
+            { name: 'Anna K.', specialty: 'Art Therapist', philosophy: 'Expression heals.', certifications: ['ATR-BC'] }
+          ]
         }
       }
     },
