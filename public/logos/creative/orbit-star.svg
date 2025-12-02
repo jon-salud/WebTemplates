@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="orbitTitle">
+  <title id="orbitTitle">Orbit Star</title>
+  <g class="logo-stroke" fill="none" stroke="#0F172A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 100 A40 40 0 1 1 140 100 A40 40 0 1 1 60 100" />
+    <path d="M40 100 A60 60 0 1 1 160 100 A60 60 0 1 1 40 100" />
+    <path d="M100 50 L100 40" />
+    <path d="M150 100 L160 100" />
+  </g>
+  <path class="logo-fill" fill="#FCD34D" fill-opacity="0.4" d="M100 68 L107 88 L128 88 L111 100 L118 120 L100 108 L82 120 L89 100 L72 88 L93 88 Z" />
+</svg>

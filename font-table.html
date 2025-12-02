@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional & Fun Fonts Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GOOGLE FONTS IMPORT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Amatic+SC:wght@400;700&family=Bangers&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Chewy&family=Chilanka&family=Comic+Neue:wght@300;400;700&family=Crimson+Text:wght@400;600&family=EB+Garamond:wght@400;700&family=Fredoka:wght@300..700&family=Fugaz+One&family=Inter:wght@400;600;700&family=Jost:wght@400;700&family=Lato:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Lobster&family=Lora:wght@400;600&family=Luckiest+Guy&family=Merriweather:wght@300;400;700&family=Monoton&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Pacifico&family=Permanent+Marker&family=PT+Serif:wght@400;700&family=Playfair+Display:wght@400;700&family=Press+Start+2P&family=Raleway:wght@400;700&family=Righteous&family=Roboto:wght@400;500;700&family=Sigmar+One&family=Source+Sans+3:wght@400;600&family=Sriracha&family=Titan+One&family=Varela+Round&family=Zilla+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* SANS SERIF CLASSES */
+        .font-helvetica { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+        .font-inter { font-family: "Inter", sans-serif; }
+        .font-montserrat { font-family: "Montserrat", sans-serif; }
+        .font-roboto { font-family: "Roboto", sans-serif; }
+        .font-opensans { font-family: "Open Sans", sans-serif; }
+        .font-lato { font-family: "Lato", sans-serif; }
+        .font-futura { font-family: "Jost", "Futura", sans-serif; }
+        .font-gillsans { font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif; }
+        .font-raleway { font-family: "Raleway", sans-serif; }
+        .font-sourcesans { font-family: "Source Sans 3", sans-serif; }
+
+        /* SERIF CLASSES */
+        .font-garamond { font-family: "EB Garamond", "Garamond", serif; }
+        .font-baskerville { font-family: "Libre Baskerville", "Baskerville", serif; }
+        .font-merriweather { font-family: "Merriweather", serif; }
+        .font-playfair { font-family: "Playfair Display", serif; }
+        .font-georgia { font-family: "Georgia", serif; }
+        .font-lora { font-family: "Lora", serif; }
+        .font-bodoni { font-family: "Bodoni Moda", "Bodoni MT", serif; }
+        .font-ptserif { font-family: "PT Serif", serif; }
+        .font-cambria { font-family: "Cambria", "Cochin", serif; }
+        .font-crimson { font-family: "Crimson Text", serif; }
+
+        /* FUN CLASSES */
+        .font-pacifico { font-family: "Pacifico", cursive; }
+        .font-lobster { font-family: "Lobster", cursive; }
+        .font-bangers { font-family: "Bangers", system-ui; }
+        .font-fredoka { font-family: "Fredoka", sans-serif; }
+        .font-righteous { font-family: "Righteous", system-ui; }
+        .font-amatic { font-family: "Amatic SC", cursive; }
+        .font-permanent { font-family: "Permanent Marker", cursive; }
+        .font-pressstart { font-family: "Press Start 2P", system-ui; font-size: 0.75rem; /* adjusted because pixel font is large */ }
+        .font-chewy { font-family: "Chewy", system-ui; }
+        .font-comicneue { font-family: "Comic Neue", cursive; }
+        
+        /* NEW FUN CLASSES */
+        .font-chilanka { font-family: "Chilanka", cursive; }
+        .font-titan { font-family: "Titan One", system-ui; }
+        .font-monoton { font-family: "Monoton", system-ui; }
+        .font-fugaz { font-family: "Fugaz One", sans-serif; }
+        .font-abril { font-family: "Abril Fatface", serif; }
+        .font-sigmar { font-family: "Sigmar One", system-ui; }
+        .font-zilla { font-family: "Zilla Slab", serif; }
+        .font-sriracha { font-family: "Sriracha", cursive; }
+        .font-varela { font-family: "Varela Round", sans-serif; }
+        .font-luckiest { font-family: "Luckiest Guy", system-ui; }
+
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-8 font-sans text-gray-800">
+
+    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        
+        <!-- Header -->
+        <div class="bg-slate-800 text-white p-6 border-b border-gray-200">
+            <h2 class="text-2xl md:text-3xl font-bold">Comprehensive Font Guide</h2>
+            <p class="text-slate-300 mt-2">A curated list of typefaces for every occasion.</p>
+        </div>
+
+        <!-- Responsive Table Container -->
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider">
+                        <th class="p-4 font-bold border-b border-gray-200 w-1/4">Font Preview</th>
+                        <th class="p-4 font-bold border-b border-gray-200">Category</th>
+                        <th class="p-4 font-bold border-b border-gray-200">Variants</th>
+                        <th class="p-4 font-bold border-b border-gray-200 min-w-[300px]">Use Case</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    
+                    <!-- SANS SERIF SECTION -->
+                    <tr class="bg-blue-50/50">
+                        <td colspan="4" class="p-3 pl-4 text-xs font-bold text-blue-800 uppercase tracking-wide">Professional: Sans-Serif</td>
+                    </tr>
+
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-helvetica">
+                            <span class="text-2xl block mb-1">Helvetica Now</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-[10px] px-2 py-0.5 rounded border border-gray-300">System</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">Wide Range</td>
+                        <td class="p-4 text-sm">Corporate branding; clean and neutral.</td>
+                    </tr>
+                    <!-- Inter -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-inter">
+                            <span class="text-2xl block mb-1">Inter</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">9 Weights</td>
+                        <td class="p-4 text-sm">UI/UX and digital products; high legibility.</td>
+                    </tr>
+                    <!-- Montserrat -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-montserrat">
+                            <span class="text-2xl block mb-1">Montserrat</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">9 Weights</td>
+                        <td class="p-4 text-sm">Modern & geometric; similar to "Circula".</td>
+                    </tr>
+                    <!-- Roboto -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-roboto">
+                            <span class="text-2xl block mb-1">Roboto</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">6 Weights</td>
+                        <td class="p-4 text-sm">Standard for Android; friendly yet mechanical.</td>
+                    </tr>
+                    <!-- Open Sans -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-opensans">
+                            <span class="text-2xl block mb-1">Open Sans</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">5 Weights</td>
+                        <td class="p-4 text-sm">Humanist; widely used for web body copy.</td>
+                    </tr>
+                     <!-- Lato -->
+                     <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-lato">
+                            <span class="text-2xl block mb-1">Lato</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">5 Weights</td>
+                        <td class="p-4 text-sm">Corporate but with warm details.</td>
+                    </tr>
+                    <!-- Futura -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-futura">
+                            <span class="text-2xl block mb-1">Futura</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded border border-amber-200">Commercial</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">Wide Range</td>
+                        <td class="p-4 text-sm">Classic geometric; fashion & forward-thinking.</td>
+                    </tr>
+                    <!-- Gill Sans -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-gillsans">
+                            <span class="text-2xl block mb-1">Gill Sans</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-[10px] px-2 py-0.5 rounded border border-gray-300">System</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">Wide Range</td>
+                        <td class="p-4 text-sm">British classic; distinct and human.</td>
+                    </tr>
+                    <!-- Raleway -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-raleway">
+                            <span class="text-2xl block mb-1">Raleway</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">9 Weights</td>
+                        <td class="p-4 text-sm">Elegant/Artistic; great for headings.</td>
+                    </tr>
+                    <!-- Source Sans -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-sourcesans">
+                            <span class="text-2xl block mb-1">Source Sans 3</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Sans</span></td>
+                        <td class="p-4 text-sm text-gray-600">6 Weights</td>
+                        <td class="p-4 text-sm">User interfaces; excellent readability.</td>
+                    </tr>
+
+
+                    <!-- SERIF SECTION -->
+                    <tr class="bg-orange-50/50">
+                        <td colspan="4" class="p-3 pl-4 text-xs font-bold text-orange-800 uppercase tracking-wide">Professional: Serif</td>
+                    </tr>
+
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-garamond">
+                            <span class="text-2xl block mb-1">Garamond</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded border border-amber-200">Commercial</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">4 Weights</td>
+                        <td class="p-4 text-sm">Timeless elegance; book publishing.</td>
+                    </tr>
+                    <!-- Baskerville -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-baskerville">
+                            <span class="text-2xl block mb-1">Baskerville</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded border border-amber-200">Commercial</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">3 Weights</td>
+                        <td class="p-4 text-sm">Traditional authority and history.</td>
+                    </tr>
+                    <!-- Merriweather -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-merriweather">
+                            <span class="text-2xl block mb-1">Merriweather</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">4 Weights</td>
+                        <td class="p-4 text-sm">Highly readable on screens; blogs.</td>
+                    </tr>
+                    <!-- Playfair -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-playfair">
+                            <span class="text-2xl block mb-1">Playfair Display</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">6 Weights</td>
+                        <td class="p-4 text-sm">High-contrast; luxury titles.</td>
+                    </tr>
+                    <!-- Georgia -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-georgia">
+                            <span class="text-2xl block mb-1">Georgia</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-[10px] px-2 py-0.5 rounded border border-gray-300">System</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">Standard</td>
+                        <td class="p-4 text-sm">Robust and reliable for long reading.</td>
+                    </tr>
+                    <!-- Lora -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-lora">
+                            <span class="text-2xl block mb-1">Lora</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">4 Weights</td>
+                        <td class="p-4 text-sm">Contemporary calligraphy roots.</td>
+                    </tr>
+                    <!-- Bodoni -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-bodoni">
+                            <span class="text-2xl block mb-1">Bodoni</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded border border-amber-200">Commercial</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">5 Weights</td>
+                        <td class="p-4 text-sm">High fashion and extreme contrast.</td>
+                    </tr>
+                    <!-- PT Serif -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-ptserif">
+                            <span class="text-2xl block mb-1">PT Serif</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">4 Weights</td>
+                        <td class="p-4 text-sm">Universally useful for academic sites.</td>
+                    </tr>
+                     <!-- Cambria -->
+                     <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-cambria">
+                            <span class="text-2xl block mb-1">Cambria</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-[10px] px-2 py-0.5 rounded border border-gray-300">System</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">Standard</td>
+                        <td class="p-4 text-sm">Crisp, sturdy, and business-appropriate.</td>
+                    </tr>
+                    <!-- Crimson Text -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-crimson">
+                            <span class="text-2xl block mb-1">Crimson Text</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc Dd Ee</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">3 Weights</td>
+                        <td class="p-4 text-sm">Old-style; beautiful for literary projects.</td>
+                    </tr>
+
+                    <!-- FUN & CREATIVE SECTION -->
+                    <tr class="bg-purple-50/50">
+                        <td colspan="4" class="p-3 pl-4 text-xs font-bold text-purple-800 uppercase tracking-wide">Fun & Creative Fonts (Now 20 Total)</td>
+                    </tr>
+
+                    <!-- Initial 10 Fun Fonts -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-pacifico">
+                            <span class="text-2xl block mb-1">Pacifico</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aloha!</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Script</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Bakery logos, casual brands, surf style.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-lobster">
+                            <span class="text-2xl block mb-1">Lobster</span>
+                            <span class="text-sm text-gray-400 block mb-2">Fresh!</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Display</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Retro headlines, food packaging, signs.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-bangers">
+                            <span class="text-2xl block mb-1 tracking-wider">Bangers</span>
+                            <span class="text-sm text-gray-400 block mb-2">POW!</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Comic</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Comic books, YouTube thumbnails, loud headers.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-fredoka">
+                            <span class="text-2xl block mb-1">Fredoka</span>
+                            <span class="text-sm text-gray-400 block mb-2">Aa Bb Cc</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Rounded</span></td>
+                        <td class="p-4 text-sm text-gray-600">Light to SemiBold</td>
+                        <td class="p-4 text-sm">Children's books, friendly apps, education.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-righteous">
+                            <span class="text-2xl block mb-1">Righteous</span>
+                            <span class="text-sm text-gray-400 block mb-2">GALAXY</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Sci-Fi</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Tech, gaming, futuristic headers.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-amatic">
+                            <span class="text-2xl block mb-1 font-bold">Amatic SC</span>
+                            <span class="text-sm text-gray-400 block mb-2">Hand Drawn</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Handwriting</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular, Bold</td>
+                        <td class="p-4 text-sm">Arts & crafts, organic products, quirky blogs.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-permanent">
+                            <span class="text-2xl block mb-1">Permanent Marker</span>
+                            <span class="text-sm text-gray-400 block mb-2">SALE!</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Marker</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Graffiti style, emphasis notes, edgy designs.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-pressstart">
+                            <span class="text-xs md:text-sm block mb-1 leading-relaxed">Press Start 2P</span>
+                            <span class="text-[10px] text-gray-400 block mb-2">GAME OVER</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Pixel</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Retro gaming, 8-bit art, nostalgia.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-chewy">
+                            <span class="text-2xl block mb-1">Chewy</span>
+                            <span class="text-sm text-gray-400 block mb-2">Yummy</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Display</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Candy wrappers, playful posters, flavor.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-comicneue">
+                            <span class="text-2xl block mb-1">Comic Neue</span>
+                            <span class="text-sm text-gray-400 block mb-2">Hello World</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Casual</span></td>
+                        <td class="p-4 text-sm text-gray-600">Light, Regular, Bold</td>
+                        <td class="p-4 text-sm">The "Professional Comic Sans"; informal but clean.</td>
+                    </tr>
+                    
+                    <!-- NEW 10 FUN FONTS -->
+
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-chilanka">
+                            <span class="text-2xl block mb-1">Chilanka</span>
+                            <span class="text-sm text-gray-400 block mb-2">Casual Script</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Handwriting</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Personalized notes, casual invites, friendly blogs.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-titan">
+                            <span class="text-2xl block mb-1">Titan One</span>
+                            <span class="text-sm text-gray-400 block mb-2">BLOCKY</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Display</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Loud, powerful titles, retro cartoon aesthetics.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-monoton">
+                            <span class="text-2xl block mb-1">Monoton</span>
+                            <span class="text-sm text-gray-400 block mb-2">Striped</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Display</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">80s vibe, neon signs, music events, high contrast.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-fugaz">
+                            <span class="text-2xl block mb-1">Fugaz One</span>
+                            <span class="text-sm text-gray-400 block mb-2">Italic Action</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Sporty</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Sports brands, action headlines, fitness sites.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-abril">
+                            <span class="text-2xl block mb-1">Abril Fatface</span>
+                            <span class="text-sm text-gray-400 block mb-2">Editorial</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Display Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Magazine titles, vintage advertising, bold headers.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-sigmar">
+                            <span class="text-2xl block mb-1">Sigmar One</span>
+                            <span class="text-sm text-gray-400 block mb-2">CHUNKY</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Block</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Cartoon art, heavy posters, comics.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-zilla">
+                            <span class="text-2xl block mb-1">Zilla Slab</span>
+                            <span class="text-sm text-gray-400 block mb-2">Tech Slab</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Slab Serif</span></td>
+                        <td class="p-4 text-sm text-gray-600">Light to Black</td>
+                        <td class="p-4 text-sm">Tech blogs, robust branding, code examples.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-sriracha">
+                            <span class="text-2xl block mb-1">Sriracha</span>
+                            <span class="text-sm text-gray-400 block mb-2">Brush Script</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Handwriting</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">DIY, art, menus, realistic handwriting look.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-varela">
+                            <span class="text-2xl block mb-1">Varela Round</span>
+                            <span class="text-sm text-gray-400 block mb-2">Smooth UI</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Rounded</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Simple apps, modern UI, very friendly and minimal.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-luckiest">
+                            <span class="text-2xl block mb-1">Luckiest Guy</span>
+                            <span class="text-sm text-gray-400 block mb-2">Retro Bold</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded border border-green-200">Google</span>
+                        </td>
+                        <td class="p-4"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-semibold">Display</span></td>
+                        <td class="p-4 text-sm text-gray-600">Regular</td>
+                        <td class="p-4 text-sm">Retro 50s/60s advertising, playful games.</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="bg-gray-50 p-4 border-t border-gray-200 text-center text-sm text-gray-500">
+            Note: "Variants" typically refers to the range of weights available (e.g., Light to Black).
+        </div>
+    </div>
+
+</body>
+</html>

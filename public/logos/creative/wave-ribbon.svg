@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="waveTitle">
+  <title id="waveTitle">Wave Ribbon</title>
+  <path class="logo-stroke" fill="none" stroke="#0F172A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M20 120 C45 60 85 160 110 110 C135 60 165 150 180 90" />
+  <path class="logo-fill" fill="#38BDF8" fill-opacity="0.3" d="M20 135 C47 80 80 175 110 125 C135 80 162 165 180 110 L180 165 C160 155 140 155 120 165 C95 175 70 185 45 175 C35 170 27 155 20 145 Z" />
+</svg>

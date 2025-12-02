@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/layout/Navigation';
+import { Hero, Services, Benefits, Testimonials, CTA, LogoMarquee, Footer } from '../../components/sections';
+import TemplateShortcut from '../../components/ui/TemplateShortcut.astro';
+import { getIndustryConfig } from '../../config/industries';
+
+const industry = getIndustryConfig('accounting');
+---
+
+<BaseLayout 
+  title={industry.hero.headline}
+  description={industry.hero.subheadline}
+  industry={industry.name}
+  industryConfig={industry}
+>
+  <TemplateShortcut label="Browse All Templates" />
+
+  <Navigation client:load industry={industry} />
+  
+  <main class="flex-1">
+    <Hero 
+      client:load 
+      industry={industry} 
+      showBadge={true}
+      badgeText="Trusted by 500+ businesses"
+      variant="split"
+      headlineSegments={[
+        { text: 'Streamline', weight: 'light' },
+        { text: ' Your Finances ', weight: 'bold' },
+        { text: 'with Expert ', weight: 'light' },
+        { text: 'Accounting', weight: 'extrabold' },
+      ]}
+    />
+    
+    <LogoMarquee 
+      client:visible 
+      title="Trusted by businesses across industries"
+      logos={[
+        { name: 'TechCorp' },
+        { name: 'RetailPro' },
+        { name: 'MediHealth' },
+        { name: 'BuildRight' },
+        { name: 'FoodServe' },
+        { name: 'AutoParts' },
+        { name: 'GreenEnergy' },
+        { name: 'FinanceHub' },
+      ]}
+    />
+    
+    <Services 
+      client:visible 
+      industry={industry}
+      variant="numbered-list"
+    />
+    
+    <Benefits 
+      client:visible 
+      industry={industry}
+      variant="counter-cards"
+    />
+    
+    <Testimonials 
+      client:visible 
+      industry={industry}
+      variant="featured"
+    />
+    
+    <CTA 
+      client:visible 
+      industry={industry}
+      variant="gradient-card"
+    />
+  </main>
+  
+  <Footer client:visible industry={industry} showNewsletter={true} variant="default" />
+</BaseLayout>

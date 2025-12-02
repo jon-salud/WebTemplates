@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/layout/Navigation';
+import { Hero, Services, Benefits, Testimonials, CTA, LogoMarquee, Footer } from '../components/sections';
+import TemplateShortcut from '../components/ui/TemplateShortcut.astro';
+import { getIndustryConfig, getAllIndustries, type IndustryType } from '../config/industries';
+
+// Default to accounting industry, can be changed via query param or props
+const industryParam = Astro.url.searchParams.get('industry') as IndustryType | null;
+const industry = getIndustryConfig(industryParam || 'accounting');
+const allIndustries = getAllIndustries();
+---
+
+<BaseLayout 
+  title={industry.hero.headline}
+  description={industry.hero.subheadline}
+  industry={industry.name}
+  industryConfig={industry}
+>
+  <TemplateShortcut label="Open Template Library" />
+
+  <Navigation client:load industry={industry} />
+  
+  <main class="flex-1">
+    <Hero 
+      client:load 
+      industry={industry} 
+      showBadge={true}
+      badgeText="Trusted by 1000+ clients"
+      variant="default"
+    />
+    
+    <LogoMarquee 
+      client:visible 
+      title="Trusted by leading organizations"
+    />
+    
+    <Services 
+      client:visible 
+      industry={industry}
+      columns={3}
+    />
+    
+    <Benefits 
+      client:visible 
+      industry={industry}
+      variant="stats"
+    />
+    
+    <Testimonials 
+      client:visible 
+      industry={industry}
+      variant="carousel"
+    />
+    
+    <CTA 
+      client:visible 
+      industry={industry}
+      variant="default"
+    />
+  </main>
+  
+  <Footer client:visible industry={industry} showNewsletter={true} />
+</BaseLayout>

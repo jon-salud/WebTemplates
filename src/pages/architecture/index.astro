@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/layout/Navigation';
+import { Hero, Services, Benefits, Testimonials, CTA, LogoMarquee, Footer } from '../../components/sections';
+import TemplateShortcut from '../../components/ui/TemplateShortcut.astro';
+import { getIndustryConfig } from '../../config/industries';
+
+const industry = getIndustryConfig('architecture');
+---
+
+<BaseLayout 
+  title={industry.hero.headline}
+  description={industry.hero.subheadline}
+  industry={industry.name}
+  industryConfig={industry}
+>
+  <TemplateShortcut label="Browse All Templates" />
+
+  <Navigation client:load industry={industry} />
+  
+  <main class="flex-1">
+    <Hero 
+      client:load 
+      industry={industry} 
+      showBadge={true}
+      badgeText="45+ design awards"
+      variant="image-overlap"
+      backgroundImage="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=2070"
+      headlineSegments={[
+        { text: 'Visionary', weight: 'light' },
+        { text: ' Architecture ', weight: 'bold' },
+        { text: 'That', weight: 'light' },
+        { text: ' Inspires', weight: 'extrabold' },
+      ]}
+    />
+    
+    <LogoMarquee 
+      client:visible 
+      title="Awards & recognition"
+      logos={[
+        { name: 'AIA' },
+        { name: 'RIBA' },
+        { name: 'LEED' },
+        { name: 'ArchDaily' },
+        { name: 'Dezeen' },
+        { name: 'Wallpaper' },
+        { name: 'Architizer' },
+        { name: 'Design Milk' },
+      ]}
+    />
+    
+    <Services 
+      client:visible 
+      industry={industry}
+      variant="timeline"
+    />
+    
+    <Benefits 
+      client:visible 
+      industry={industry}
+      variant="features"
+    />
+    
+    <Testimonials 
+      client:visible 
+      industry={industry}
+      variant="cards-row"
+    />
+    
+    <CTA 
+      client:visible 
+      industry={industry}
+      variant="centered"
+    />
+  </main>
+  
+  <Footer client:visible industry={industry} showNewsletter={true} variant="columns-light" />
+</BaseLayout>

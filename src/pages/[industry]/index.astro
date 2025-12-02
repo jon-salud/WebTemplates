@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/layout/Navigation';
+import { Footer } from '../../components/sections';
+import TemplateShortcut from '../../components/ui/TemplateShortcut.astro';
+import TemplateRenderer from '../../components/layout/TemplateRenderer.astro';
+import { getAllIndustries, getIndustryConfig } from '../../config/industries';
+import type { APIContext } from 'astro';
+
+export async function getStaticPaths() {
+  const all = getAllIndustries();
+  return all.map((id) => ({ 
+    params: { industry: id },
+    props: { industryConfig: getIndustryConfig(id) }
+  }));
+}
+
+const { industryConfig: industry } = Astro.props;
+---
+
+<BaseLayout title={industry.hero.headline} description={industry.hero.subheadline} industry={industry.name} industryConfig={industry}>
+  <TemplateShortcut label="Browse All Templates" />
+  <Navigation client:load industry={industry} />
+
+  <main class="flex-1">
+    <TemplateRenderer industryConfig={industry} />
+  </main>
+
+  <Footer client:visible industry={industry} showNewsletter={true} />
+</BaseLayout>

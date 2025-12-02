@@ -1,0 +1,13 @@
+---
+import AnimatedLogo from '../ui/AnimatedLogo';
+
+const { industry } = Astro.props;
+---
+
+<section class="relative py-12">
+  <div class="container">
+    <div class="sticky top-[65vh] flex justify-center items-center">
+      <AnimatedLogo client:visible src="/logos/creative/pulse-mark.svg" />
+    </div>
+  </div>
+</section>

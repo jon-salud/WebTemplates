@@ -1,0 +1,27 @@
+{
+  "name": "professional-agency-template",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A professional website template for Accounting Firms, Law Firms, Healthcare, and other Professional Agencies - inspired by Circula's modern design",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.6.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.11.0",
+    "framer-motion": "^11.2.10",
+    "lucide-react": "^0.400.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0"
+  }
+}
