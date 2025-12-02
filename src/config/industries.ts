@@ -60,6 +60,7 @@ export interface IndustryConfig {
     subtitle: string;
     buttonText: string;
   };
+  headerVariant?: 'minimal' | 'centered' | 'double' | 'floating' | 'glass' | 'split' | 'bold' | 'mega' | 'sidebar' | 'search' | 'gradient' | 'bordered' | 'default';
   templateFamily?: import('./templateFamilies').TemplateFamily;
   sections?: Partial<Record<string, { variant?: string; props?: Record<string, unknown> }>>;
   customSections?: Array<{ slot: string; component: string; props?: Record<string, unknown> }>;
@@ -74,6 +75,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     name: 'Accounting Firm',
     tagline: 'Financial Clarity, Delivered',
     description: 'Expert accounting services for businesses and individuals',
+    headerVariant: 'double',
     colors: {
       primary: '#0066CC',
       primaryLight: '#3388DD',
@@ -198,6 +200,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     name: 'Law Firm',
     tagline: 'Justice Through Excellence',
     description: 'Premier legal services with unwavering dedication',
+    headerVariant: 'centered',
     colors: {
       primary: '#1E3A5F',
       primaryLight: '#2E5A8F',
@@ -327,6 +330,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     name: 'Healthcare Practice',
     tagline: 'Compassionate Care, Advanced Medicine',
     description: 'Patient-centered healthcare with cutting-edge treatment',
+    headerVariant: 'mega',
     templateFamily: 'healthWellness',
     colors: {
       primary: '#00A89D',
@@ -451,6 +455,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     id: 'consulting',
     name: 'Consulting Firm',
     tagline: 'Transform Challenges into Opportunities',
+    headerVariant: 'minimal',
     description: 'Strategic consulting for business transformation',
     colors: {
       primary: '#6366F1',
@@ -580,6 +585,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     id: 'financial',
     name: 'Financial Advisory',
     tagline: 'Building Wealth, Securing Futures',
+    headerVariant: 'split',
     description: 'Comprehensive financial planning and wealth management',
     colors: {
       primary: '#047857',
@@ -709,6 +715,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
     id: 'realestate',
     name: 'Real Estate Agency',
     tagline: 'Finding Your Perfect Place',
+    headerVariant: 'search',
     description: 'Expert real estate services for buyers, sellers, and investors',
     colors: {
       primary: '#DC2626',
@@ -838,6 +845,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
   insurance: {
     id: 'insurance',
     name: 'Insurance Agency',
+    headerVariant: 'gradient',
     tagline: 'Protection You Can Count On',
     description: 'Comprehensive insurance solutions for life, property, and business',
     colors: {
@@ -967,6 +975,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
   architecture: {
     id: 'architecture',
     name: 'Architecture Studio',
+    headerVariant: 'sidebar',
     tagline: 'Designing Spaces That Inspire',
     description: 'Award-winning architectural design for residential and commercial projects',
     colors: {
@@ -1096,6 +1105,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
   education: {
     id: 'education',
     name: 'Education Center',
+    headerVariant: 'mega',
     tagline: 'Empowering Future Leaders',
     description: 'Excellence in education through personalized learning',
     colors: {
@@ -1224,6 +1234,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
 
   recruitment: {
     id: 'recruitment',
+    headerVariant: 'split',
     name: 'Recruitment Agency',
     tagline: 'Connecting Talent with Opportunity',
     description: 'Executive search and staffing solutions for growing companies',
@@ -1355,6 +1366,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
   restaurant: {
     id: 'restaurant',
     name: 'Neon Plate',
+    headerVariant: 'glass',
     tagline: 'Savor the Night',
     description: 'An elevated dining experience with seasonal menus and crafted cocktails.',
     templateFamily: 'hospitalityCulinary',
@@ -1421,6 +1433,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
   boutiquehotel: {
     id: 'boutiquehotel',
     name: 'Harbor House',
+    headerVariant: 'floating',
     tagline: 'Stay in Style',
     description: 'A boutique hotel focusing on curated experiences and local culture.',
     templateFamily: 'hospitalityCulinary',
@@ -1462,6 +1475,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
 
   contractor: {
     id: 'contractor',
+    headerVariant: 'bordered',
     name: 'BuildRight Co.',
     tagline: 'Craft. Build. Deliver.',
     description: 'Residential and commercial contracting with a focus on quality and trust.',
@@ -1495,6 +1509,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
 
   dj: {
     id: 'dj',
+    headerVariant: 'bold',
     name: 'DeckWave',
     tagline: 'Beats That Move You',
     description: 'DJ and live performance services for clubs, weddings, and events.',
@@ -1538,6 +1553,7 @@ export const industryConfigs: Record<IndustryType, IndustryConfig> = {
 
   fitnessstudio: {
     id: 'fitnessstudio',
+    headerVariant: 'minimal',
     name: 'CoreFlow Studio',
     tagline: 'Move Better, Live Better',
     description: 'Group classes, personal training, and wellness coaching.',

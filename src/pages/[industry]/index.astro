@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Navigation from '../../components/layout/Navigation';
+import HeaderSelector from '../../components/layout/HeaderSelector';
 import TemplateShortcut from '../../components/ui/TemplateShortcut.astro';
 import TemplateRenderer from '../../components/layout/TemplateRenderer.astro';
 import { getAllIndustries, getIndustryConfig } from '../../config/industries';
@@ -19,9 +19,9 @@ const { industryConfig: industry } = Astro.props;
 
 <BaseLayout title={industry.hero.headline} description={industry.hero.subheadline} industry={industry.name} industryConfig={industry}>
   <TemplateShortcut label="Browse All Templates" />
-  <Navigation client:load industry={industry} />
+  <HeaderSelector client:load industry={industry} />
 
-  <main class="flex-1">
+  <main class={`flex-1 ${industry.headerVariant === 'sidebar' ? 'lg:pl-20' : ''}`}>
     <TemplateRenderer industryConfig={industry} />
   </main>
 
