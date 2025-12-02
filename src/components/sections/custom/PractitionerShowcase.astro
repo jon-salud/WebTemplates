@@ -3,6 +3,13 @@
  * PractitionerShowcase - Health & Wellness
  * Warm, approachable team display for wellness providers
  */
+interface Practitioner {
+  name: string;
+  specialty: string;
+  philosophy: string;
+  certifications: string[];
+}
+
 interface Props {
   industry: {
     name: string;
@@ -11,11 +18,12 @@ interface Props {
       accent: string;
     };
   };
+  practitioners?: Practitioner[];
 }
 
-const { industry } = Astro.props;
+const { industry, practitioners: customPractitioners } = Astro.props;
 
-const practitioners = [
+const defaultPractitioners = [
   {
     name: 'Dr. Maya Chen',
     specialty: 'Holistic Medicine',
@@ -35,6 +43,8 @@ const practitioners = [
     certifications: ['RD', 'Certified Health Coach'],
   },
 ];
+
+const practitioners = customPractitioners || defaultPractitioners;
 ---
 
 <section class="py-20 bg-white" aria-label="Meet Our Practitioners">
