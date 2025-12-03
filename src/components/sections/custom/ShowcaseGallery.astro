@@ -39,6 +39,7 @@ const displayItems = items || defaultItems;
             <img 
               src={images[idx]} 
               alt={item.title}
+              loading="lazy"
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
           ) : (

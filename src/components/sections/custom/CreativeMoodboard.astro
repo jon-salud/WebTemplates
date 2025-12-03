@@ -47,6 +47,7 @@ const smallImages = images?.slice(1) || [];
               <img 
                 src={smallImages[idx]} 
                 alt={`Moodboard detail ${idx + 1}`}
+                loading="lazy"
                 class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500" 
               />
             )}
@@ -54,7 +55,7 @@ const smallImages = images?.slice(1) || [];
         ))}
         <div class="col-span-2 md:col-span-4 h-full min-h-[14rem] rounded-3xl bg-[radial-gradient(circle_at_top,_#ffffff18,_transparent_60%)] border border-white/10 flex items-center justify-center text-5xl overflow-hidden relative">
           {mainImage ? (
-            <img src={mainImage} alt="Moodboard texture" class="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" />
+            <img src={mainImage} alt="Moodboard texture" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" />
           ) : (
             <span>🎛️</span>
           )}
