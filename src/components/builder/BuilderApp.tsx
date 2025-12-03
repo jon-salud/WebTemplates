@@ -170,6 +170,45 @@ const BuilderApp = () => {
     return `/builder/preview?industry=${industryId}&header=${headerVariant}${fontParam}${colorParam}&blueprint=${blueprintString}`;
   };
 
+  // Helper to scroll through iframe content to trigger lazy loading
+  const scrollThroughPage = async (iframeDoc: Document): Promise<void> => {
+    return new Promise((resolve) => {
+      const scrollContainer = iframeDoc.documentElement;
+      const totalHeight = scrollContainer.scrollHeight;
+      const viewportHeight = iframeDoc.defaultView?.innerHeight || 800;
+      const scrollStep = viewportHeight * 0.8; // Scroll 80% of viewport at a time
+      let currentScroll = 0;
+      
+      const scrollInterval = setInterval(() => {
+        currentScroll += scrollStep;
+        scrollContainer.scrollTop = currentScroll;
+        
+        if (currentScroll >= totalHeight) {
+          clearInterval(scrollInterval);
+          // Scroll back to top
+          scrollContainer.scrollTop = 0;
+          // Wait a bit for any final images to load
+          setTimeout(resolve, 500);
+        }
+      }, 150); // 150ms between scroll steps
+    });
+  };
+
+  // Helper to wait for all images to load
+  const waitForImages = async (iframeDoc: Document): Promise<void> => {
+    const images = Array.from(iframeDoc.querySelectorAll('img'));
+    const imagePromises = images.map((img) => {
+      if (img.complete) return Promise.resolve();
+      return new Promise<void>((resolve) => {
+        img.onload = () => resolve();
+        img.onerror = () => resolve(); // Resolve even on error to not block
+        // Timeout after 3 seconds per image
+        setTimeout(resolve, 3000);
+      });
+    });
+    await Promise.all(imagePromises);
+  };
+
   const handleExport = async () => {
     try {
       setIsExporting(true);
@@ -183,8 +222,18 @@ const BuilderApp = () => {
         throw new Error('Cannot access iframe content');
       }
       
-      // Clone the iframe's HTML content
       const iframeDoc = iframe.contentDocument;
+      
+      // Scroll through the page to trigger lazy-loaded images
+      await scrollThroughPage(iframeDoc);
+      
+      // Wait for all images to finish loading
+      await waitForImages(iframeDoc);
+      
+      // Small delay to ensure everything is rendered
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Clone the iframe's HTML content
       const html = iframeDoc.documentElement.outerHTML;
       
       // Create a complete HTML document
