@@ -172,26 +172,22 @@ const BuilderApp = () => {
 
   // Helper to scroll through iframe content to trigger lazy loading
   const scrollThroughPage = async (iframeDoc: Document): Promise<void> => {
-    return new Promise((resolve) => {
-      const scrollContainer = iframeDoc.documentElement;
-      const totalHeight = scrollContainer.scrollHeight;
-      const viewportHeight = iframeDoc.defaultView?.innerHeight || 800;
-      const scrollStep = viewportHeight * 0.8; // Scroll 80% of viewport at a time
-      let currentScroll = 0;
-      
-      const scrollInterval = setInterval(() => {
-        currentScroll += scrollStep;
-        scrollContainer.scrollTop = currentScroll;
-        
-        if (currentScroll >= totalHeight) {
-          clearInterval(scrollInterval);
-          // Scroll back to top
-          scrollContainer.scrollTop = 0;
-          // Wait a bit for any final images to load
-          setTimeout(resolve, 500);
-        }
-      }, 150); // 150ms between scroll steps
-    });
+    const scrollContainer = iframeDoc.documentElement;
+    const viewportHeight = iframeDoc.defaultView?.innerHeight || 800;
+    
+    // Quick scroll: jump down in large chunks (10 page-downs)
+    for (let i = 1; i <= 10; i++) {
+      scrollContainer.scrollTop = viewportHeight * i;
+      // Small delay to let images start loading
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    
+    // Jump to absolute bottom to ensure footer loads
+    scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    // Scroll back to top
+    scrollContainer.scrollTop = 0;
   };
 
   // Helper to wait for all images to load
