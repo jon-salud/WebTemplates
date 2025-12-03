@@ -85,10 +85,30 @@ const groupedFonts = FONT_COMBINATIONS.reduce((acc, font) => {
   return acc;
 }, {} as Record<string, typeof FONT_COMBINATIONS>);
 
+const COLOR_SCHEMES = [
+  { value: 'default', label: 'Default (Industry)', primary: '', primaryLight: '', primaryDark: '', accent: '' },
+  // Professional
+  { value: 'ocean-blue', label: 'Ocean Blue', primary: '#0066CC', primaryLight: '#3388DD', primaryDark: '#004499', accent: '#00B894' },
+  { value: 'forest-green', label: 'Forest Green', primary: '#047857', primaryLight: '#10B981', primaryDark: '#065F46', accent: '#F59E0B' },
+  { value: 'royal-purple', label: 'Royal Purple', primary: '#7C3AED', primaryLight: '#8B5CF6', primaryDark: '#6D28D9', accent: '#F97316' },
+  { value: 'slate-navy', label: 'Slate Navy', primary: '#1E3A5F', primaryLight: '#2E5A8F', primaryDark: '#0E2A4F', accent: '#C9A55C' },
+  // Warm
+  { value: 'sunset-red', label: 'Sunset Red', primary: '#DC2626', primaryLight: '#EF4444', primaryDark: '#B91C1C', accent: '#0284C7' },
+  { value: 'terracotta', label: 'Terracotta', primary: '#EA580C', primaryLight: '#F97316', primaryDark: '#C2410C', accent: '#0D9488' },
+  { value: 'burgundy', label: 'Burgundy Wine', primary: '#9F1239', primaryLight: '#BE185D', primaryDark: '#881337', accent: '#D4AF37' },
+  // Cool & Modern
+  { value: 'teal-cyan', label: 'Teal Cyan', primary: '#0891B2', primaryLight: '#06B6D4', primaryDark: '#0E7490', accent: '#F472B6' },
+  { value: 'indigo-violet', label: 'Indigo Violet', primary: '#4F46E5', primaryLight: '#6366F1', primaryDark: '#4338CA', accent: '#10B981' },
+  // Neutral & Bold
+  { value: 'charcoal', label: 'Charcoal', primary: '#111827', primaryLight: '#374151', primaryDark: '#030712', accent: '#EAB308' },
+  { value: 'warm-stone', label: 'Warm Stone', primary: '#78350F', primaryLight: '#92400E', primaryDark: '#451A03', accent: '#D97706' },
+];
+
 const BuilderApp = () => {
   const [industryId, setIndustryId] = useState('realestate');
   const [headerVariant, setHeaderVariant] = useState('default');
   const [fontCombo, setFontCombo] = useState('default');
+  const [colorScheme, setColorScheme] = useState('default');
   const [sections, setSections] = useState<any[]>([]);
   const [iframeKey, setIframeKey] = useState(0);
 
@@ -144,7 +164,8 @@ const BuilderApp = () => {
   const getPreviewUrl = () => {
     const blueprintString = encodeURIComponent(JSON.stringify(sections));
     const fontParam = fontCombo !== 'default' ? `&fonts=${fontCombo}` : '';
-    return `/builder/preview?industry=${industryId}&header=${headerVariant}${fontParam}&blueprint=${blueprintString}`;
+    const colorParam = colorScheme !== 'default' ? `&colors=${colorScheme}` : '';
+    return `/builder/preview?industry=${industryId}&header=${headerVariant}${fontParam}${colorParam}&blueprint=${blueprintString}`;
   };
 
   const handleExport = async () => {
@@ -206,7 +227,7 @@ const BuilderApp = () => {
             </select>
           </div>
           
-          <div className="mb-4">
+          <div className="mb-3">
             <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Font Combination</label>
             <select 
               value={fontCombo}
@@ -219,6 +240,19 @@ const BuilderApp = () => {
                     <option key={f.value} value={f.value}>{f.label}</option>
                   ))}
                 </optgroup>
+              ))}
+            </select>
+          </div>
+          
+          <div className="mb-4">
+            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Color Scheme</label>
+            <select 
+              value={colorScheme}
+              onChange={(e) => setColorScheme(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              {COLOR_SCHEMES.map((c) => (
+                <option key={c.value} value={c.value}>{c.label}</option>
               ))}
             </select>
           </div>

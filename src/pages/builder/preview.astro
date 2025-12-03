@@ -9,27 +9,114 @@ import { getIndustryConfig, type IndustryType } from "../../config/industries";
 const industryId = Astro.url.searchParams.get("industry") as IndustryType;
 const headerVariantParam = Astro.url.searchParams.get("header");
 const fontsParam = Astro.url.searchParams.get("fonts");
+const colorsParam = Astro.url.searchParams.get("colors");
 const blueprintParam = Astro.url.searchParams.get("blueprint");
 
+// Color schemes lookup
+const COLOR_SCHEMES: Record<string, { primary: string; primaryLight: string; primaryDark: string; accent: string }> = {
+    'ocean-blue': { primary: '#0066CC', primaryLight: '#3388DD', primaryDark: '#004499', accent: '#00B894' },
+    'forest-green': { primary: '#047857', primaryLight: '#10B981', primaryDark: '#065F46', accent: '#F59E0B' },
+    'royal-purple': { primary: '#7C3AED', primaryLight: '#8B5CF6', primaryDark: '#6D28D9', accent: '#F97316' },
+    'slate-navy': { primary: '#1E3A5F', primaryLight: '#2E5A8F', primaryDark: '#0E2A4F', accent: '#C9A55C' },
+    'sunset-red': { primary: '#DC2626', primaryLight: '#EF4444', primaryDark: '#B91C1C', accent: '#0284C7' },
+    'terracotta': { primary: '#EA580C', primaryLight: '#F97316', primaryDark: '#C2410C', accent: '#0D9488' },
+    'burgundy': { primary: '#9F1239', primaryLight: '#BE185D', primaryDark: '#881337', accent: '#D4AF37' },
+    'teal-cyan': { primary: '#0891B2', primaryLight: '#06B6D4', primaryDark: '#0E7490', accent: '#F472B6' },
+    'indigo-violet': { primary: '#4F46E5', primaryLight: '#6366F1', primaryDark: '#4338CA', accent: '#10B981' },
+    'charcoal': { primary: '#111827', primaryLight: '#374151', primaryDark: '#030712', accent: '#EAB308' },
+    'warm-stone': { primary: '#78350F', primaryLight: '#92400E', primaryDark: '#451A03', accent: '#D97706' },
+};
+
 // Font combinations lookup
-const FONT_COMBOS: Record<string, { heading: string; body: string; url: string }> = {
-  'inter-lato': { heading: 'Inter', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:wght@300;400;700&display=swap' },
-  'montserrat-opensans': { heading: 'Montserrat', body: 'Open Sans', url: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap' },
-  'raleway-sourcesans': { heading: 'Raleway', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap' },
-  'roboto-roboto': { heading: 'Roboto', body: 'Roboto', url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap' },
-  'playfair-lora': { heading: 'Playfair Display', body: 'Lora', url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap' },
-  'garamond-merriweather': { heading: 'EB Garamond', body: 'Merriweather', url: 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Merriweather:wght@300;400;700&display=swap' },
-  'bodoni-librebaskerville': { heading: 'Bodoni Moda', body: 'Libre Baskerville', url: 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Libre+Baskerville:wght@400;700&display=swap' },
-  'ptserif-crimson': { heading: 'PT Serif', body: 'Crimson Text', url: 'https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Crimson+Text:wght@400;600&display=swap' },
-  'playfair-sourcesans': { heading: 'Playfair Display', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap' },
-  'abril-lato': { heading: 'Abril Fatface', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:wght@300;400;700&display=swap' },
-  'zilla-inter': { heading: 'Zilla Slab', body: 'Inter', url: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap' },
-  'fredoka-varela': { heading: 'Fredoka', body: 'Varela Round', url: 'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap' },
-  'pacifico-opensans': { heading: 'Pacifico', body: 'Open Sans', url: 'https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&display=swap' },
-  'lobster-lato': { heading: 'Lobster', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Lobster&family=Lato:wght@300;400;700&display=swap' },
-  'bangers-sourcesans': { heading: 'Bangers', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+3:wght@400;600&display=swap' },
-  'fugaz-roboto': { heading: 'Fugaz One', body: 'Roboto', url: 'https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:wght@400;500;700&display=swap' },
-  'righteous-inter': { heading: 'Righteous', body: 'Inter', url: 'https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;600;700&display=swap' },
+const FONT_COMBOS: Record<
+    string,
+    { heading: string; body: string; url: string }
+> = {
+    "inter-lato": {
+        heading: "Inter",
+        body: "Lato",
+        url: "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:wght@300;400;700&display=swap",
+    },
+    "montserrat-opensans": {
+        heading: "Montserrat",
+        body: "Open Sans",
+        url: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap",
+    },
+    "raleway-sourcesans": {
+        heading: "Raleway",
+        body: "Source Sans 3",
+        url: "https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap",
+    },
+    "roboto-roboto": {
+        heading: "Roboto",
+        body: "Roboto",
+        url: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap",
+    },
+    "playfair-lora": {
+        heading: "Playfair Display",
+        body: "Lora",
+        url: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap",
+    },
+    "garamond-merriweather": {
+        heading: "EB Garamond",
+        body: "Merriweather",
+        url: "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Merriweather:wght@300;400;700&display=swap",
+    },
+    "bodoni-librebaskerville": {
+        heading: "Bodoni Moda",
+        body: "Libre Baskerville",
+        url: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Libre+Baskerville:wght@400;700&display=swap",
+    },
+    "ptserif-crimson": {
+        heading: "PT Serif",
+        body: "Crimson Text",
+        url: "https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Crimson+Text:wght@400;600&display=swap",
+    },
+    "playfair-sourcesans": {
+        heading: "Playfair Display",
+        body: "Source Sans 3",
+        url: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap",
+    },
+    "abril-lato": {
+        heading: "Abril Fatface",
+        body: "Lato",
+        url: "https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:wght@300;400;700&display=swap",
+    },
+    "zilla-inter": {
+        heading: "Zilla Slab",
+        body: "Inter",
+        url: "https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap",
+    },
+    "fredoka-varela": {
+        heading: "Fredoka",
+        body: "Varela Round",
+        url: "https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap",
+    },
+    "pacifico-opensans": {
+        heading: "Pacifico",
+        body: "Open Sans",
+        url: "https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&display=swap",
+    },
+    "lobster-lato": {
+        heading: "Lobster",
+        body: "Lato",
+        url: "https://fonts.googleapis.com/css2?family=Lobster&family=Lato:wght@300;400;700&display=swap",
+    },
+    "bangers-sourcesans": {
+        heading: "Bangers",
+        body: "Source Sans 3",
+        url: "https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+3:wght@400;600&display=swap",
+    },
+    "fugaz-roboto": {
+        heading: "Fugaz One",
+        body: "Roboto",
+        url: "https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:wght@400;500;700&display=swap",
+    },
+    "righteous-inter": {
+        heading: "Righteous",
+        body: "Inter",
+        url: "https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;600;700&display=swap",
+    },
 };
 
 if (!industryId) {
@@ -43,11 +130,16 @@ if (!baseConfig) {
 }
 
 // Override header variant and fonts if provided
-const customFonts = fontsParam && FONT_COMBOS[fontsParam] ? {
-    heading: FONT_COMBOS[fontsParam].heading,
-    body: FONT_COMBOS[fontsParam].body,
-    googleFontsUrl: FONT_COMBOS[fontsParam].url,
-} : null;
+const customFonts =
+    fontsParam && FONT_COMBOS[fontsParam]
+        ? {
+              heading: FONT_COMBOS[fontsParam].heading,
+              body: FONT_COMBOS[fontsParam].body,
+              googleFontsUrl: FONT_COMBOS[fontsParam].url,
+          }
+        : null;
+
+const customColors = colorsParam && COLOR_SCHEMES[colorsParam] ? COLOR_SCHEMES[colorsParam] : null;
 
 const industryConfig = {
     ...baseConfig,
@@ -55,6 +147,7 @@ const industryConfig = {
         baseConfig.headerVariant ||
         "default") as typeof baseConfig.headerVariant,
     ...(customFonts && { fonts: customFonts }),
+    ...(customColors && { colors: customColors }),
 };
 
 let customBlueprint = null;
