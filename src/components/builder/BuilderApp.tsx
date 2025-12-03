@@ -175,16 +175,28 @@ const BuilderApp = () => {
     const scrollContainer = iframeDoc.documentElement;
     const viewportHeight = iframeDoc.defaultView?.innerHeight || 800;
     
-    // Quick scroll: jump down in large chunks (10 page-downs)
-    for (let i = 1; i <= 10; i++) {
-      scrollContainer.scrollTop = viewportHeight * i;
-      // Small delay to let images start loading
-      await new Promise(resolve => setTimeout(resolve, 100));
+    // Keep scrolling until we reach the bottom
+    let maxIterations = 50; // Safety limit
+    while (maxIterations > 0) {
+      const scrollTop = scrollContainer.scrollTop;
+      const scrollHeight = scrollContainer.scrollHeight;
+      
+      // Check if we've reached the bottom
+      if (scrollTop + viewportHeight >= scrollHeight - 10) {
+        break;
+      }
+      
+      // Page down
+      scrollContainer.scrollTop = scrollTop + viewportHeight;
+      
+      // Wait for lazy loading to trigger (adjust this based on your lazy load config)
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      maxIterations--;
     }
     
-    // Jump to absolute bottom to ensure footer loads
-    scrollContainer.scrollTop = scrollContainer.scrollHeight;
-    await new Promise(resolve => setTimeout(resolve, 200));
+    // Extra wait at the bottom for any final content
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     // Scroll back to top
     scrollContainer.scrollTop = 0;
