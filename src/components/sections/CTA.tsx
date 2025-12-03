@@ -16,6 +16,15 @@ const CTA: React.FC<CTAProps> = ({
 }) => {
   const [email, setEmail] = useState('');
 
+  // Theme-aware colors
+  const isDarkMode = industry.themeMode === 'dark';
+  const theme = {
+    text: isDarkMode ? 'text-[var(--theme-text)]' : 'text-brand-black',
+    textMuted: isDarkMode ? 'text-[var(--theme-text)]/70' : 'text-neutral-600',
+    card: isDarkMode ? 'bg-[var(--theme-surface)]' : 'bg-white',
+    cardBorder: isDarkMode ? 'border-white/10' : 'border-neutral-200',
+  };
+
   // ═══════════════════════════════════════════════════════════════════════════
   // VARIANT: Default (Original)
   // ═══════════════════════════════════════════════════════════════════════════
@@ -431,7 +440,7 @@ const CTA: React.FC<CTAProps> = ({
 
         {/* Secondary action */}
         <motion.div
-          className="relative rounded-3xl p-8 md:p-10 bg-neutral-100 overflow-hidden group cursor-pointer"
+          className="relative rounded-3xl p-8 md:p-10 bg-theme-surface overflow-hidden group cursor-pointer"
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
         >
@@ -442,8 +451,8 @@ const CTA: React.FC<CTAProps> = ({
             >
               <Phone className="w-7 h-7" style={{ color: industry.colors.primary }} />
             </div>
-            <h3 className="text-heading-2 text-brand-black mb-3">Speak to an Agent</h3>
-            <p className="text-neutral-600 mb-6">
+            <h3 className="text-heading-2 text-theme mb-3">Speak to an Agent</h3>
+            <p className="text-theme-muted mb-6">
               Get expert advice from our experienced real estate professionals today.
             </p>
             <div

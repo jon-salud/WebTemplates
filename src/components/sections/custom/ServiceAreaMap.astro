@@ -4,113 +4,167 @@
  * Shows service coverage area for local trades
  */
 interface Props {
-  industry: {
-    name: string;
-    colors: {
-      primary: string;
-      accent: string;
+    industry: {
+        name: string;
+        colors: {
+            primary: string;
+            accent: string;
+        };
     };
-  };
-  image?: string;
+    image?: string;
 }
 
 const { industry, image } = Astro.props;
 
-const defaultMapImage = "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80"; // Generic map/city
+const defaultMapImage =
+    "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80"; // Generic map/city
 const displayImage = image || defaultMapImage;
 
 const serviceAreas = [
-  'Downtown',
-  'Midtown',
-  'Uptown',
-  'West Side',
-  'East Side',
-  'Suburbs',
+    "Downtown",
+    "Midtown",
+    "Uptown",
+    "West Side",
+    "East Side",
+    "Suburbs",
 ];
 
 const stats = [
-  { value: '30 min', label: 'Avg. Response Time' },
-  { value: '50 mi', label: 'Service Radius' },
-  { value: '24/7', label: 'Emergency Availability' },
+    { value: "30 min", label: "Avg. Response Time" },
+    { value: "50 mi", label: "Service Radius" },
+    { value: "24/7", label: "Emergency Availability" },
 ];
 ---
 
-<section class="py-16" style={`background-color: ${industry.colors.primary}08`} aria-label="Service Area">
-  <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <!-- Map Placeholder -->
-      <div class="relative">
-        <div class="aspect-square rounded-2xl bg-neutral-100 overflow-hidden relative group">
-          <!-- Background Image -->
-          <img 
-            src={displayImage} 
-            alt="Service Area Map" 
-            class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity grayscale hover:grayscale-0 duration-500"
-          />
-          
-          <!-- Stylized map visualization overlay -->
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="relative w-3/4 h-3/4">
-              <!-- Center point -->
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div class="w-6 h-6 rounded-full animate-pulse shadow-lg border-2 border-white" style={`background-color: ${industry.colors.primary}`}></div>
-                <div class="absolute inset-0 w-6 h-6 rounded-full animate-ping" style={`background-color: ${industry.colors.primary}4D`}></div>
-              </div>
-              
-              <!-- Radius rings -->
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 rounded-full" style={`border-color: ${industry.colors.primary}4D; background-color: ${industry.colors.primary}0D`}></div>
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 rounded-full" style={`border-color: ${industry.colors.primary}33`}></div>
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 rounded-full" style={`border-color: ${industry.colors.primary}1A`}></div>
+<section
+    class="py-16"
+    style={`background-color: ${industry.colors.primary}08`}
+    aria-label="Service Area"
+>
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Map Placeholder -->
+            <div class="relative">
+                <div
+                    class="aspect-square rounded-2xl bg-theme-surface overflow-hidden relative group"
+                >
+                    <!-- Background Image -->
+                    <img
+                        src={displayImage}
+                        alt="Service Area Map"
+                        class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity grayscale hover:grayscale-0 duration-500"
+                    />
+
+                    <!-- Stylized map visualization overlay -->
+                    <div
+                        class="absolute inset-0 flex items-center justify-center"
+                    >
+                        <div class="relative w-3/4 h-3/4">
+                            <!-- Center point -->
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+                            >
+                                <div
+                                    class="w-6 h-6 rounded-full animate-pulse shadow-lg border-2 border-white"
+                                    style={`background-color: ${industry.colors.primary}`}
+                                >
+                                </div>
+                                <div
+                                    class="absolute inset-0 w-6 h-6 rounded-full animate-ping"
+                                    style={`background-color: ${industry.colors.primary}4D`}
+                                >
+                                </div>
+                            </div>
+
+                            <!-- Radius rings -->
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 rounded-full"
+                                style={`border-color: ${industry.colors.primary}4D; background-color: ${industry.colors.primary}0D`}
+                            >
+                            </div>
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 rounded-full"
+                                style={`border-color: ${industry.colors.primary}33`}
+                            >
+                            </div>
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 rounded-full"
+                                style={`border-color: ${industry.colors.primary}1A`}
+                            >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating badge -->
+                <div
+                    class="absolute -bottom-4 -right-4 bg-theme-surface rounded-xl p-4 shadow-lg"
+                >
+                    <p class="text-xs text-theme-light mb-1">Serving</p>
+                    <p class="text-lg font-bold text-theme">Your Area</p>
+                </div>
             </div>
-          </div>
-        </div>
-        
-        <!-- Floating badge -->
-        <div class="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-lg">
-          <p class="text-xs text-neutral-500 mb-1">Serving</p>
-          <p class="text-lg font-bold text-neutral-900">Your Area</p>
-        </div>
-      </div>
 
-      <!-- Content -->
-      <div>
-        <p class="text-xs uppercase tracking-[0.3em] mb-3" style={`color: ${industry.colors.primary}`}>Service Area</p>
-        <h2 class="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4">
-          We Come to You
-        </h2>
-        <p class="text-neutral-600 mb-8">
-          Fast, reliable service across the metro area. No job too far—we'll be there when you need us.
-        </p>
+            <!-- Content -->
+            <div>
+                <p
+                    class="text-xs uppercase tracking-[0.3em] mb-3"
+                    style={`color: ${industry.colors.primary}`}
+                >
+                    Service Area
+                </p>
+                <h2 class="text-3xl md:text-4xl font-semibold text-theme mb-4">
+                    We Come to You
+                </h2>
+                <p class="text-theme-muted mb-8">
+                    Fast, reliable service across the metro area. No job too
+                    far—we'll be there when you need us.
+                </p>
 
-        <!-- Areas List -->
-        <div class="flex flex-wrap gap-2 mb-8">
-          {serviceAreas.map((area) => (
-            <span class="px-4 py-2 bg-white rounded-full text-sm text-neutral-700 shadow-sm">
-              {area}
-            </span>
-          ))}
-          <span class="px-4 py-2 text-white rounded-full text-sm font-medium" style={`background-color: ${industry.colors.primary}`}>
-            + More
-          </span>
-        </div>
+                <!-- Areas List -->
+                <div class="flex flex-wrap gap-2 mb-8">
+                    {
+                        serviceAreas.map((area) => (
+                            <span class="px-4 py-2 bg-theme-surface rounded-full text-sm text-theme shadow-sm">
+                                {area}
+                            </span>
+                        ))
+                    }
+                    <span
+                        class="px-4 py-2 text-white rounded-full text-sm font-medium"
+                        style={`background-color: ${industry.colors.primary}`}
+                    >
+                        + More
+                    </span>
+                </div>
 
-        <!-- Stats -->
-        <div class="grid grid-cols-3 gap-4">
-          {stats.map((stat) => (
-            <div class="text-center p-4 bg-white rounded-xl shadow-sm">
-              <p class="text-2xl font-bold text-neutral-900">{stat.value}</p>
-              <p class="text-xs text-neutral-500">{stat.label}</p>
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-4">
+                    {
+                        stats.map((stat) => (
+                            <div class="text-center p-4 bg-theme-surface rounded-xl shadow-sm">
+                                <p class="text-2xl font-bold text-theme">
+                                    {stat.value}
+                                </p>
+                                <p class="text-xs text-theme-light">
+                                    {stat.label}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div class="mt-8">
+                    <a
+                        href="#contact"
+                        class="inline-flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-opacity hover:opacity-90"
+                        style={`background-color: ${industry.colors.primary}`}
+                    >
+                        Check Your Area
+                        <span>→</span>
+                    </a>
+                </div>
             </div>
-          ))}
         </div>
-
-        <div class="mt-8">
-          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-opacity hover:opacity-90" style={`background-color: ${industry.colors.primary}`}>
-            Check Your Area
-            <span>→</span>
-          </a>
-        </div>
-      </div>
     </div>
-  </div>
 </section>

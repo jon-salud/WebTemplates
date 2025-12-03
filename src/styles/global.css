@@ -4,6 +4,12 @@
 
 /* Base Styles */
 @layer base {
+  :root {
+    --theme-text: #0f172a;
+    --theme-background: #ffffff;
+    --theme-surface: #f8fafc;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -12,8 +18,8 @@
     font-family: var(--font-body, 'Inter', system-ui, sans-serif);
     font-size: 1rem;
     line-height: 1.7;
-    color: #333;
-    background-color: #fff;
+    color: var(--theme-text, #333);
+    background-color: var(--theme-background, #fff);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -111,5 +117,111 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .text-brand-black {
+    color: var(--theme-text, #222222);
+  }
+  
+  /* Theme-aware typography helpers */
+  .text-theme {
+    color: var(--theme-text, #0f172a);
+  }
+  
+  .text-theme-muted {
+    color: var(--theme-text, #0f172a);
+    color: color-mix(in srgb, var(--theme-text, #0f172a) 70%, transparent);
+  }
+  
+  .text-theme-light {
+    color: var(--theme-text, #0f172a);
+    color: color-mix(in srgb, var(--theme-text, #0f172a) 50%, transparent);
+  }
+  
+  .text-theme-subtle {
+    color: var(--theme-text, #0f172a);
+    color: color-mix(in srgb, var(--theme-text, #0f172a) 35%, transparent);
+  }
+  
+  .bg-theme-surface {
+    background-color: var(--theme-surface);
+  }
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME OVERRIDES - Outside @layer for higher specificity
+   These override Tailwind's defaults to respect CSS custom properties
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Background overrides */
+.bg-white:not([class*="dark:"]) {
+  background-color: var(--theme-surface, #ffffff) !important;
+}
+
+.bg-neutral-50:not([class*="dark:"]),
+.bg-gray-50:not([class*="dark:"]) {
+  background-color: var(--theme-background, #fafafa) !important;
+}
+
+.bg-neutral-100:not([class*="dark:"]),
+.bg-gray-100:not([class*="dark:"]) {
+  background-color: var(--theme-surface, #f5f5f5) !important;
+}
+
+.bg-neutral-200:not([class*="dark:"]),
+.bg-gray-200:not([class*="dark:"]) {
+  background-color: color-mix(in srgb, var(--theme-surface, #e5e5e5) 90%, var(--theme-text, #000) 10%) !important;
+}
+
+/* Text color overrides */
+.text-neutral-900:not([class*="dark:"]),
+.text-neutral-950:not([class*="dark:"]),
+.text-gray-900:not([class*="dark:"]),
+.text-gray-950:not([class*="dark:"]) {
+  color: var(--theme-text, #0f172a) !important;
+}
+
+.text-neutral-800:not([class*="dark:"]),
+.text-gray-800:not([class*="dark:"]) {
+  color: color-mix(in srgb, var(--theme-text, #0f172a) 90%, transparent) !important;
+}
+
+.text-neutral-700:not([class*="dark:"]),
+.text-gray-700:not([class*="dark:"]) {
+  color: color-mix(in srgb, var(--theme-text, #0f172a) 80%, transparent) !important;
+}
+
+.text-neutral-600:not([class*="dark:"]),
+.text-gray-600:not([class*="dark:"]) {
+  color: color-mix(in srgb, var(--theme-text, #0f172a) 70%, transparent) !important;
+}
+
+.text-neutral-500:not([class*="dark:"]),
+.text-gray-500:not([class*="dark:"]) {
+  color: color-mix(in srgb, var(--theme-text, #0f172a) 60%, transparent) !important;
+}
+
+.text-neutral-400:not([class*="dark:"]),
+.text-gray-400:not([class*="dark:"]) {
+  color: color-mix(in srgb, var(--theme-text, #0f172a) 50%, transparent) !important;
+}
+
+.text-neutral-300:not([class*="dark:"]),
+.text-gray-300:not([class*="dark:"]) {
+  color: color-mix(in srgb, var(--theme-text, #0f172a) 40%, transparent) !important;
+}
+
+/* Border color overrides */
+.border-neutral-100:not([class*="dark:"]),
+.border-gray-100:not([class*="dark:"]) {
+  border-color: color-mix(in srgb, var(--theme-text, #0f172a) 10%, transparent) !important;
+}
+
+.border-neutral-200:not([class*="dark:"]),
+.border-gray-200:not([class*="dark:"]) {
+  border-color: color-mix(in srgb, var(--theme-text, #0f172a) 15%, transparent) !important;
+}
+
+.border-neutral-300:not([class*="dark:"]),
+.border-gray-300:not([class*="dark:"]) {
+  border-color: color-mix(in srgb, var(--theme-text, #0f172a) 20%, transparent) !important;
+}
