@@ -4,89 +4,128 @@
  * Emotional narrative showing before/after journey
  */
 interface Props {
-  industry: {
-    name: string;
-    colors: {
-      primary: string;
-      accent: string;
+    industry: {
+        name: string;
+        colors: {
+            primary: string;
+            accent: string;
+        };
     };
-  };
-  image?: string;
+    image?: string;
 }
 
 const { industry, image } = Astro.props;
 ---
 
-<section class="py-20 bg-gradient-to-b from-white to-neutral-50" aria-label="Transformation Story">
-  <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <!-- Story Content -->
-      <div>
-        <p class="text-xs uppercase tracking-[0.3em] text-neutral-500 mb-4">Your Transformation Awaits</p>
-        <h2 class="text-3xl md:text-4xl font-semibold text-neutral-900 mb-6 leading-tight">
-          From Where You Are<br />
-          <span class="text-neutral-500">To Where You Want to Be</span>
-        </h2>
-        
-        <div class="space-y-6">
-          <div class="flex gap-4">
-            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
-              <span class="text-red-500 text-lg">✕</span>
-            </div>
+<section
+    class="py-20 bg-gradient-to-b from-white to-neutral-50"
+    aria-label="Transformation Story"
+>
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Story Content -->
             <div>
-              <h3 class="font-medium text-neutral-900 mb-1">Before</h3>
-              <p class="text-neutral-600 text-sm">Feeling stuck, overwhelmed, or uncertain about your path forward. Energy levels low, motivation wavering.</p>
-            </div>
-          </div>
-          
-          <div class="w-px h-8 bg-neutral-200 ml-6"></div>
-          
-          <div class="flex gap-4">
-            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-              <span class="text-green-500 text-lg">✓</span>
-            </div>
-            <div>
-              <h3 class="font-medium text-neutral-900 mb-1">After</h3>
-              <p class="text-neutral-600 text-sm">Renewed vitality, clear direction, and the tools to maintain your wellbeing. Confidence restored, life in balance.</p>
-            </div>
-          </div>
-        </div>
+                <p
+                    class="text-xs uppercase tracking-[0.3em] text-neutral-500 mb-4"
+                >
+                    Your Transformation Awaits
+                </p>
+                <h2
+                    class="text-3xl md:text-4xl font-semibold text-neutral-900 mb-6 leading-tight"
+                >
+                    From Where You Are<br />
+                    <span class="text-neutral-500">To Where You Want to Be</span
+                    >
+                </h2>
 
-        <blockquote class="mt-8 pl-6 border-l-2 border-neutral-300">
-          <p class="text-neutral-700 italic mb-2">
-            "I came in exhausted and skeptical. Six weeks later, I feel like a completely different person."
-          </p>
-          <cite class="text-sm text-neutral-500 not-italic">— Sarah M., Client</cite>
-        </blockquote>
-      </div>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 rounded-full bg-red-100 flex items-center justify-center"
+                        >
+                            <span class="text-red-500 text-lg">✕</span>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-neutral-900 mb-1">
+                                Before
+                            </h3>
+                            <p class="text-neutral-600 text-sm">
+                                Feeling stuck, overwhelmed, or uncertain about
+                                your path forward. Energy levels low, motivation
+                                wavering.
+                            </p>
+                        </div>
+                    </div>
 
-      <!-- Visual Element -->
-      <div class="relative">
-        <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-100 overflow-hidden relative">
-          {image ? (
-            <img 
-              src={image} 
-              alt="Transformation journey" 
-              loading="lazy"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-          ) : (
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="text-center">
-                <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
-                  <span class="text-4xl">🌱</span>
+                    <div class="w-px h-8 bg-neutral-200 ml-6"></div>
+
+                    <div class="flex gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center"
+                        >
+                            <span class="text-green-500 text-lg">✓</span>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-neutral-900 mb-1">
+                                After
+                            </h3>
+                            <p class="text-neutral-600 text-sm">
+                                Renewed vitality, clear direction, and the tools
+                                to maintain your wellbeing. Confidence restored,
+                                life in balance.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-neutral-700 font-medium">Your Journey Starts Here</p>
-              </div>
+
+                <blockquote class="mt-8 pl-6 border-l-2 border-neutral-300">
+                    <p class="text-neutral-700 italic mb-2">
+                        "I came in exhausted and skeptical. Six weeks later, I
+                        feel like a completely different person."
+                    </p>
+                    <cite class="text-sm text-neutral-500 not-italic"
+                        >— Sarah M., Client</cite
+                    >
+                </blockquote>
             </div>
-          )}
+
+            <!-- Visual Element -->
+            <div class="relative">
+                <div
+                    class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-100 overflow-hidden relative"
+                >
+                    {
+                        image ? (
+                            <img
+                                src={image}
+                                alt="Transformation journey"
+                                loading="lazy"
+                                class="absolute inset-0 w-full h-full object-cover"
+                            />
+                        ) : (
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
+                                        <span class="text-4xl">🌱</span>
+                                    </div>
+                                    <p class="text-neutral-700 font-medium">
+                                        Your Journey Starts Here
+                                    </p>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+                <!-- Floating stat -->
+                <div
+                    class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl"
+                >
+                    <p class="text-3xl font-bold text-neutral-900">94%</p>
+                    <p class="text-xs text-neutral-500">
+                        Report improved wellbeing
+                    </p>
+                </div>
+            </div>
         </div>
-        <!-- Floating stat -->
-        <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl">
-          <p class="text-3xl font-bold text-neutral-900">94%</p>
-          <p class="text-xs text-neutral-500">Report improved wellbeing</p>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
