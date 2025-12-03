@@ -11,8 +11,9 @@ const headerVariantParam = Astro.url.searchParams.get("header");
 const fontsParam = Astro.url.searchParams.get("fonts");
 const colorsParam = Astro.url.searchParams.get("colors");
 const blueprintParam = Astro.url.searchParams.get("blueprint");
+const modeParam = Astro.url.searchParams.get("mode") as "light" | "dark" | null;
 
-// Color schemes lookup
+// Color schemes lookup with light/dark mode support
 const COLOR_SCHEMES: Record<
     string,
     {
@@ -20,73 +21,233 @@ const COLOR_SCHEMES: Record<
         primaryLight: string;
         primaryDark: string;
         accent: string;
+        mode: "light" | "dark";
+        background: string;
+        surface: string;
+        text: string;
     }
 > = {
+    // Light mode schemes
     "ocean-blue": {
         primary: "#0066CC",
         primaryLight: "#3388DD",
         primaryDark: "#004499",
         accent: "#00B894",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#f0f9ff",
+        text: "#0f172a",
     },
     "forest-green": {
         primary: "#047857",
         primaryLight: "#10B981",
         primaryDark: "#065F46",
         accent: "#F59E0B",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#f0fdf4",
+        text: "#0f172a",
     },
     "royal-purple": {
         primary: "#7C3AED",
         primaryLight: "#8B5CF6",
         primaryDark: "#6D28D9",
         accent: "#F97316",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#faf5ff",
+        text: "#0f172a",
     },
     "slate-navy": {
         primary: "#1E3A5F",
         primaryLight: "#2E5A8F",
         primaryDark: "#0E2A4F",
         accent: "#C9A55C",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#f8fafc",
+        text: "#0f172a",
     },
-    "sunset-red": {
-        primary: "#DC2626",
-        primaryLight: "#EF4444",
-        primaryDark: "#B91C1C",
-        accent: "#0284C7",
+    "sunset-coral": {
+        primary: "#f97316",
+        primaryLight: "#fb923c",
+        primaryDark: "#ea580c",
+        accent: "#0891b2",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#fff7ed",
+        text: "#0f172a",
     },
     terracotta: {
         primary: "#EA580C",
         primaryLight: "#F97316",
         primaryDark: "#C2410C",
         accent: "#0D9488",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#fef3e7",
+        text: "#0f172a",
     },
     burgundy: {
         primary: "#9F1239",
         primaryLight: "#BE185D",
         primaryDark: "#881337",
         accent: "#D4AF37",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#fff1f2",
+        text: "#0f172a",
     },
     "teal-cyan": {
         primary: "#0891B2",
         primaryLight: "#06B6D4",
         primaryDark: "#0E7490",
         accent: "#F472B6",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#ecfeff",
+        text: "#0f172a",
     },
     "indigo-violet": {
         primary: "#4F46E5",
         primaryLight: "#6366F1",
         primaryDark: "#4338CA",
         accent: "#10B981",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#eef2ff",
+        text: "#0f172a",
     },
-    charcoal: {
-        primary: "#111827",
-        primaryLight: "#374151",
-        primaryDark: "#030712",
-        accent: "#EAB308",
+    "rose-gold": {
+        primary: "#be185d",
+        primaryLight: "#db2777",
+        primaryDark: "#9d174d",
+        accent: "#84cc16",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#fdf2f8",
+        text: "#0f172a",
     },
     "warm-stone": {
         primary: "#78350F",
         primaryLight: "#92400E",
         primaryDark: "#451A03",
         accent: "#D97706",
+        mode: "light",
+        background: "#ffffff",
+        surface: "#fafaf9",
+        text: "#0f172a",
+    },
+    // Dark mode schemes
+    "midnight-blue": {
+        primary: "#3b82f6",
+        primaryLight: "#60a5fa",
+        primaryDark: "#2563eb",
+        accent: "#22d3ee",
+        mode: "dark",
+        background: "#0f172a",
+        surface: "#1e293b",
+        text: "#f1f5f9",
+    },
+    "deep-emerald": {
+        primary: "#10b981",
+        primaryLight: "#34d399",
+        primaryDark: "#059669",
+        accent: "#fbbf24",
+        mode: "dark",
+        background: "#022c22",
+        surface: "#064e3b",
+        text: "#ecfdf5",
+    },
+    "cosmic-purple": {
+        primary: "#a78bfa",
+        primaryLight: "#c4b5fd",
+        primaryDark: "#8b5cf6",
+        accent: "#f472b6",
+        mode: "dark",
+        background: "#1e1b4b",
+        surface: "#312e81",
+        text: "#f5f3ff",
+    },
+    charcoal: {
+        primary: "#6b7280",
+        primaryLight: "#9ca3af",
+        primaryDark: "#4b5563",
+        accent: "#f59e0b",
+        mode: "dark",
+        background: "#111827",
+        surface: "#1f2937",
+        text: "#f9fafb",
+    },
+    "crimson-night": {
+        primary: "#ef4444",
+        primaryLight: "#f87171",
+        primaryDark: "#dc2626",
+        accent: "#38bdf8",
+        mode: "dark",
+        background: "#1c1917",
+        surface: "#292524",
+        text: "#fef2f2",
+    },
+    "copper-dusk": {
+        primary: "#f97316",
+        primaryLight: "#fb923c",
+        primaryDark: "#ea580c",
+        accent: "#14b8a6",
+        mode: "dark",
+        background: "#1c1917",
+        surface: "#292524",
+        text: "#fff7ed",
+    },
+    "wine-dark": {
+        primary: "#e11d48",
+        primaryLight: "#fb7185",
+        primaryDark: "#be123c",
+        accent: "#c9a55c",
+        mode: "dark",
+        background: "#1f1218",
+        surface: "#3d1f2e",
+        text: "#fff1f2",
+    },
+    "ocean-depth": {
+        primary: "#06b6d4",
+        primaryLight: "#22d3ee",
+        primaryDark: "#0891b2",
+        accent: "#f472b6",
+        mode: "dark",
+        background: "#0c1f2c",
+        surface: "#164e63",
+        text: "#ecfeff",
+    },
+    "electric-indigo": {
+        primary: "#6366f1",
+        primaryLight: "#818cf8",
+        primaryDark: "#4f46e5",
+        accent: "#22c55e",
+        mode: "dark",
+        background: "#0f0f23",
+        surface: "#1e1e3f",
+        text: "#eef2ff",
+    },
+    "magenta-night": {
+        primary: "#ec4899",
+        primaryLight: "#f472b6",
+        primaryDark: "#db2777",
+        accent: "#a3e635",
+        mode: "dark",
+        background: "#1a0a14",
+        surface: "#2d1827",
+        text: "#fdf2f8",
+    },
+    obsidian: {
+        primary: "#94a3b8",
+        primaryLight: "#cbd5e1",
+        primaryDark: "#64748b",
+        accent: "#a855f7",
+        mode: "dark",
+        background: "#020617",
+        surface: "#0f172a",
+        text: "#e2e8f0",
     },
 };
 
@@ -207,6 +368,16 @@ const customColors =
         ? COLOR_SCHEMES[colorsParam]
         : null;
 
+// Determine theme mode from color scheme or default to light
+const themeMode = customColors?.mode || modeParam || "light";
+const themeColors = customColors
+    ? {
+          background: customColors.background,
+          surface: customColors.surface,
+          text: customColors.text,
+      }
+    : undefined;
+
 const industryConfig = {
     ...baseConfig,
     headerVariant: (headerVariantParam ||
@@ -231,6 +402,7 @@ if (blueprintParam) {
     description="Landing Page Builder Preview"
     industry={industryConfig.name}
     industryConfig={industryConfig}
+    themeColors={themeColors}
 >
     <HeaderSelector client:only="react" industry={industryConfig} />
     <main

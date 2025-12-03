@@ -49,6 +49,10 @@ const { industryConfig, customBlueprint } = Astro.props as Props;
 const family = industryConfig.templateFamily || "professionalServices";
 const blueprint = customBlueprint || templateBlueprints[family] || [];
 
+// When using customBlueprint, always use blueprint values (user selected them)
+// When using default template, allow industry overrides
+const isCustomBlueprint = !!customBlueprint;
+
 const getSectionOverride = (component: string) => {
     return (
         (industryConfig.sections &&
@@ -58,11 +62,17 @@ const getSectionOverride = (component: string) => {
 };
 
 const resolveVariant = (bp: any) => {
+    // If using custom blueprint, always use the blueprint variant (user selected it)
+    if (isCustomBlueprint) {
+        return bp.variant || undefined;
+    }
+    // Otherwise, allow industry config overrides
     const override = getSectionOverride(bp.component);
     return override?.variant || bp.variant || undefined;
 };
 
 const resolveProps = (bp: any) => {
+    // Always get industry overrides for props (images, content, etc.)
     let override = getSectionOverride(bp.component);
 
     if (bp.component === "Custom" && bp.props?.component) {
@@ -79,7 +89,8 @@ const resolveProps = (bp: any) => {
         }
     }
 
-    return { ...(bp.props || {}), ...(override?.props || {}) };
+    // Merge: blueprint props take precedence over industry override props
+    return { ...(override?.props || {}), ...(bp.props || {}) };
 };
 
 // Build a simple descriptor list for rendering in the template below.
@@ -171,6 +182,7 @@ const renderedSections = blueprint.map((bp) => {
                         key={i}
                         client:visible
                         industry={industryConfig}
+                        variant={variant}
                         {...props}
                     />
                 );

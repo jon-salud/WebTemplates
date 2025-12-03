@@ -30,7 +30,7 @@ const HeaderCentered: React.FC<HeaderProps> = ({ industry }) => {
           </nav>
 
           {/* Logo */}
-          <a href="/" className="text-2xl font-serif font-bold" style={{ color: industry.colors.primary }}>
+          <a href="/" className="text-2xl font-serif font-bold" style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}>
             {industry.name}
           </a>
 

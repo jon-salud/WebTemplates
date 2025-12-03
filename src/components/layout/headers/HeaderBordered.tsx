@@ -18,7 +18,7 @@ const HeaderBordered: React.FC<HeaderProps> = ({ industry }) => {
           className="flex-shrink-0 px-6 md:px-8 flex items-center border-r-2 border-black"
           style={{ backgroundColor: industry.colors.primary }}
         >
-          <a href="/" className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white">
+          <a href="/" className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white" style={{ fontFamily: 'var(--font-heading)' }}>
             {industry.name}
           </a>
         </div>

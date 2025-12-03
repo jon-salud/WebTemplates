@@ -1,0 +1,21 @@
+---
+/**
+ * Test Page: All Component Variants
+ * Visit /test/variants to see all variants rendered
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getIndustryConfig } from "../../config/industries";
+import VariantTester from "../../components/test/VariantTester";
+
+// Use a sample industry for testing
+const industryConfig = getIndustryConfig("accounting");
+---
+
+<BaseLayout
+    title="Variant Tester"
+    description="Test all component variants"
+    industry="Test"
+    industryConfig={industryConfig}
+>
+    <VariantTester client:load industryConfig={industryConfig} />
+</BaseLayout>

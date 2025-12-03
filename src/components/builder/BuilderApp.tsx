@@ -86,33 +86,68 @@ const groupedFonts = FONT_COMBINATIONS.reduce((acc, font) => {
 }, {} as Record<string, typeof FONT_COMBINATIONS>);
 
 const COLOR_SCHEMES = [
-  { value: 'default', label: 'Default (Industry)', primary: '', primaryLight: '', primaryDark: '', accent: '' },
-  // Professional
-  { value: 'ocean-blue', label: 'Ocean Blue', primary: '#0066CC', primaryLight: '#3388DD', primaryDark: '#004499', accent: '#00B894' },
-  { value: 'forest-green', label: 'Forest Green', primary: '#047857', primaryLight: '#10B981', primaryDark: '#065F46', accent: '#F59E0B' },
-  { value: 'royal-purple', label: 'Royal Purple', primary: '#7C3AED', primaryLight: '#8B5CF6', primaryDark: '#6D28D9', accent: '#F97316' },
-  { value: 'slate-navy', label: 'Slate Navy', primary: '#1E3A5F', primaryLight: '#2E5A8F', primaryDark: '#0E2A4F', accent: '#C9A55C' },
-  // Warm
-  { value: 'sunset-red', label: 'Sunset Red', primary: '#DC2626', primaryLight: '#EF4444', primaryDark: '#B91C1C', accent: '#0284C7' },
-  { value: 'terracotta', label: 'Terracotta', primary: '#EA580C', primaryLight: '#F97316', primaryDark: '#C2410C', accent: '#0D9488' },
-  { value: 'burgundy', label: 'Burgundy Wine', primary: '#9F1239', primaryLight: '#BE185D', primaryDark: '#881337', accent: '#D4AF37' },
-  // Cool & Modern
-  { value: 'teal-cyan', label: 'Teal Cyan', primary: '#0891B2', primaryLight: '#06B6D4', primaryDark: '#0E7490', accent: '#F472B6' },
-  { value: 'indigo-violet', label: 'Indigo Violet', primary: '#4F46E5', primaryLight: '#6366F1', primaryDark: '#4338CA', accent: '#10B981' },
-  // Neutral & Bold
-  { value: 'charcoal', label: 'Charcoal', primary: '#111827', primaryLight: '#374151', primaryDark: '#030712', accent: '#EAB308' },
-  { value: 'warm-stone', label: 'Warm Stone', primary: '#78350F', primaryLight: '#92400E', primaryDark: '#451A03', accent: '#D97706' },
+  { value: 'default', label: 'Default (Industry)', mode: 'light', primary: '', primaryLight: '', primaryDark: '', accent: '', background: '#ffffff', surface: '#f9fafb', text: '#111827' },
+  
+  // ===== LIGHT MODE SCHEMES =====
+  // Professional Light
+  { value: 'ocean-blue', label: 'Ocean Blue', mode: 'light', primary: '#0066CC', primaryLight: '#3388DD', primaryDark: '#004499', accent: '#00B894', background: '#ffffff', surface: '#f0f9ff', text: '#0c4a6e' },
+  { value: 'forest-green', label: 'Forest Green', mode: 'light', primary: '#047857', primaryLight: '#10B981', primaryDark: '#065F46', accent: '#F59E0B', background: '#ffffff', surface: '#f0fdf4', text: '#14532d' },
+  { value: 'royal-purple', label: 'Royal Purple', mode: 'light', primary: '#7C3AED', primaryLight: '#8B5CF6', primaryDark: '#6D28D9', accent: '#F97316', background: '#ffffff', surface: '#faf5ff', text: '#3b0764' },
+  { value: 'slate-navy', label: 'Slate Navy', mode: 'light', primary: '#1E3A5F', primaryLight: '#2E5A8F', primaryDark: '#0E2A4F', accent: '#C9A55C', background: '#ffffff', surface: '#f8fafc', text: '#1e293b' },
+  // Warm Light
+  { value: 'sunset-red', label: 'Sunset Red', mode: 'light', primary: '#DC2626', primaryLight: '#EF4444', primaryDark: '#B91C1C', accent: '#0284C7', background: '#ffffff', surface: '#fef2f2', text: '#7f1d1d' },
+  { value: 'terracotta', label: 'Terracotta', mode: 'light', primary: '#EA580C', primaryLight: '#F97316', primaryDark: '#C2410C', accent: '#0D9488', background: '#fffbeb', surface: '#fff7ed', text: '#7c2d12' },
+  { value: 'burgundy', label: 'Burgundy Wine', mode: 'light', primary: '#9F1239', primaryLight: '#BE185D', primaryDark: '#881337', accent: '#D4AF37', background: '#fff1f2', surface: '#fce7f3', text: '#831843' },
+  // Cool Light
+  { value: 'teal-cyan', label: 'Teal Cyan', mode: 'light', primary: '#0891B2', primaryLight: '#06B6D4', primaryDark: '#0E7490', accent: '#F472B6', background: '#ffffff', surface: '#ecfeff', text: '#164e63' },
+  { value: 'indigo-violet', label: 'Indigo Violet', mode: 'light', primary: '#4F46E5', primaryLight: '#6366F1', primaryDark: '#4338CA', accent: '#10B981', background: '#ffffff', surface: '#eef2ff', text: '#312e81' },
+  // Neutral Light
+  { value: 'warm-cream', label: 'Warm Cream', mode: 'light', primary: '#78350F', primaryLight: '#92400E', primaryDark: '#451A03', accent: '#D97706', background: '#fffbf5', surface: '#fef3c7', text: '#451a03' },
+  { value: 'cool-gray', label: 'Cool Gray', mode: 'light', primary: '#4b5563', primaryLight: '#6b7280', primaryDark: '#374151', accent: '#3b82f6', background: '#ffffff', surface: '#f3f4f6', text: '#1f2937' },
+  
+  // ===== DARK MODE SCHEMES =====
+  // Professional Dark
+  { value: 'midnight-blue', label: 'Midnight Blue', mode: 'dark', primary: '#3b82f6', primaryLight: '#60a5fa', primaryDark: '#2563eb', accent: '#22d3ee', background: '#0f172a', surface: '#1e293b', text: '#f1f5f9' },
+  { value: 'dark-emerald', label: 'Dark Emerald', mode: 'dark', primary: '#10B981', primaryLight: '#34d399', primaryDark: '#059669', accent: '#fbbf24', background: '#022c22', surface: '#064e3b', text: '#ecfdf5' },
+  { value: 'deep-purple', label: 'Deep Purple', mode: 'dark', primary: '#a78bfa', primaryLight: '#c4b5fd', primaryDark: '#8b5cf6', accent: '#fb923c', background: '#1e1b4b', surface: '#312e81', text: '#f5f3ff' },
+  { value: 'charcoal', label: 'Charcoal', mode: 'dark', primary: '#f59e0b', primaryLight: '#fbbf24', primaryDark: '#d97706', accent: '#38bdf8', background: '#111827', surface: '#1f2937', text: '#f9fafb' },
+  // Warm Dark
+  { value: 'dark-crimson', label: 'Dark Crimson', mode: 'dark', primary: '#f87171', primaryLight: '#fca5a5', primaryDark: '#ef4444', accent: '#38bdf8', background: '#1c1917', surface: '#292524', text: '#fef2f2' },
+  { value: 'dark-amber', label: 'Dark Amber', mode: 'dark', primary: '#fbbf24', primaryLight: '#fcd34d', primaryDark: '#f59e0b', accent: '#2dd4bf', background: '#1c1917', surface: '#292524', text: '#fefce8' },
+  { value: 'wine-dark', label: 'Wine Dark', mode: 'dark', primary: '#fb7185', primaryLight: '#fda4af', primaryDark: '#f43f5e', accent: '#fde047', background: '#1f1315', surface: '#3b1c24', text: '#fff1f2' },
+  // Cool Dark
+  { value: 'dark-teal', label: 'Dark Teal', mode: 'dark', primary: '#2dd4bf', primaryLight: '#5eead4', primaryDark: '#14b8a6', accent: '#f472b6', background: '#042f2e', surface: '#134e4a', text: '#ccfbf1' },
+  { value: 'neon-night', label: 'Neon Night', mode: 'dark', primary: '#818cf8', primaryLight: '#a5b4fc', primaryDark: '#6366f1', accent: '#4ade80', background: '#020617', surface: '#0f172a', text: '#e0e7ff' },
+  // Neutral Dark
+  { value: 'slate-dark', label: 'Slate Dark', mode: 'dark', primary: '#94a3b8', primaryLight: '#cbd5e1', primaryDark: '#64748b', accent: '#38bdf8', background: '#0f172a', surface: '#1e293b', text: '#f1f5f9' },
+  { value: 'noir', label: 'Noir', mode: 'dark', primary: '#ffffff', primaryLight: '#f4f4f5', primaryDark: '#e4e4e7', accent: '#ef4444', background: '#09090b', surface: '#18181b', text: '#fafafa' },
 ];
 
 const BuilderApp = () => {
   const [industryId, setIndustryId] = useState('realestate');
+  const [themeMode, setThemeMode] = useState<'light' | 'dark'>('light');
   const [headerVariant, setHeaderVariant] = useState('default');
   const [fontCombo, setFontCombo] = useState('default');
   const [colorScheme, setColorScheme] = useState('default');
   const [sections, setSections] = useState<any[]>([]);
-  const [iframeKey, setIframeKey] = useState(0);
   const [isExporting, setIsExporting] = useState(false);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
+
+  // Filter color schemes based on selected mode
+  const filteredColorSchemes = COLOR_SCHEMES.filter(
+    scheme => scheme.value === 'default' || scheme.mode === themeMode
+  );
+
+  // Reset color scheme when mode changes if current scheme doesn't match
+  React.useEffect(() => {
+    const currentScheme = COLOR_SCHEMES.find(s => s.value === colorScheme);
+    if (currentScheme && currentScheme.value !== 'default' && currentScheme.mode !== themeMode) {
+      setColorScheme('default');
+    }
+  }, [themeMode]);
+
+  // Generate a key that changes when any preview-affecting state changes
+  const previewKey = JSON.stringify({ sections, headerVariant, fontCombo, colorScheme, industryId, themeMode });
 
   // Group industries by family
   const groupedIndustries = Object.values(industryConfigs).reduce((acc, industry) => {
@@ -167,7 +202,10 @@ const BuilderApp = () => {
     const blueprintString = encodeURIComponent(JSON.stringify(sections));
     const fontParam = fontCombo !== 'default' ? `&fonts=${fontCombo}` : '';
     const colorParam = colorScheme !== 'default' ? `&colors=${colorScheme}` : '';
-    return `/builder/preview?industry=${industryId}&header=${headerVariant}${fontParam}${colorParam}&blueprint=${blueprintString}`;
+    const modeParam = `&mode=${themeMode}`;
+    // Add timestamp to prevent caching
+    const timestamp = Date.now();
+    return `/builder/preview?industry=${industryId}&header=${headerVariant}${fontParam}${colorParam}${modeParam}&blueprint=${blueprintString}&_t=${timestamp}`;
   };
 
   // Helper to scroll through iframe content to trigger lazy loading
@@ -307,6 +345,32 @@ const BuilderApp = () => {
           </div>
           
           <div className="mb-3">
+            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Theme Mode</label>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setThemeMode('light')}
+                className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  themeMode === 'light' 
+                    ? 'bg-white border-2 border-blue-500 text-blue-600 shadow-sm' 
+                    : 'bg-gray-100 border border-gray-300 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                ☀️ Light
+              </button>
+              <button
+                onClick={() => setThemeMode('dark')}
+                className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  themeMode === 'dark' 
+                    ? 'bg-gray-800 border-2 border-blue-500 text-white shadow-sm' 
+                    : 'bg-gray-100 border border-gray-300 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                🌙 Dark
+              </button>
+            </div>
+          </div>
+          
+          <div className="mb-3">
             <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Header Style</label>
             <select 
               value={headerVariant}
@@ -337,13 +401,16 @@ const BuilderApp = () => {
           </div>
           
           <div className="mb-4">
-            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Color Scheme</label>
+            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">
+              Color Scheme 
+              <span className="text-gray-400 font-normal ml-1">({themeMode === 'light' ? '☀️' : '🌙'})</span>
+            </label>
             <select 
               value={colorScheme}
               onChange={(e) => setColorScheme(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
-              {COLOR_SCHEMES.map((c) => (
+              {filteredColorSchemes.map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
               ))}
             </select>
@@ -351,7 +418,10 @@ const BuilderApp = () => {
           
           <div className="flex gap-2">
             <button 
-              onClick={() => setIframeKey(prev => prev + 1)}
+              onClick={() => {
+                // Force a refresh by updating sections with a new reference
+                setSections([...sections]);
+              }}
               className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md text-sm font-medium transition-colors"
             >
               <RefreshCw size={14} /> Refresh
@@ -438,7 +508,7 @@ const BuilderApp = () => {
           <div className={`w-full h-full bg-white ${isExporting ? '' : 'rounded-lg shadow-2xl'} overflow-hidden ${isExporting ? '' : 'border border-gray-300'}`}>
             <iframe 
               ref={iframeRef}
-              key={iframeKey}
+              key={previewKey}
               src={getPreviewUrl()}
               className="w-full h-full border-0"
               title="Preview"

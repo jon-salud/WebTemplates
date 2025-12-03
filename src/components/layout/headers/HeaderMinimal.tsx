@@ -41,7 +41,7 @@ const HeaderMinimal: React.FC<HeaderProps> = ({
     >
       <Container>
         <nav className="flex items-center justify-between">
-          <a href="/" className="text-xl font-bold tracking-tight" style={{ color: industry.colors.primary }}>
+          <a href="/" className="text-xl font-bold tracking-tight" style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}>
             {industry.name}
           </a>
 

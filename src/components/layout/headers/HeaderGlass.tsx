@@ -26,7 +26,7 @@ const HeaderGlass: React.FC<HeaderProps> = ({ industry }) => {
     >
       <Container>
         <div className="flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold text-white tracking-tight">
+          <a href="/" className="text-2xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             {industry.name}
           </a>
 
@@ -45,7 +45,10 @@ const HeaderGlass: React.FC<HeaderProps> = ({ industry }) => {
           <div className="hidden md:block">
             <a
               href="#reserve"
-              className="px-6 py-2 border border-white/30 text-white text-sm font-medium rounded hover:bg-white hover:text-black transition-all duration-300"
+              className="px-6 py-2 border border-white/30 text-white text-sm font-medium rounded hover:text-black transition-all duration-300"
+              style={{ '--hover-bg': industry.colors.accent } as React.CSSProperties}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
             >
               Reserve
             </a>

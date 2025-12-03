@@ -35,7 +35,7 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200" onMouseLeave={() => setActiveMenu(null)}>
       <Container>
         <div className="h-20 flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold text-neutral-900">
+          <a href="/" className="text-2xl font-bold text-neutral-900" style={{ fontFamily: 'var(--font-heading)' }}>
             {industry.name}
           </a>
 
@@ -48,9 +48,8 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
               >
                 <a
                   href={link.href || '#'}
-                  className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                    activeMenu === link.label ? 'text-blue-600' : 'text-neutral-600 hover:text-neutral-900'
-                  }`}
+                  className="flex items-center gap-1 text-sm font-medium transition-colors text-neutral-600 hover:text-neutral-900"
+                  style={activeMenu === link.label ? { color: industry.colors.primary } : undefined}
                 >
                   {link.label}
                   {link.columns && <ChevronDown size={14} />}
@@ -61,7 +60,11 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
 
           <div className="hidden lg:flex items-center gap-4">
             <a href="#login" className="text-sm font-medium text-neutral-600 hover:text-neutral-900">Log in</a>
-            <a href="#demo" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+            <a 
+              href="#demo" 
+              className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:opacity-90"
+              style={{ backgroundColor: industry.colors.primary }}
+            >
               Request Demo
             </a>
           </div>
@@ -88,7 +91,7 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
                     <ul className="space-y-3">
                       {col.items.map(item => (
                         <li key={item}>
-                          <a href="#" className="text-sm text-neutral-700 hover:text-blue-600 font-medium block">
+                          <a href="#" className="text-sm text-neutral-700 font-medium block hover:opacity-80">
                             {item}
                           </a>
                         </li>
@@ -99,7 +102,7 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
                 <div className="col-span-2 bg-neutral-50 rounded-xl p-6">
                   <h3 className="text-lg font-bold mb-2">Featured Resource</h3>
                   <p className="text-sm text-neutral-600 mb-4">Learn how to scale your operations with our latest guide.</p>
-                  <a href="#" className="text-sm font-bold text-blue-600 hover:underline">Read the guide &rarr;</a>
+                  <a href="#" className="text-sm font-bold hover:underline" style={{ color: industry.colors.primary }}>Read the guide &rarr;</a>
                 </div>
               </div>
             </Container>

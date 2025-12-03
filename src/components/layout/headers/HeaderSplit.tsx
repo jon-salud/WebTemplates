@@ -18,7 +18,7 @@ const HeaderSplit: React.FC<HeaderProps> = ({ industry }) => {
         <div className="h-20 flex items-center justify-between">
           {/* Logo Area */}
           <div className="w-48">
-            <a href="/" className="text-xl font-bold" style={{ color: industry.colors.primary }}>
+            <a href="/" className="text-xl font-bold" style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}>
               {industry.name}
             </a>
           </div>

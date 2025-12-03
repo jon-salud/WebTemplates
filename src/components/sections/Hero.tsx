@@ -31,6 +31,10 @@ const Hero: React.FC<HeroProps> = ({
   videoUrl = 'https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-city-traffic-at-night-11-large.mp4',
   variant = 'split',
 }) => {
+  // Default fallback hero image (professional business image)
+  const defaultHeroImage = 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80';
+  const heroImage = backgroundImage || defaultHeroImage;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -298,20 +302,9 @@ const Hero: React.FC<HeroProps> = ({
         <div
           className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
           style={{
-            background: backgroundImage
-              ? `url(${backgroundImage}) center/cover`
-              : `linear-gradient(135deg, ${industry.colors.primaryLight} 0%, ${industry.colors.primary} 100%)`,
+            background: `url(${heroImage}) center/cover`,
           }}
-        >
-          {!backgroundImage && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center text-white/90">
-                <div className="text-7xl mb-4">🏢</div>
-                <p className="text-lg font-medium">Hero Image</p>
-              </div>
-            </div>
-          )}
-        </div>
+        />
 
         {/* Floating stat cards */}
         <motion.div
@@ -466,7 +459,7 @@ const Hero: React.FC<HeroProps> = ({
           loop
           playsInline
           className="w-full h-full object-cover"
-          poster={backgroundImage}
+          poster={heroImage}
         >
           <source src={videoUrl} type="video/mp4" />
         </video>
@@ -560,17 +553,9 @@ const Hero: React.FC<HeroProps> = ({
         <div
           className="absolute inset-0 rounded-l-[4rem]"
           style={{
-            background: backgroundImage
-              ? `url(${backgroundImage}) center/cover`
-              : `linear-gradient(135deg, ${industry.colors.primaryLight} 0%, ${industry.colors.primary} 100%)`,
+            background: `url(${heroImage}) center/cover`,
           }}
-        >
-          {!backgroundImage && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-white/30 text-9xl">✦</div>
-            </div>
-          )}
-        </div>
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
       </motion.div>
 
@@ -823,17 +808,9 @@ const Hero: React.FC<HeroProps> = ({
             variants={itemVariants}
             className="col-span-2 lg:col-span-2 row-span-2 rounded-3xl overflow-hidden"
             style={{
-              background: backgroundImage
-                ? `url(${backgroundImage}) center/cover`
-                : `linear-gradient(135deg, ${industry.colors.primaryLight} 0%, ${industry.colors.primary} 100%)`,
+              background: `url(${heroImage}) center/cover`,
             }}
-          >
-            {!backgroundImage && (
-              <div className="h-full flex items-center justify-center text-white/50 text-6xl">
-                ✦
-              </div>
-            )}
-          </motion.div>
+          />
 
           {/* Stat card 2 */}
           <motion.div
@@ -1058,9 +1035,7 @@ const Hero: React.FC<HeroProps> = ({
             <div
               className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[80vh] rounded-l-3xl overflow-hidden"
               style={{
-                background: backgroundImage
-                  ? `url(${backgroundImage}) center/cover`
-                  : `linear-gradient(135deg, ${industry.colors.primaryLight} 0%, ${industry.colors.primary} 100%)`,
+                background: `url(${heroImage}) center/cover`,
               }}
             >
               {/* Overlay gradient */}

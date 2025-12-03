@@ -20,7 +20,11 @@ const HeaderSidebar: React.FC<HeaderProps> = ({ industry }) => {
       </button>
 
       <aside className="fixed top-0 left-0 bottom-0 w-20 bg-white border-r border-neutral-200 hidden lg:flex flex-col items-center py-8 z-40">
-        <a href="/" className="w-10 h-10 bg-neutral-900 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-12">
+        <a 
+          href="/" 
+          className="w-10 h-10 text-white rounded-lg flex items-center justify-center font-bold text-xl mb-12"
+          style={{ backgroundColor: industry.colors.primary }}
+        >
           {industry.name.charAt(0)}
         </a>
 

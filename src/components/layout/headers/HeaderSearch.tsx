@@ -19,7 +19,7 @@ const HeaderSearch: React.FC<HeaderProps> = ({ industry }) => {
             <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
               <Menu />
             </button>
-            <a href="/" className="text-xl font-bold tracking-tight text-neutral-900">
+            <a href="/" className="text-xl font-bold tracking-tight text-neutral-900" style={{ fontFamily: 'var(--font-heading)' }}>
               {industry.name}
             </a>
           </div>
@@ -29,7 +29,8 @@ const HeaderSearch: React.FC<HeaderProps> = ({ industry }) => {
               <input
                 type="text"
                 placeholder="Search for products, brands and more..."
-                className="w-full pl-10 pr-4 py-2 bg-neutral-100 border-none rounded-lg text-sm focus:ring-2 focus:ring-neutral-900 focus:bg-white transition-all"
+                className="w-full pl-10 pr-4 py-2 bg-neutral-100 border-none rounded-lg text-sm focus:ring-2 focus:bg-white transition-all"
+                style={{ '--tw-ring-color': industry.colors.primary } as React.CSSProperties}
               />
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" size={18} />
             </div>
@@ -48,7 +49,10 @@ const HeaderSearch: React.FC<HeaderProps> = ({ industry }) => {
               </button>
               <a href="#cart" className="relative">
                 <ShoppingBag />
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full">2</span>
+                <span 
+                  className="absolute -top-1 -right-1 w-4 h-4 text-white text-[10px] font-bold flex items-center justify-center rounded-full"
+                  style={{ backgroundColor: industry.colors.primary }}
+                >2</span>
               </a>
             </div>
           </div>

@@ -35,7 +35,7 @@ const HeaderDouble: React.FC<HeaderProps> = ({ industry }) => {
       <div className="bg-white shadow-sm">
         <Container>
           <div className="h-16 flex items-center justify-between">
-            <a href="/" className="text-xl font-bold uppercase tracking-wider" style={{ color: industry.colors.primary }}>
+            <a href="/" className="text-xl font-bold uppercase tracking-wider" style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}>
               {industry.name}
             </a>
 

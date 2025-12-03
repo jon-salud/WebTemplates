@@ -12,10 +12,13 @@ const HeaderGradient: React.FC<HeaderProps> = ({ industry }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg">
+    <header 
+      className="fixed top-0 left-0 right-0 z-50 text-white shadow-lg"
+      style={{ background: `linear-gradient(to right, ${industry.colors.primary}, ${industry.colors.primaryLight}, ${industry.colors.accent})` }}
+    >
       <Container>
         <div className="h-16 flex items-center justify-between">
-          <a href="/" className="text-xl font-bold tracking-wide">
+          <a href="/" className="text-xl font-bold tracking-wide" style={{ fontFamily: 'var(--font-heading)' }}>
             {industry.name}
           </a>
 
@@ -28,7 +31,11 @@ const HeaderGradient: React.FC<HeaderProps> = ({ industry }) => {
 
           <div className="hidden md:flex items-center gap-4">
             <a href="#login" className="text-sm font-medium text-white/90 hover:text-white">Login</a>
-            <a href="#signup" className="bg-white text-purple-600 px-4 py-2 rounded-full text-sm font-bold hover:bg-white/90 transition-colors shadow-md">
+            <a 
+              href="#signup" 
+              className="bg-white px-4 py-2 rounded-full text-sm font-bold hover:bg-white/90 transition-colors shadow-md"
+              style={{ color: industry.colors.primary }}
+            >
               Get Started
             </a>
           </div>
@@ -45,7 +52,8 @@ const HeaderGradient: React.FC<HeaderProps> = ({ industry }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-indigo-900 border-t border-white/10"
+            className="md:hidden border-t border-white/10"
+            style={{ backgroundColor: industry.colors.primaryDark }}
           >
             <Container>
               <div className="py-4 space-y-4">
@@ -55,7 +63,7 @@ const HeaderGradient: React.FC<HeaderProps> = ({ industry }) => {
                 <a href="#contact" className="block text-white font-medium">Contact</a>
                 <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
                   <a href="#login" className="block text-center text-white font-medium">Login</a>
-                  <a href="#signup" className="block text-center bg-white text-purple-600 py-2 rounded-full font-bold">Get Started</a>
+                  <a href="#signup" className="block text-center bg-white py-2 rounded-full font-bold" style={{ color: industry.colors.primary }}>Get Started</a>
                 </div>
               </div>
             </Container>

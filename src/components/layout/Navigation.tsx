@@ -75,7 +75,7 @@ const Navigation: React.FC<NavigationProps> = ({
             {logo || (
               <span
                 className="text-2xl font-bold"
-                style={{ color: industry.colors.primary }}
+                style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}
               >
                 {industry.name}
               </span>
@@ -93,9 +93,10 @@ const Navigation: React.FC<NavigationProps> = ({
               >
                 <a
                   href={item.href}
-                  className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                    isScrolled ? 'text-neutral-700 hover:text-brand-primary' : 'text-neutral-700 hover:text-brand-primary'
-                  }`}
+                  className="flex items-center gap-1 text-sm font-medium transition-colors text-neutral-700"
+                  style={{ '--hover-color': industry.colors.primary } as React.CSSProperties}
+                  onMouseEnter={(e) => e.currentTarget.style.color = industry.colors.primary}
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
                   aria-haspopup={item.children ? 'true' : undefined}
                   aria-expanded={item.children && activeDropdown === item.label ? 'true' : 'false'}
                 >

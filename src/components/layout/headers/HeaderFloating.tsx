@@ -13,7 +13,7 @@ const HeaderFloating: React.FC<HeaderProps> = ({ industry }) => {
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
       <div className="bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-white/20 px-6 py-3 w-full max-w-3xl flex items-center justify-between">
-        <a href="/" className="font-bold text-lg" style={{ color: industry.colors.primary }}>
+        <a href="/" className="font-bold text-lg" style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}>
           {industry.name}
         </a>
 

@@ -21,10 +21,13 @@ const HeaderBold: React.FC<HeaderProps> = ({ industry }) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 py-6 bg-black/20 backdrop-blur-md border-b border-white/10 text-white transition-all duration-300">
+      <header 
+        className="fixed top-0 left-0 right-0 z-50 py-6 backdrop-blur-md border-b border-white/10 text-white transition-all duration-300"
+        style={{ backgroundColor: `${industry.colors.primaryDark}CC` }}
+      >
         <Container>
           <div className="flex items-center justify-between">
-            <a href="/" className="text-3xl font-black uppercase tracking-tighter">
+            <a href="/" className="text-3xl font-black uppercase tracking-tighter" style={{ fontFamily: 'var(--font-heading)' }}>
               {industry.name}
             </a>
 
@@ -45,10 +48,11 @@ const HeaderBold: React.FC<HeaderProps> = ({ industry }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.5, ease: 'circOut' }}
-            className="fixed inset-0 z-[60] bg-black text-white flex flex-col"
+            className="fixed inset-0 z-[60] text-white flex flex-col"
+            style={{ backgroundColor: industry.colors.primaryDark }}
           >
             <div className="p-6 flex justify-between items-center">
-              <span className="text-3xl font-black uppercase tracking-tighter">{industry.name}</span>
+              <span className="text-3xl font-black uppercase tracking-tighter" style={{ fontFamily: 'var(--font-heading)' }}>{industry.name}</span>
               <button
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:opacity-70 transition-opacity"
