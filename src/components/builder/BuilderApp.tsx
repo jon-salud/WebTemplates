@@ -111,6 +111,8 @@ const BuilderApp = () => {
   const [colorScheme, setColorScheme] = useState('default');
   const [sections, setSections] = useState<any[]>([]);
   const [iframeKey, setIframeKey] = useState(0);
+  const [isExporting, setIsExporting] = useState(false);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
   // Group industries by family
   const groupedIndustries = Object.values(industryConfigs).reduce((acc, industry) => {
@@ -170,12 +172,26 @@ const BuilderApp = () => {
 
   const handleExport = async () => {
     try {
-      const url = getPreviewUrl();
-      const response = await fetch(url);
-      const html = await response.text();
+      setIsExporting(true);
+      
+      // Wait for the UI to update (sidebar hidden)
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      // Get the iframe's document content
+      const iframe = iframeRef.current;
+      if (!iframe || !iframe.contentDocument) {
+        throw new Error('Cannot access iframe content');
+      }
+      
+      // Clone the iframe's HTML content
+      const iframeDoc = iframe.contentDocument;
+      const html = iframeDoc.documentElement.outerHTML;
+      
+      // Create a complete HTML document
+      const fullHtml = `<!DOCTYPE html>\n${html}`;
       
       // Create a blob and download
-      const blob = new Blob([html], { type: 'text/html' });
+      const blob = new Blob([fullHtml], { type: 'text/html' });
       const downloadUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = downloadUrl;
@@ -186,13 +202,32 @@ const BuilderApp = () => {
       URL.revokeObjectURL(downloadUrl);
     } catch (error) {
       console.error('Export failed:', error);
-      alert('Failed to export HTML. Please try again.');
+      // Fallback: fetch the preview URL directly
+      try {
+        const url = getPreviewUrl();
+        const response = await fetch(url);
+        const html = await response.text();
+        const blob = new Blob([html], { type: 'text/html' });
+        const downloadUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = `${industryId}-landing-page.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+      } catch (fallbackError) {
+        alert('Failed to export HTML. Please try again.');
+      }
+    } finally {
+      setIsExporting(false);
     }
   };
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
-      {/* Sidebar */}
+      {/* Sidebar - hidden during export */}
+      {!isExporting && (
       <div className="w-80 bg-white border-r border-gray-200 flex flex-col h-full shadow-lg z-10">
         <div className="p-4 border-b border-gray-200 bg-gray-50">
           <h1 className="text-lg font-bold text-gray-800 mb-4">Landing Page Builder</h1>
@@ -266,9 +301,10 @@ const BuilderApp = () => {
             </button>
             <button 
               onClick={handleExport}
-              className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors"
+              disabled={isExporting}
+              className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-md text-sm font-medium transition-colors"
             >
-              <Download size={14} /> Export
+              <Download size={14} /> {isExporting ? 'Exporting...' : 'Export'}
             </button>
           </div>
         </div>
@@ -327,9 +363,11 @@ const BuilderApp = () => {
           </button>
         </div>
       </div>
+      )}
 
-      {/* Preview Area */}
-      <div className="flex-1 bg-gray-200 flex flex-col h-full relative">
+      {/* Preview Area - fullscreen during export */}
+      <div className={`flex-1 ${isExporting ? '' : 'bg-gray-200'} flex flex-col h-full relative`}>
+        {!isExporting && (
         <div className="bg-white border-b border-gray-200 p-2 flex items-center justify-between px-4">
           <span className="text-sm text-gray-500">Live Preview</span>
           <div className="flex items-center gap-2">
@@ -338,9 +376,11 @@ const BuilderApp = () => {
             <span className="w-3 h-3 rounded-full bg-green-400"></span>
           </div>
         </div>
-        <div className="flex-1 p-4 md:p-8 overflow-hidden">
-          <div className="w-full h-full bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-300">
+        )}
+        <div className={`flex-1 ${isExporting ? '' : 'p-4 md:p-8'} overflow-hidden`}>
+          <div className={`w-full h-full bg-white ${isExporting ? '' : 'rounded-lg shadow-2xl'} overflow-hidden ${isExporting ? '' : 'border border-gray-300'}`}>
             <iframe 
+              ref={iframeRef}
               key={iframeKey}
               src={getPreviewUrl()}
               className="w-full h-full border-0"
