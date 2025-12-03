@@ -51,9 +51,44 @@ const HEADER_VARIANTS = [
   { value: 'bordered', label: 'Bordered' },
 ];
 
+const FONT_COMBINATIONS = [
+  // Professional Sans-Serif
+  { value: 'default', label: 'Default (Industry)', category: 'Default', heading: '', body: '', url: '' },
+  { value: 'inter-lato', label: 'Inter + Lato', category: 'Modern Professional', heading: 'Inter', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:wght@300;400;700&display=swap' },
+  { value: 'montserrat-opensans', label: 'Montserrat + Open Sans', category: 'Modern Professional', heading: 'Montserrat', body: 'Open Sans', url: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap' },
+  { value: 'raleway-sourcesans', label: 'Raleway + Source Sans', category: 'Modern Professional', heading: 'Raleway', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap' },
+  { value: 'roboto-roboto', label: 'Roboto (Unified)', category: 'Modern Professional', heading: 'Roboto', body: 'Roboto', url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap' },
+  // Elegant Serif
+  { value: 'playfair-lora', label: 'Playfair + Lora', category: 'Elegant Serif', heading: 'Playfair Display', body: 'Lora', url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap' },
+  { value: 'garamond-merriweather', label: 'Garamond + Merriweather', category: 'Elegant Serif', heading: 'EB Garamond', body: 'Merriweather', url: 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Merriweather:wght@300;400;700&display=swap' },
+  { value: 'bodoni-librebaskerville', label: 'Bodoni + Libre Baskerville', category: 'Elegant Serif', heading: 'Bodoni Moda', body: 'Libre Baskerville', url: 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Libre+Baskerville:wght@400;700&display=swap' },
+  { value: 'ptserif-crimson', label: 'PT Serif + Crimson', category: 'Elegant Serif', heading: 'PT Serif', body: 'Crimson Text', url: 'https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Crimson+Text:wght@400;600&display=swap' },
+  // Mixed (Serif Heading + Sans Body)
+  { value: 'playfair-sourcesans', label: 'Playfair + Source Sans', category: 'Mixed Pairing', heading: 'Playfair Display', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap' },
+  { value: 'abril-lato', label: 'Abril Fatface + Lato', category: 'Mixed Pairing', heading: 'Abril Fatface', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:wght@300;400;700&display=swap' },
+  { value: 'zilla-inter', label: 'Zilla Slab + Inter', category: 'Mixed Pairing', heading: 'Zilla Slab', body: 'Inter', url: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap' },
+  // Fun & Creative
+  { value: 'fredoka-varela', label: 'Fredoka + Varela Round', category: 'Fun & Friendly', heading: 'Fredoka', body: 'Varela Round', url: 'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap' },
+  { value: 'pacifico-opensans', label: 'Pacifico + Open Sans', category: 'Fun & Friendly', heading: 'Pacifico', body: 'Open Sans', url: 'https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&display=swap' },
+  { value: 'lobster-lato', label: 'Lobster + Lato', category: 'Fun & Friendly', heading: 'Lobster', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Lobster&family=Lato:wght@300;400;700&display=swap' },
+  { value: 'bangers-sourcesans', label: 'Bangers + Source Sans', category: 'Bold & Playful', heading: 'Bangers', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+3:wght@400;600&display=swap' },
+  { value: 'fugaz-roboto', label: 'Fugaz One + Roboto', category: 'Bold & Playful', heading: 'Fugaz One', body: 'Roboto', url: 'https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:wght@400;500;700&display=swap' },
+  { value: 'righteous-inter', label: 'Righteous + Inter', category: 'Bold & Playful', heading: 'Righteous', body: 'Inter', url: 'https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;600;700&display=swap' },
+];
+
+// Group fonts by category
+const groupedFonts = FONT_COMBINATIONS.reduce((acc, font) => {
+  if (!acc[font.category]) {
+    acc[font.category] = [];
+  }
+  acc[font.category].push(font);
+  return acc;
+}, {} as Record<string, typeof FONT_COMBINATIONS>);
+
 const BuilderApp = () => {
   const [industryId, setIndustryId] = useState('realestate');
   const [headerVariant, setHeaderVariant] = useState('default');
+  const [fontCombo, setFontCombo] = useState('default');
   const [sections, setSections] = useState<any[]>([]);
   const [iframeKey, setIframeKey] = useState(0);
 
@@ -108,7 +143,8 @@ const BuilderApp = () => {
 
   const getPreviewUrl = () => {
     const blueprintString = encodeURIComponent(JSON.stringify(sections));
-    return `/builder/preview?industry=${industryId}&header=${headerVariant}&blueprint=${blueprintString}`;
+    const fontParam = fontCombo !== 'default' ? `&fonts=${fontCombo}` : '';
+    return `/builder/preview?industry=${industryId}&header=${headerVariant}${fontParam}&blueprint=${blueprintString}`;
   };
 
   const handleExport = async () => {
@@ -157,7 +193,7 @@ const BuilderApp = () => {
             </select>
           </div>
           
-          <div className="mb-4">
+          <div className="mb-3">
             <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Header Style</label>
             <select 
               value={headerVariant}
@@ -166,6 +202,23 @@ const BuilderApp = () => {
             >
               {HEADER_VARIANTS.map((h) => (
                 <option key={h.value} value={h.value}>{h.label}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div className="mb-4">
+            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Font Combination</label>
+            <select 
+              value={fontCombo}
+              onChange={(e) => setFontCombo(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              {Object.entries(groupedFonts).map(([category, fonts]) => (
+                <optgroup key={category} label={category}>
+                  {fonts.map((f) => (
+                    <option key={f.value} value={f.value}>{f.label}</option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </div>

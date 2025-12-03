@@ -8,7 +8,29 @@ import { getIndustryConfig, type IndustryType } from "../../config/industries";
 
 const industryId = Astro.url.searchParams.get("industry") as IndustryType;
 const headerVariantParam = Astro.url.searchParams.get("header");
+const fontsParam = Astro.url.searchParams.get("fonts");
 const blueprintParam = Astro.url.searchParams.get("blueprint");
+
+// Font combinations lookup
+const FONT_COMBOS: Record<string, { heading: string; body: string; url: string }> = {
+  'inter-lato': { heading: 'Inter', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:wght@300;400;700&display=swap' },
+  'montserrat-opensans': { heading: 'Montserrat', body: 'Open Sans', url: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap' },
+  'raleway-sourcesans': { heading: 'Raleway', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap' },
+  'roboto-roboto': { heading: 'Roboto', body: 'Roboto', url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap' },
+  'playfair-lora': { heading: 'Playfair Display', body: 'Lora', url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap' },
+  'garamond-merriweather': { heading: 'EB Garamond', body: 'Merriweather', url: 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Merriweather:wght@300;400;700&display=swap' },
+  'bodoni-librebaskerville': { heading: 'Bodoni Moda', body: 'Libre Baskerville', url: 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Libre+Baskerville:wght@400;700&display=swap' },
+  'ptserif-crimson': { heading: 'PT Serif', body: 'Crimson Text', url: 'https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Crimson+Text:wght@400;600&display=swap' },
+  'playfair-sourcesans': { heading: 'Playfair Display', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap' },
+  'abril-lato': { heading: 'Abril Fatface', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:wght@300;400;700&display=swap' },
+  'zilla-inter': { heading: 'Zilla Slab', body: 'Inter', url: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=Inter:wght@400;600;700&display=swap' },
+  'fredoka-varela': { heading: 'Fredoka', body: 'Varela Round', url: 'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap' },
+  'pacifico-opensans': { heading: 'Pacifico', body: 'Open Sans', url: 'https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&display=swap' },
+  'lobster-lato': { heading: 'Lobster', body: 'Lato', url: 'https://fonts.googleapis.com/css2?family=Lobster&family=Lato:wght@300;400;700&display=swap' },
+  'bangers-sourcesans': { heading: 'Bangers', body: 'Source Sans 3', url: 'https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+3:wght@400;600&display=swap' },
+  'fugaz-roboto': { heading: 'Fugaz One', body: 'Roboto', url: 'https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:wght@400;500;700&display=swap' },
+  'righteous-inter': { heading: 'Righteous', body: 'Inter', url: 'https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;600;700&display=swap' },
+};
 
 if (!industryId) {
     return new Response("Missing industry parameter", { status: 400 });
@@ -20,10 +42,19 @@ if (!baseConfig) {
     return new Response("Invalid industry parameter", { status: 400 });
 }
 
-// Override header variant if provided
+// Override header variant and fonts if provided
+const customFonts = fontsParam && FONT_COMBOS[fontsParam] ? {
+    heading: FONT_COMBOS[fontsParam].heading,
+    body: FONT_COMBOS[fontsParam].body,
+    googleFontsUrl: FONT_COMBOS[fontsParam].url,
+} : null;
+
 const industryConfig = {
     ...baseConfig,
-    headerVariant: (headerVariantParam || baseConfig.headerVariant || 'default') as typeof baseConfig.headerVariant,
+    headerVariant: (headerVariantParam ||
+        baseConfig.headerVariant ||
+        "default") as typeof baseConfig.headerVariant,
+    ...(customFonts && { fonts: customFonts }),
 };
 
 let customBlueprint = null;
