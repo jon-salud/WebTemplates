@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Search, ShoppingBag } from 'lucide-react';
 import Container from '../../ui/Container';
 import type { IndustryConfig } from '@/config/industries';
+import { getThemeTokens, hexToRgba } from '@/utils/theme';
 
 interface HeaderProps {
   industry: IndustryConfig;
@@ -10,16 +11,23 @@ interface HeaderProps {
 
 const HeaderSearch: React.FC<HeaderProps> = ({ industry }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const theme = getThemeTokens(industry);
+  const inputBg = hexToRgba(theme.surface, theme.isDarkMode ? 0.4 : 1);
+  const inputPlaceholder = theme.isDarkMode ? 'rgba(248, 250, 252, 0.5)' : 'rgba(15, 23, 42, 0.5)';
+  const dividerColor = theme.border;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md"
+      style={{ backgroundColor: hexToRgba(theme.surface, theme.isDarkMode ? 0.9 : 0.95), borderColor: theme.border, color: theme.text }}
+    >
       <Container>
         <div className="h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4 lg:gap-8">
-            <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
+            <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)} style={{ color: theme.text }}>
               <Menu />
             </button>
-            <a href="/" className="text-xl font-bold tracking-tight text-neutral-900" style={{ fontFamily: 'var(--font-heading)' }}>
+            <a href="/" className="text-xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-heading)', color: theme.text }}>
               {industry.name}
             </a>
           </div>
@@ -29,22 +37,37 @@ const HeaderSearch: React.FC<HeaderProps> = ({ industry }) => {
               <input
                 type="text"
                 placeholder="Search for products, brands and more..."
-                className="w-full pl-10 pr-4 py-2 bg-neutral-100 border-none rounded-lg text-sm focus:ring-2 focus:bg-white transition-all"
-                style={{ '--tw-ring-color': industry.colors.primary } as React.CSSProperties}
+                className="w-full pl-10 pr-4 py-2 border-none rounded-lg text-sm focus:ring-2 transition-all"
+                style={{
+                  '--tw-ring-color': industry.colors.primary,
+                  backgroundColor: inputBg,
+                  color: theme.text,
+                } as React.CSSProperties}
               />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" size={18} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2" size={18} style={{ color: inputPlaceholder }} />
             </div>
           </div>
 
           <div className="flex items-center gap-4 lg:gap-6">
             <nav className="hidden lg:flex items-center gap-6">
-              <a href="#categories" className="text-sm font-medium text-neutral-600 hover:text-neutral-900">Categories</a>
-              <a href="#deals" className="text-sm font-medium text-neutral-600 hover:text-neutral-900">Deals</a>
-              <a href="#whats-new" className="text-sm font-medium text-neutral-600 hover:text-neutral-900">What's New</a>
+              {[
+                { href: '#categories', label: 'Categories' },
+                { href: '#deals', label: 'Deals' },
+                { href: '#whats-new', label: "What's New" },
+              ].map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-medium transition-colors"
+                  style={{ color: hexToRgba(theme.text, 0.75) }}
+                >
+                  {item.label}
+                </a>
+              ))}
             </nav>
-            <div className="h-6 w-px bg-neutral-200 hidden lg:block" />
+            <div className="h-6 w-px hidden lg:block" style={{ backgroundColor: dividerColor }} />
             <div className="flex items-center gap-4">
-              <button className="md:hidden">
+              <button className="md:hidden" style={{ color: theme.text }}>
                 <Search />
               </button>
               <a href="#cart" className="relative">
@@ -66,25 +89,26 @@ const HeaderSearch: React.FC<HeaderProps> = ({ industry }) => {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'tween' }}
-            className="fixed inset-y-0 left-0 w-80 bg-white z-50 shadow-2xl lg:hidden flex flex-col"
+                  className="fixed inset-y-0 left-0 w-80 z-50 shadow-2xl lg:hidden flex flex-col"
+                  style={{ backgroundColor: theme.surface, color: theme.text }}
           >
-            <div className="p-4 border-b border-neutral-100 flex justify-between items-center">
-              <span className="font-bold text-lg">Menu</span>
-              <button onClick={() => setIsOpen(false)}><X /></button>
+                  <div className="p-4 border-b flex justify-between items-center" style={{ borderColor: theme.border }}>
+                    <span className="font-bold text-lg">Menu</span>
+                    <button onClick={() => setIsOpen(false)} style={{ color: theme.text }}><X /></button>
             </div>
             <div className="p-4 flex-1 overflow-y-auto">
               <div className="space-y-6">
                 <div className="space-y-3">
-                  <h3 className="text-xs font-bold text-neutral-400 uppercase">Shop</h3>
-                  <a href="#" className="block text-neutral-900 font-medium">New Arrivals</a>
-                  <a href="#" className="block text-neutral-900 font-medium">Best Sellers</a>
-                  <a href="#" className="block text-neutral-900 font-medium">Sale</a>
+                        <h3 className="text-xs font-bold uppercase" style={{ color: hexToRgba(theme.text, 0.6) }}>Shop</h3>
+                        <a href="#" className="block font-medium" style={{ color: theme.text }}>New Arrivals</a>
+                        <a href="#" className="block font-medium" style={{ color: theme.text }}>Best Sellers</a>
+                        <a href="#" className="block font-medium" style={{ color: theme.text }}>Sale</a>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-xs font-bold text-neutral-400 uppercase">Account</h3>
-                  <a href="#" className="block text-neutral-900 font-medium">Sign In</a>
-                  <a href="#" className="block text-neutral-900 font-medium">Register</a>
-                  <a href="#" className="block text-neutral-900 font-medium">Order Status</a>
+                        <h3 className="text-xs font-bold uppercase" style={{ color: hexToRgba(theme.text, 0.6) }}>Account</h3>
+                        <a href="#" className="block font-medium" style={{ color: theme.text }}>Sign In</a>
+                        <a href="#" className="block font-medium" style={{ color: theme.text }}>Register</a>
+                        <a href="#" className="block font-medium" style={{ color: theme.text }}>Order Status</a>
                 </div>
               </div>
             </div>

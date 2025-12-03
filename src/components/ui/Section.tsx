@@ -5,7 +5,7 @@ interface SectionProps {
   children: React.ReactNode;
   id?: string;
   className?: string;
-  background?: 'white' | 'light' | 'dark' | 'primary' | 'gradient';
+  background?: 'white' | 'light' | 'dark' | 'primary' | 'gradient' | 'surface' | 'themed';
   padding?: 'none' | 'sm' | 'md' | 'lg';
   animate?: boolean;
 }
@@ -18,12 +18,16 @@ const Section: React.FC<SectionProps> = ({
   padding = 'md',
   animate = true,
 }) => {
-  const backgroundStyles = {
-    white: 'bg-white',
-    light: 'bg-neutral-50',
-    dark: 'bg-brand-black text-white',
+  // Theme-aware background styles
+  // Uses CSS variables set by BaseLayout when theme colors are active
+  const backgroundStyles: Record<string, string> = {
+    white: 'bg-[var(--theme-background,#ffffff)] text-[var(--theme-text,inherit)]',
+    light: 'bg-[var(--theme-surface,#f9fafb)] text-[var(--theme-text,inherit)]',
+    dark: 'bg-neutral-900 text-white',
     primary: 'bg-brand-primary text-white',
-    gradient: 'bg-gradient-to-br from-neutral-50 to-white',
+    gradient: 'bg-gradient-to-br from-[var(--theme-background,#f9fafb)] to-[var(--theme-surface,#ffffff)] text-[var(--theme-text,inherit)]',
+    surface: 'bg-[var(--theme-surface,#f9fafb)] text-[var(--theme-text,inherit)]',
+    themed: 'bg-[var(--theme-background,#ffffff)] text-[var(--theme-text,inherit)]',
   };
 
   const paddingStyles = {

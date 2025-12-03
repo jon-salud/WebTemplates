@@ -133,6 +133,16 @@ const BuilderApp = () => {
   const [isExporting, setIsExporting] = useState(false);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
+  const getSectionLabel = (section: any) => {
+    if (section?.props?.renameTo) {
+      return section.props.renameTo;
+    }
+    if (section?.component === 'Custom' && section?.props?.component) {
+      return section.props.component;
+    }
+    return section?.component || 'Section';
+  };
+
   // Filter color schemes based on selected mode
   const filteredColorSchemes = COLOR_SCHEMES.filter(
     scheme => scheme.value === 'default' || scheme.mode === themeMode
@@ -445,7 +455,7 @@ const BuilderApp = () => {
           {sections.map((section, idx) => (
             <div key={idx} className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow group">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-sm text-gray-800">{section.component}</span>
+                <span className="font-medium text-sm text-gray-800">{getSectionLabel(section)}</span>
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button onClick={() => moveSection(idx, 'up')} disabled={idx === 0} className="p-1 hover:bg-gray-100 rounded text-gray-500 disabled:opacity-30">
                     <ArrowUp size={14} />

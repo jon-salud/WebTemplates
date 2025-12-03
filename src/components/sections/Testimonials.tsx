@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 import Container from '../ui/Container';
 import Section from '../ui/Section';
 import type { IndustryConfig } from '@/config/industries';
+import { getThemeTokens, hexToRgba } from '@/utils/theme';
 
 interface TestimonialsProps {
   industry: IndustryConfig;
@@ -16,6 +17,18 @@ const Testimonials: React.FC<TestimonialsProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const testimonials = industry.testimonials.items;
+  const tokens = getThemeTokens(industry);
+
+  // Theme-aware colors
+  const isDarkMode = tokens.isDarkMode;
+  const theme = {
+    text: isDarkMode ? 'text-[var(--theme-text)]' : 'text-brand-black',
+    textMuted: isDarkMode ? 'text-[var(--theme-text)]/70' : 'text-neutral-600',
+    textLight: isDarkMode ? 'text-[var(--theme-text)]/50' : 'text-neutral-500',
+    card: isDarkMode ? 'bg-[var(--theme-surface)]' : 'bg-white',
+    cardBorder: isDarkMode ? 'border-white/10' : 'border-neutral-200',
+    surfaceRaw: tokens.surface,
+  };
 
   const nextTestimonial = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -35,14 +48,15 @@ const Testimonials: React.FC<TestimonialsProps> = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-card text-center"
+            className={`${theme.card} rounded-3xl p-8 md:p-12 shadow-card text-center`}
+            style={{ backgroundColor: theme.surfaceRaw }}
           >
             <Quote
               className="w-12 h-12 mx-auto mb-6 opacity-20"
               style={{ color: industry.colors.primary }}
             />
             
-            <blockquote className="text-heading-2 text-brand-black mb-8">
+            <blockquote className={`text-heading-2 ${theme.text} mb-8`}>
               "{testimonials[activeIndex].quote}"
             </blockquote>
 
@@ -53,10 +67,10 @@ const Testimonials: React.FC<TestimonialsProps> = ({
               >
                 {testimonials[activeIndex].author.charAt(0)}
               </div>
-              <p className="text-lg font-semibold text-brand-black">
+              <p className={`text-lg font-semibold ${theme.text}`}>
                 {testimonials[activeIndex].author}
               </p>
-              <p className="text-body text-neutral-500">
+              <p className={`text-body ${theme.textLight}`}>
                 {testimonials[activeIndex].role}
                 {testimonials[activeIndex].company && ` at ${testimonials[activeIndex].company}`}
               </p>
@@ -339,6 +353,15 @@ const Testimonials: React.FC<TestimonialsProps> = ({
           const paddingClass = paddingPatterns[index % paddingPatterns.length];
           const isAccent = index === 0 || index === 4;
           const isSecondary = index === 2;
+          const secondaryBg = hexToRgba(industry.colors.primary, isDarkMode ? 0.35 : 0.12);
+          const baseBackground = isAccent
+            ? industry.colors.primary
+            : isSecondary
+              ? secondaryBg
+              : tokens.surface;
+          const primaryText = isAccent ? '#ffffff' : tokens.text;
+          const secondaryText = isAccent ? 'rgba(255,255,255,0.75)' : hexToRgba(tokens.text, 0.65);
+          const borderColor = isAccent ? 'transparent' : tokens.border;
           
           return (
             <motion.div
@@ -350,14 +373,11 @@ const Testimonials: React.FC<TestimonialsProps> = ({
               className={`${heightClass} flex flex-col`}
             >
               <div
-                className={`rounded-3xl ${paddingClass} flex flex-col justify-between h-full relative overflow-hidden group`}
+                className={`rounded-3xl ${paddingClass} flex flex-col justify-between h-full relative overflow-hidden group border`}
                 style={{
-                  backgroundColor: isAccent 
-                    ? industry.colors.primary 
-                    : isSecondary 
-                      ? `${industry.colors.primary}15`
-                      : 'white',
-                  color: isAccent ? 'white' : undefined,
+                  backgroundColor: baseBackground,
+                  color: primaryText,
+                  borderColor,
                 }}
               >
                 {/* Decorative corner element for accent cards */}
@@ -375,7 +395,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({
                   <blockquote
                     className={`flex-1 leading-relaxed ${
                       index === 0 || index === 4 ? 'text-heading-3' : 'text-body-lg'
-                    } ${isAccent ? '' : 'text-brand-black'}`}
+                    }`}
+                    style={{ color: primaryText }}
                   >
                     "{testimonial.quote}"
                   </blockquote>
@@ -393,18 +414,10 @@ const Testimonials: React.FC<TestimonialsProps> = ({
                     {testimonial.author.charAt(0)}
                   </div>
                   <div>
-                    <p
-                      className={`font-semibold text-sm ${
-                        isAccent ? 'text-white' : 'text-brand-black'
-                      }`}
-                    >
+                    <p className="font-semibold text-sm" style={{ color: primaryText }}>
                       {testimonial.author}
                     </p>
-                    <p
-                      className={`text-xs ${
-                        isAccent ? 'text-white/70' : 'text-neutral-500'
-                      }`}
-                    >
+                    <p className="text-xs" style={{ color: secondaryText }}>
                       {testimonial.role}
                       {testimonial.company && `, ${testimonial.company}`}
                     </p>
@@ -916,10 +929,10 @@ const Testimonials: React.FC<TestimonialsProps> = ({
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-display-2 text-brand-black mb-4">
+          <h2 className={`text-display-2 ${theme.text} mb-4`}>
             {industry.testimonials.title}
           </h2>
-          <p className="text-body-xl text-neutral-600 max-w-2xl mx-auto">
+          <p className={`text-body-xl ${theme.textMuted} max-w-2xl mx-auto`}>
             Don't just take our word for it - hear from our satisfied clients
           </p>
         </motion.div>

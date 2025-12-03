@@ -23,6 +23,12 @@ export interface IndustryConfig {
     body: string;
     googleFontsUrl: string;
   };
+  themeMode?: 'light' | 'dark';
+  themeColors?: {
+    background: string;
+    surface: string;
+    text: string;
+  };
   hero: {
     headline: string;
     subheadline: string;

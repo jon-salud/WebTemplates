@@ -4,6 +4,7 @@ import { Menu, X, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react
 import Container from '../../ui/Container';
 import Button from '../../ui/Button';
 import type { IndustryConfig } from '@/config/industries';
+import { getThemeTokens, hexToRgba } from '@/utils/theme';
 
 interface HeaderProps {
   industry: IndustryConfig;
@@ -11,11 +12,21 @@ interface HeaderProps {
 
 const HeaderDouble: React.FC<HeaderProps> = ({ industry }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const theme = getThemeTokens(industry);
+  const navLinkColor = hexToRgba(theme.text, 0.75);
+  const topBarBg = hexToRgba(theme.surface, theme.isDarkMode ? 0.75 : 0.4);
+  const topBarText = hexToRgba(theme.text, theme.isDarkMode ? 0.95 : 0.8);
+  const mainBarBg = hexToRgba(theme.surface, theme.isDarkMode ? 0.95 : 1);
+  const socialIcons = [
+    { icon: Facebook, label: 'facebook' },
+    { icon: Twitter, label: 'twitter' },
+    { icon: Instagram, label: 'instagram' },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Bar */}
-      <div className="bg-neutral-900 text-white py-2 text-xs">
+      <div className="py-2 text-xs" style={{ backgroundColor: topBarBg, color: topBarText }}>
         <Container>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
@@ -23,16 +34,16 @@ const HeaderDouble: React.FC<HeaderProps> = ({ industry }) => {
               <span className="flex items-center gap-1"><Mail size={12} /> hello@{industry.id}.com</span>
             </div>
             <div className="hidden md:flex items-center gap-3">
-              <Facebook size={12} className="hover:text-gray-300 cursor-pointer" />
-              <Twitter size={12} className="hover:text-gray-300 cursor-pointer" />
-              <Instagram size={12} className="hover:text-gray-300 cursor-pointer" />
+              {socialIcons.map(({ icon: Icon, label }) => (
+                <Icon key={label} size={12} className="cursor-pointer" style={{ color: topBarText }} />
+              ))}
             </div>
           </div>
         </Container>
       </div>
 
       {/* Main Bar */}
-      <div className="bg-white shadow-sm">
+      <div className="shadow-sm" style={{ backgroundColor: mainBarBg, color: theme.text }}>
         <Container>
           <div className="h-16 flex items-center justify-between">
             <a href="/" className="text-xl font-bold uppercase tracking-wider" style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}>
@@ -40,10 +51,16 @@ const HeaderDouble: React.FC<HeaderProps> = ({ industry }) => {
             </a>
 
             <nav className="hidden md:flex items-center gap-6">
-              <a href="#" className="text-sm font-semibold text-neutral-700 hover:text-primary">HOME</a>
-              <a href="#" className="text-sm font-semibold text-neutral-700 hover:text-primary">SERVICES</a>
-              <a href="#" className="text-sm font-semibold text-neutral-700 hover:text-primary">PROJECTS</a>
-              <a href="#" className="text-sm font-semibold text-neutral-700 hover:text-primary">NEWS</a>
+              {['HOME', 'SERVICES', 'PROJECTS', 'NEWS'].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-sm font-semibold tracking-wide transition-colors"
+                  style={{ color: navLinkColor }}
+                >
+                  {item}
+                </a>
+              ))}
             </nav>
 
             <div className="hidden md:block">
@@ -52,7 +69,7 @@ const HeaderDouble: React.FC<HeaderProps> = ({ industry }) => {
               </Button>
             </div>
 
-            <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+            <button className="md:hidden" onClick={() => setIsOpen(!isOpen)} style={{ color: theme.text }}>
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -66,13 +83,15 @@ const HeaderDouble: React.FC<HeaderProps> = ({ industry }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t"
+            className="md:hidden border-t"
+            style={{ backgroundColor: mainBarBg, borderColor: theme.border }}
           >
             <div className="flex flex-col p-4 gap-4">
-              <a href="#" className="font-semibold">HOME</a>
-              <a href="#" className="font-semibold">SERVICES</a>
-              <a href="#" className="font-semibold">PROJECTS</a>
-              <a href="#" className="font-semibold">NEWS</a>
+              {['HOME', 'SERVICES', 'PROJECTS', 'NEWS'].map((item) => (
+                <a key={item} href="#" className="font-semibold" style={{ color: theme.text }}>
+                  {item}
+                </a>
+              ))}
               <Button variant="primary" fullWidth style={{ backgroundColor: industry.colors.primary }}>
                 Get Quote
               </Button>

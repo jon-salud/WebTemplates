@@ -66,6 +66,23 @@ const Footer: React.FC<FooterProps> = ({
 }) => {
   const [email, setEmail] = useState('');
 
+  const isDarkMode = industry.themeMode === 'dark';
+  const themeColors = {
+    background: industry.themeColors?.background || (isDarkMode ? '#0b1120' : '#ffffff'),
+    surface: industry.themeColors?.surface || (isDarkMode ? '#111827' : '#f8fafc'),
+    text: industry.themeColors?.text || (isDarkMode ? '#f8fafc' : '#0f172a'),
+  };
+
+  const theme = {
+    ...themeColors,
+    muted: isDarkMode ? 'rgba(248, 250, 252, 0.7)' : 'rgba(15, 23, 42, 0.65)',
+    border: isDarkMode ? 'rgba(248, 250, 252, 0.12)' : 'rgba(15, 23, 42, 0.1)',
+    card: isDarkMode ? 'rgba(255, 255, 255, 0.04)' : '#ffffff',
+    footerBg: isDarkMode ? 'bg-[var(--theme-surface)]' : 'bg-brand-black',
+    footerText: isDarkMode ? 'text-[var(--theme-text)]' : 'text-white',
+    footerMuted: isDarkMode ? 'text-[var(--theme-text)]/70' : 'text-white/70',
+  };
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle newsletter subscription
@@ -77,7 +94,7 @@ const Footer: React.FC<FooterProps> = ({
   // VARIANT: Default (Original)
   // ═══════════════════════════════════════════════════════════════════════════
   const renderDefault = () => (
-    <footer className="bg-brand-black text-white">
+    <footer className={`${theme.footerBg} text-white`}>
       {/* Newsletter Section */}
       {showNewsletter && (
         <div
@@ -205,7 +222,7 @@ const Footer: React.FC<FooterProps> = ({
   // Clean, simple footer - conveys professionalism
   // ═══════════════════════════════════════════════════════════════════════════
   const renderMinimal = () => (
-    <footer className="bg-white border-t border-neutral-200">
+    <footer className="border-t" style={{ backgroundColor: theme.surface, color: theme.text, borderColor: theme.border }}>
       <Container>
         <div className="py-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
@@ -219,18 +236,19 @@ const Footer: React.FC<FooterProps> = ({
                   {industry.name}
                 </span>
               </a>
-              <p className="text-neutral-500 text-sm max-w-xs">
+              <p className="text-sm max-w-xs" style={{ color: theme.muted }}>
                 {industry.footer.description}
               </p>
             </div>
 
             {/* Quick Links - Horizontal */}
-            <nav className="flex flex-wrap gap-x-8 gap-y-2">
+            <nav className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
               {['About', 'Services', 'Team', 'Contact', 'Privacy', 'Terms'].map((link) => (
                 <a
                   key={link}
                   href={`#${link.toLowerCase()}`}
-                  className="text-neutral-600 hover:text-brand-black transition-colors text-sm"
+                  className="transition-colors hover:opacity-80"
+                  style={{ color: theme.muted }}
                 >
                   {link}
                 </a>
@@ -248,7 +266,8 @@ const Footer: React.FC<FooterProps> = ({
               </a>
               <a
                 href="mailto:contact@example.com"
-                className="text-neutral-500 text-sm"
+                className="text-sm"
+                style={{ color: theme.muted }}
               >
                 contact@example.com
               </a>
@@ -257,8 +276,8 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-neutral-200 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-400 text-sm">
+        <div className="py-6 border-t flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: theme.border }}>
+          <p className="text-sm" style={{ color: theme.muted }}>
             © {new Date().getFullYear()} {industry.name}. All rights reserved.
           </p>
           <div className="flex gap-4">
@@ -267,7 +286,8 @@ const Footer: React.FC<FooterProps> = ({
                 key={label}
                 href={href}
                 aria-label={label}
-                className="text-neutral-400 hover:text-neutral-600 transition-colors"
+                className="transition-colors hover:opacity-80"
+                style={{ color: theme.muted }}
               >
                 <Icon className="w-5 h-5" />
               </a>
@@ -283,24 +303,24 @@ const Footer: React.FC<FooterProps> = ({
   // Centered layout with soft feel
   // ═══════════════════════════════════════════════════════════════════════════
   const renderCentered = () => (
-    <footer className="bg-neutral-50">
+    <footer style={{ backgroundColor: theme.background, color: theme.text }}>
       {/* Newsletter */}
       {showNewsletter && (
-        <div className="py-16 bg-white border-b border-neutral-100">
+        <div className="py-16 border-b" style={{ backgroundColor: theme.surface, borderColor: theme.border }}>
           <Container>
             <div className="max-w-xl mx-auto text-center">
-              <h3 className="text-heading-2 text-brand-black mb-3">
+              <h3 className="text-heading-2 mb-3">
                 Health Tips & Updates
               </h3>
-              <p className="text-neutral-600 mb-6">
+              <p className="mb-6" style={{ color: theme.muted }}>
                 Subscribe to receive wellness tips and practice updates.
               </p>
               <form className="flex gap-3 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 px-5 py-3 rounded-full border border-neutral-200 focus:outline-none focus:ring-2 transition-all"
-                  style={{ '--tw-ring-color': industry.colors.primary } as React.CSSProperties}
+                  className="flex-1 px-5 py-3 rounded-full border focus:outline-none focus:ring-2 transition-all"
+                  style={{ borderColor: theme.border, color: theme.text, backgroundColor: theme.card, ['--tw-ring-color' as string]: industry.colors.primary } as React.CSSProperties}
                 />
                 <motion.button
                   type="submit"
@@ -330,12 +350,13 @@ const Footer: React.FC<FooterProps> = ({
           </a>
 
           {/* Links */}
-          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-8">
+          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-8 text-sm">
             {['Home', 'About', 'Services', 'Doctors', 'Appointments', 'Contact'].map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-neutral-600 hover:text-brand-black transition-colors"
+                className="transition-colors hover:opacity-80"
+                style={{ color: theme.muted }}
               >
                 {link}
               </a>
@@ -343,12 +364,12 @@ const Footer: React.FC<FooterProps> = ({
           </nav>
 
           {/* Contact Info */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8 text-neutral-500">
-            <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-brand-black transition-colors">
+          <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm" style={{ color: theme.muted }}>
+            <a href="tel:+1234567890" className="flex items-center gap-2 hover:opacity-80 transition-colors">
               <Phone className="w-4 h-4" />
               +1 (234) 567-890
             </a>
-            <a href="mailto:contact@example.com" className="flex items-center gap-2 hover:text-brand-black transition-colors">
+            <a href="mailto:contact@example.com" className="flex items-center gap-2 hover:opacity-80 transition-colors">
               <Mail className="w-4 h-4" />
               contact@example.com
             </a>
@@ -366,7 +387,7 @@ const Footer: React.FC<FooterProps> = ({
                 href={href}
                 aria-label={label}
                 className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-                style={{ backgroundColor: `${industry.colors.primary}15`, color: industry.colors.primary }}
+                style={{ backgroundColor: `${industry.colors.primary}1a`, color: industry.colors.primary }}
               >
                 <Icon className="w-5 h-5" />
               </a>
@@ -375,8 +396,8 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom */}
-        <div className="py-6 border-t border-neutral-200 text-center">
-          <p className="text-neutral-400 text-sm">
+        <div className="py-6 border-t text-center" style={{ borderColor: theme.border }}>
+          <p className="text-sm" style={{ color: theme.muted }}>
             © {new Date().getFullYear()} {industry.name}. All rights reserved.
           </p>
         </div>
@@ -389,7 +410,7 @@ const Footer: React.FC<FooterProps> = ({
   // Large footer with lots of content
   // ═══════════════════════════════════════════════════════════════════════════
   const renderMega = () => (
-    <footer className="bg-brand-black text-white">
+    <footer style={{ backgroundColor: theme.surface, color: theme.text }}>
       {/* Top CTA Bar */}
       <div
         className="py-8"
@@ -426,18 +447,25 @@ const Footer: React.FC<FooterProps> = ({
                   {industry.name}
                 </span>
               </a>
-              <p className="text-white/70 mb-6">
+              <p className="mb-6" style={{ color: theme.muted }}>
                 {industry.footer.description}
               </p>
 
               {/* Newsletter in footer */}
               <div className="mb-6">
-                <p className="text-sm font-medium mb-3">Subscribe to insights</p>
+                <p className="text-sm font-medium mb-3" style={{ color: theme.text }}>
+                  Subscribe to insights
+                </p>
                 <form className="flex gap-2">
                   <input
                     type="email"
                     placeholder="Email"
-                    className="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none text-sm"
+                    className="flex-1 px-4 py-2 rounded-lg focus:outline-none text-sm"
+                    style={{
+                      backgroundColor: theme.card,
+                      border: `1px solid ${theme.border}`,
+                      color: theme.text,
+                    }}
                   />
                   <button
                     type="submit"
@@ -456,7 +484,8 @@ const Footer: React.FC<FooterProps> = ({
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                    className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors"
+                    style={{ backgroundColor: theme.card, color: theme.text }}
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -470,7 +499,7 @@ const Footer: React.FC<FooterProps> = ({
               <ul className="space-y-3">
                 {industry.services.items.slice(0, 5).map((service) => (
                   <li key={service.title}>
-                    <a href="#" className="text-white/70 hover:text-white transition-colors text-sm flex items-center gap-2">
+                    <a href="#" className="transition-colors text-sm flex items-center gap-2 hover:opacity-80" style={{ color: theme.muted }}>
                       <ChevronRight className="w-3 h-3" />
                       {service.title}
                     </a>
@@ -485,7 +514,7 @@ const Footer: React.FC<FooterProps> = ({
               <ul className="space-y-3">
                 {['Technology', 'Healthcare', 'Finance', 'Manufacturing', 'Retail'].map((item) => (
                   <li key={item}>
-                    <a href="#" className="text-white/70 hover:text-white transition-colors text-sm flex items-center gap-2">
+                    <a href="#" className="transition-colors text-sm flex items-center gap-2 hover:opacity-80" style={{ color: theme.muted }}>
                       <ChevronRight className="w-3 h-3" />
                       {item}
                     </a>
@@ -500,7 +529,7 @@ const Footer: React.FC<FooterProps> = ({
               <ul className="space-y-3">
                 {footerLinks.company.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-white/70 hover:text-white transition-colors text-sm flex items-center gap-2">
+                    <a href={link.href} className="transition-colors text-sm flex items-center gap-2 hover:opacity-80" style={{ color: theme.muted }}>
                       <ChevronRight className="w-3 h-3" />
                       {link.label}
                     </a>
@@ -512,22 +541,22 @@ const Footer: React.FC<FooterProps> = ({
             {/* Contact */}
             <div>
               <h4 className="text-sm font-bold uppercase tracking-wider mb-4">Contact</h4>
-              <div className="space-y-4 text-sm">
+              <div className="space-y-4 text-sm" style={{ color: theme.muted }}>
                 <div>
-                  <p className="text-white/50 mb-1">Email</p>
-                  <a href="mailto:contact@example.com" className="text-white hover:underline">
+                  <p className="mb-1">Email</p>
+                  <a href="mailto:contact@example.com" className="hover:underline" style={{ color: theme.text }}>
                     contact@example.com
                   </a>
                 </div>
                 <div>
-                  <p className="text-white/50 mb-1">Phone</p>
-                  <a href="tel:+1234567890" className="text-white hover:underline">
+                  <p className="mb-1">Phone</p>
+                  <a href="tel:+1234567890" className="hover:underline" style={{ color: theme.text }}>
                     +1 (234) 567-890
                   </a>
                 </div>
                 <div>
-                  <p className="text-white/50 mb-1">Location</p>
-                  <p className="text-white/70">123 Business St, City</p>
+                  <p className="mb-1">Location</p>
+                  <p>123 Business St, City</p>
                 </div>
               </div>
             </div>
@@ -535,14 +564,14 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom */}
-        <div className="py-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/50 text-sm">
+        <div className="py-6 border-t flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: theme.border }}>
+          <p className="text-sm" style={{ color: theme.muted }}>
             © {new Date().getFullYear()} {industry.name}. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-white/50">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Cookies</a>
+          <div className="flex gap-6 text-sm" style={{ color: theme.muted }}>
+            <a href="#" className="hover:opacity-80 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:opacity-80 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:opacity-80 transition-colors">Cookies</a>
           </div>
         </div>
       </Container>
@@ -675,7 +704,7 @@ const Footer: React.FC<FooterProps> = ({
   // Large brand presence with visual split
   // ═══════════════════════════════════════════════════════════════════════════
   const renderSplitBrand = () => (
-    <footer className="bg-brand-black text-white overflow-hidden">
+    <footer className="overflow-hidden" style={{ backgroundColor: theme.surface, color: theme.text }}>
       {/* Top Section with brand highlight */}
       <div className="relative">
         <div
@@ -719,7 +748,7 @@ const Footer: React.FC<FooterProps> = ({
               <div className="grid sm:grid-cols-3 gap-8">
                 {Object.values(footerLinks).map((section) => (
                   <div key={section.title}>
-                    <h4 className="text-sm font-bold uppercase tracking-wider mb-4 text-white/50">
+                    <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: theme.muted }}>
                       {section.title}
                     </h4>
                     <ul className="space-y-3">
@@ -727,7 +756,8 @@ const Footer: React.FC<FooterProps> = ({
                         <li key={link.label}>
                           <a
                             href={link.href}
-                            className="text-white/70 hover:text-white transition-colors"
+                            className="transition-colors hover:opacity-80"
+                            style={{ color: theme.muted }}
                           >
                             {link.label}
                           </a>
@@ -744,13 +774,18 @@ const Footer: React.FC<FooterProps> = ({
                   <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                     <div className="flex-1">
                       <h4 className="font-semibold mb-1">Get Property Alerts</h4>
-                      <p className="text-white/50 text-sm">Be the first to know about new listings.</p>
+                      <p className="text-sm" style={{ color: theme.muted }}>Be the first to know about new listings.</p>
                     </div>
                     <form className="flex gap-2 w-full sm:w-auto">
                       <input
                         type="email"
                         placeholder="Email"
-                        className="flex-1 sm:w-48 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none text-sm"
+                        className="flex-1 sm:w-48 px-4 py-2 rounded-lg focus:outline-none text-sm"
+                        style={{
+                          backgroundColor: theme.card,
+                          border: `1px solid ${theme.border}`,
+                          color: theme.text,
+                        }}
                       />
                       <button
                         type="submit"
@@ -770,8 +805,8 @@ const Footer: React.FC<FooterProps> = ({
 
       {/* Bottom */}
       <Container>
-        <div className="py-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
+        <div className="py-6 border-t flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: theme.border }}>
+          <p className="text-sm" style={{ color: theme.muted }}>
             © {new Date().getFullYear()} {industry.name}. All rights reserved.
           </p>
           <div className="flex gap-4">
@@ -780,7 +815,8 @@ const Footer: React.FC<FooterProps> = ({
                 key={label}
                 href={href}
                 aria-label={label}
-                className="text-white/40 hover:text-white transition-colors"
+                className="transition-colors hover:opacity-80"
+                style={{ color: theme.muted }}
               >
                 <Icon className="w-5 h-5" />
               </a>
@@ -797,7 +833,7 @@ const Footer: React.FC<FooterProps> = ({
   // Best for: Insurance, Professional services
   // ============================================
   const renderSimpleDark = () => (
-    <footer className="bg-neutral-900 text-white">
+    <footer style={{ backgroundColor: theme.surface, color: theme.text }}>
       <Container>
         <div className="py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -809,18 +845,18 @@ const Footer: React.FC<FooterProps> = ({
               >
                 {industry.name}
               </div>
-              <p className="text-neutral-400 text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed" style={{ color: theme.muted }}>
                 {industry.footer.description}
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Quick Links</h4>
+              <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-3">
                 {['About', 'Services', 'Contact', 'FAQ'].map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-neutral-400 hover:text-white transition-colors text-sm">
+                    <a href="#" className="transition-colors text-sm hover:opacity-80" style={{ color: theme.muted }}>
                       {link}
                     </a>
                   </li>
@@ -830,8 +866,8 @@ const Footer: React.FC<FooterProps> = ({
 
             {/* Contact */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Contact</h4>
-              <ul className="space-y-3 text-sm text-neutral-400">
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <ul className="space-y-3 text-sm" style={{ color: theme.muted }}>
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4" style={{ color: industry.colors.primaryLight }} />
                   contact@company.com
@@ -850,18 +886,23 @@ const Footer: React.FC<FooterProps> = ({
             {/* Newsletter */}
             {showNewsletter && (
               <div>
-                <h4 className="font-semibold text-white mb-4">Stay Updated</h4>
+                <h4 className="font-semibold mb-4">Stay Updated</h4>
                 <form onSubmit={handleSubscribe} className="space-y-3">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/10 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-white/30"
+                    className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none"
+                    style={{
+                      backgroundColor: theme.card,
+                      border: `1px solid ${theme.border}`,
+                      color: theme.text,
+                    }}
                   />
                   <button
                     type="submit"
-                    className="w-full px-4 py-3 rounded-lg text-white text-sm font-medium transition-colors"
+                    className="w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors text-white"
                     style={{ backgroundColor: industry.colors.primary }}
                   >
                     Subscribe
@@ -873,13 +914,13 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom bar */}
-        <div className="py-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-500 text-sm">
+        <div className="py-6 border-t flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: theme.border }}>
+          <p className="text-sm" style={{ color: theme.muted }}>
             © {new Date().getFullYear()} {industry.name}. All rights reserved.
           </p>
           <div className="flex gap-4">
             {socialLinks.map(({ icon: Icon, href, label }) => (
-              <a key={label} href={href} aria-label={label} className="text-neutral-500 hover:text-white transition-colors">
+              <a key={label} href={href} aria-label={label} className="transition-colors hover:opacity-80" style={{ color: theme.muted }}>
                 <Icon className="w-5 h-5" />
               </a>
             ))}
@@ -895,7 +936,7 @@ const Footer: React.FC<FooterProps> = ({
   // Best for: Architecture, Creative
   // ============================================
   const renderColumnsLight = () => (
-    <footer className="bg-neutral-100">
+    <footer style={{ backgroundColor: theme.background, color: theme.text }}>
       <Container>
         <div className="py-20">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
@@ -907,7 +948,7 @@ const Footer: React.FC<FooterProps> = ({
               >
                 {industry.name}
               </div>
-              <p className="text-neutral-600 text-sm leading-relaxed mb-6 max-w-xs">
+              <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color: theme.muted }}>
                 {industry.footer.description}
               </p>
               <div className="flex gap-3">
@@ -916,10 +957,10 @@ const Footer: React.FC<FooterProps> = ({
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-600 hover:text-white transition-all shadow-sm"
-                    style={{ ['--tw-hover-bg' as string]: industry.colors.primary }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = industry.colors.primary}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-sm"
+                    style={{ backgroundColor: theme.card, color: theme.muted }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = industry.colors.primary)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = theme.card)}
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -930,13 +971,13 @@ const Footer: React.FC<FooterProps> = ({
             {/* Links columns */}
             {Object.values(footerLinks).map((section) => (
               <div key={section.title}>
-                <h4 className="font-semibold text-neutral-900 mb-4 text-sm uppercase tracking-wider">
+                <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">
                   {section.title}
                 </h4>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.label}>
-                      <a href={link.href} className="text-neutral-600 hover:text-neutral-900 transition-colors text-sm">
+                      <a href={link.href} className="transition-colors text-sm hover:opacity-80" style={{ color: theme.muted }}>
                         {link.label}
                       </a>
                     </li>
@@ -948,14 +989,14 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom */}
-        <div className="py-6 border-t border-neutral-200 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-500 text-sm">
+        <div className="py-6 border-t flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: theme.border }}>
+          <p className="text-sm" style={{ color: theme.muted }}>
             © {new Date().getFullYear()} {industry.name}. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-neutral-500">
-            <a href="#" className="hover:text-neutral-900 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-neutral-900 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-neutral-900 transition-colors">Cookies</a>
+          <div className="flex gap-6 text-sm" style={{ color: theme.muted }}>
+            <a href="#" className="hover:opacity-80 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:opacity-80 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:opacity-80 transition-colors">Cookies</a>
           </div>
         </div>
       </Container>
@@ -1047,7 +1088,7 @@ const Footer: React.FC<FooterProps> = ({
   // Best for: Recruitment, Tech agencies
   // ============================================
   const renderModernGrid = () => (
-    <footer className="bg-neutral-900 text-white overflow-hidden">
+    <footer className="overflow-hidden" style={{ backgroundColor: theme.surface, color: theme.text }}>
       <Container>
         <div className="py-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -1065,7 +1106,7 @@ const Footer: React.FC<FooterProps> = ({
                 >
                   {industry.name}
                 </div>
-                <p className="text-neutral-400 leading-relaxed mb-8 max-w-md">
+                <p className="leading-relaxed mb-8 max-w-md" style={{ color: theme.muted }}>
                   {industry.footer.description}
                 </p>
                 
@@ -1087,15 +1128,15 @@ const Footer: React.FC<FooterProps> = ({
                 {/* Contact card */}
                 <div
                   className="col-span-2 md:col-span-1 p-6 rounded-2xl"
-                  style={{ backgroundColor: `${industry.colors.primary}20` }}
+                  style={{ backgroundColor: theme.card }}
                 >
-                  <h4 className="font-semibold text-white mb-4">Contact Us</h4>
-                  <ul className="space-y-3 text-sm">
-                    <li className="flex items-center gap-2 text-neutral-300">
+                  <h4 className="font-semibold mb-4">Contact Us</h4>
+                  <ul className="space-y-3 text-sm" style={{ color: theme.muted }}>
+                    <li className="flex items-center gap-2">
                       <Mail className="w-4 h-4" style={{ color: industry.colors.primaryLight }} />
                       hello@company.com
                     </li>
-                    <li className="flex items-center gap-2 text-neutral-300">
+                    <li className="flex items-center gap-2">
                       <Phone className="w-4 h-4" style={{ color: industry.colors.primaryLight }} />
                       (555) 123-4567
                     </li>
@@ -1104,11 +1145,11 @@ const Footer: React.FC<FooterProps> = ({
 
                 {/* Quick Links */}
                 <div>
-                  <h4 className="font-semibold text-white mb-4">Company</h4>
+                  <h4 className="font-semibold mb-4">Company</h4>
                   <ul className="space-y-3">
                     {['About', 'Careers', 'Blog', 'Press'].map((link) => (
                       <li key={link}>
-                        <a href="#" className="text-neutral-400 hover:text-white transition-colors text-sm flex items-center gap-1 group">
+                        <a href="#" className="transition-colors text-sm flex items-center gap-1 group" style={{ color: theme.muted }}>
                           <ChevronRight className="w-3 h-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                           {link}
                         </a>
@@ -1119,11 +1160,11 @@ const Footer: React.FC<FooterProps> = ({
 
                 {/* Services */}
                 <div>
-                  <h4 className="font-semibold text-white mb-4">Services</h4>
+                  <h4 className="font-semibold mb-4">Services</h4>
                   <ul className="space-y-3">
                     {['Executive Search', 'Staffing', 'RPO', 'Consulting'].map((link) => (
                       <li key={link}>
-                        <a href="#" className="text-neutral-400 hover:text-white transition-colors text-sm flex items-center gap-1 group">
+                        <a href="#" className="transition-colors text-sm flex items-center gap-1 group" style={{ color: theme.muted }}>
                           <ChevronRight className="w-3 h-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                           {link}
                         </a>
@@ -1134,13 +1175,14 @@ const Footer: React.FC<FooterProps> = ({
               </div>
 
               {/* Social links */}
-              <div className="flex gap-4 mt-8 pt-8 border-t border-white/10">
+              <div className="flex gap-4 mt-8 pt-8 border-t" style={{ borderColor: theme.border }}>
                 {socialLinks.map(({ icon: Icon, href, label }) => (
                   <a
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white/60 hover:bg-white/20 hover:text-white transition-all"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center transition-all"
+                    style={{ backgroundColor: theme.card, color: theme.muted }}
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -1151,14 +1193,14 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom */}
-        <div className="py-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-500 text-sm">
+        <div className="py-6 border-t flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: theme.border }}>
+          <p className="text-sm" style={{ color: theme.muted }}>
             © {new Date().getFullYear()} {industry.name}. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-neutral-500">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+          <div className="flex gap-6 text-sm" style={{ color: theme.muted }}>
+            <a href="#" className="hover:opacity-80 transition-colors">Privacy</a>
+            <a href="#" className="hover:opacity-80 transition-colors">Terms</a>
+            <a href="#" className="hover:opacity-80 transition-colors">Sitemap</a>
           </div>
         </div>
       </Container>

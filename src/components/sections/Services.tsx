@@ -50,6 +50,22 @@ const Services: React.FC<ServicesProps> = ({
   const [activeTab, setActiveTab] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
+  // Theme-aware colors
+  const isDarkMode = industry.themeMode === 'dark';
+  const theme = {
+    bg: isDarkMode ? 'bg-[var(--theme-background)]' : 'bg-white',
+    bgAlt: isDarkMode ? 'bg-[var(--theme-surface)]' : 'bg-neutral-50',
+    text: isDarkMode ? 'text-[var(--theme-text)]' : 'text-brand-black',
+    textMuted: isDarkMode ? 'text-[var(--theme-text)]/70' : 'text-neutral-600',
+    textLight: isDarkMode ? 'text-[var(--theme-text)]/50' : 'text-neutral-500',
+    card: isDarkMode ? 'bg-[var(--theme-surface)]' : 'bg-white',
+    cardBorder: isDarkMode ? 'border-white/10' : 'border-neutral-200',
+    cardHover: isDarkMode ? 'hover:bg-white/5' : 'hover:bg-neutral-50/50',
+    // Raw values for inline styles
+    surfaceRaw: industry.themeColors?.surface || '#f9fafb',
+    textRaw: industry.themeColors?.text || '#0f172a',
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -826,10 +842,10 @@ const Services: React.FC<ServicesProps> = ({
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-display-2 text-brand-black mb-4">
+          <h2 className={`text-display-2 ${theme.text} mb-4`}>
             {industry.services.title}
           </h2>
-          <p className="text-body-xl text-neutral-600 max-w-2xl mx-auto">
+          <p className={`text-body-xl ${theme.textMuted} max-w-2xl mx-auto`}>
             Comprehensive solutions tailored to your specific needs
           </p>
         </motion.div>

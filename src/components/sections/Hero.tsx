@@ -35,6 +35,22 @@ const Hero: React.FC<HeroProps> = ({
   const defaultHeroImage = 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80';
   const heroImage = backgroundImage || defaultHeroImage;
 
+  // Theme-aware colors
+  const isDarkMode = industry.themeMode === 'dark';
+  const theme = {
+    bg: isDarkMode ? 'bg-[var(--theme-background)]' : 'bg-white',
+    bgAlt: isDarkMode ? 'bg-[var(--theme-surface)]' : 'bg-neutral-50',
+    text: isDarkMode ? 'text-[var(--theme-text)]' : 'text-neutral-900',
+    textMuted: isDarkMode ? 'text-[var(--theme-text)]/70' : 'text-neutral-600',
+    textLight: isDarkMode ? 'text-[var(--theme-text)]/50' : 'text-neutral-500',
+    card: isDarkMode ? 'bg-[var(--theme-surface)]' : 'bg-white',
+    cardBorder: isDarkMode ? 'border-white/10' : 'border-neutral-100',
+    // Raw values for inline styles
+    bgRaw: industry.themeColors?.background || '#ffffff',
+    surfaceRaw: industry.themeColors?.surface || '#f9fafb',
+    textRaw: industry.themeColors?.text || '#0f172a',
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -194,7 +210,7 @@ const Hero: React.FC<HeroProps> = ({
   // Aurora Effect (for Centered Cards/Financial)
   const AuroraBackground = () => (
     <LazyMotion features={domAnimation}>
-      <div className="absolute inset-0 overflow-hidden bg-neutral-50">
+      <div className="absolute inset-0 overflow-hidden" style={{ backgroundColor: theme.bgRaw }}>
         {/* Primary Aurora Band */}
         <m.div
           className="absolute top-[-10%] left-[-20%] w-[140%] h-[70%] blur-[60px] opacity-40"
@@ -250,7 +266,7 @@ const Hero: React.FC<HeroProps> = ({
               </motion.div>
             )}
 
-        <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 mb-6 leading-[1.1]">
+        <motion.h1 variants={itemVariants} className={`text-5xl md:text-6xl lg:text-7xl font-bold ${theme.text} mb-6 leading-[1.1]`}>
           {headlineSegments ? (
             <VariableWeightText segments={headlineSegments} as="span" />
           ) : (
@@ -263,7 +279,7 @@ const Hero: React.FC<HeroProps> = ({
           )}
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="text-xl text-neutral-600 mb-8 max-w-lg leading-relaxed">
+        <motion.p variants={itemVariants} className={`text-xl ${theme.textMuted} mb-8 max-w-lg leading-relaxed`}>
           {industry.hero.subheadline}
         </motion.p>
 
@@ -276,12 +292,12 @@ const Hero: React.FC<HeroProps> = ({
           >
             {industry.hero.cta}
           </Button>
-          <Button variant="secondary" size="lg">
+          <Button variant="secondary" size="lg" className={isDarkMode ? 'border-white/20 text-white hover:bg-white/10' : ''}>
             {industry.hero.ctaSecondary}
           </Button>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="flex items-center gap-6 text-sm text-neutral-500">
+        <motion.div variants={itemVariants} className={`flex items-center gap-6 text-sm ${theme.textLight}`}>
           <div className="flex items-center gap-2">
             <CheckCircle className="w-4 h-4" style={{ color: industry.colors.primary }} />
             <span>Free Consultation</span>
@@ -311,7 +327,8 @@ const Hero: React.FC<HeroProps> = ({
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.9, duration: 0.5 }}
-          className="absolute -left-8 top-1/4 bg-white rounded-2xl shadow-xl p-5 hidden lg:block"
+          className={`absolute -left-8 top-1/4 ${theme.card} rounded-2xl shadow-xl p-5 hidden lg:block`}
+          style={{ backgroundColor: theme.surfaceRaw }}
         >
           <div className="flex items-center gap-4">
             <div
@@ -321,8 +338,8 @@ const Hero: React.FC<HeroProps> = ({
               <Users className="w-6 h-6" style={{ color: industry.colors.primary }} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-neutral-900">1,200+</p>
-              <p className="text-sm text-neutral-500">Happy Clients</p>
+              <p className={`text-2xl font-bold ${theme.text}`}>1,200+</p>
+              <p className={`text-sm ${theme.textLight}`}>Happy Clients</p>
             </div>
           </div>
         </motion.div>
@@ -331,7 +348,8 @@ const Hero: React.FC<HeroProps> = ({
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.1, duration: 0.5 }}
-          className="absolute -right-8 bottom-1/4 bg-white rounded-2xl shadow-xl p-5 hidden lg:block"
+          className={`absolute -right-8 bottom-1/4 ${theme.card} rounded-2xl shadow-xl p-5 hidden lg:block`}
+          style={{ backgroundColor: theme.surfaceRaw }}
         >
           <div className="flex items-center gap-4">
             <div
@@ -341,8 +359,8 @@ const Hero: React.FC<HeroProps> = ({
               <Star className="w-6 h-6" style={{ color: industry.colors.accent }} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-neutral-900">4.9/5</p>
-              <p className="text-sm text-neutral-500">Client Rating</p>
+              <p className={`text-2xl font-bold ${theme.text}`}>4.9/5</p>
+              <p className={`text-sm ${theme.textLight}`}>Client Rating</p>
             </div>
           </div>
         </motion.div>
@@ -383,7 +401,7 @@ const Hero: React.FC<HeroProps> = ({
               </motion.div>
             )}
 
-            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-black text-neutral-900 mb-8 leading-[1.05] tracking-tight">
+            <motion.h1 variants={itemVariants} className={`text-5xl md:text-7xl lg:text-8xl font-black ${theme.text} mb-8 leading-[1.05] tracking-tight`}>
               {headlineSegments ? (
                 <VariableWeightText segments={headlineSegments} as="span" />
               ) : (
@@ -402,7 +420,7 @@ const Hero: React.FC<HeroProps> = ({
               )}
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="text-xl md:text-2xl text-neutral-500 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className={`text-xl md:text-2xl ${theme.textMuted} mb-10 max-w-2xl mx-auto leading-relaxed`}>
               {industry.hero.subheadline}
             </motion.p>
 
@@ -429,12 +447,12 @@ const Hero: React.FC<HeroProps> = ({
                 <motion.div
                   key={stat.label}
                   variants={floatVariants}
-                  className="bg-white/80 backdrop-blur-lg rounded-2xl p-5 shadow-lg border border-white/50"
+                  className={`backdrop-blur-lg rounded-2xl p-5 shadow-lg ${isDarkMode ? 'bg-white/10 border-white/20' : 'bg-white/80 border-white/50'} border`}
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
                   <stat.icon className="w-5 h-5 mb-2" style={{ color: industry.colors.primary }} />
-                  <p className="text-2xl font-bold text-neutral-900">{stat.value}</p>
-                  <p className="text-xs text-neutral-500">{stat.label}</p>
+                  <p className={`text-2xl font-bold ${theme.text}`}>{stat.value}</p>
+                  <p className={`text-xs ${theme.textLight}`}>{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>

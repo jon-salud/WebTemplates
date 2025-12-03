@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Container from '../../ui/Container';
 import type { IndustryConfig } from '@/config/industries';
+import { getThemeTokens, hexToRgba } from '@/utils/theme';
 
 interface NavItem {
   label: string;
@@ -26,6 +27,7 @@ const HeaderMinimal: React.FC<HeaderProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const theme = getThemeTokens(industry);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -35,13 +37,20 @@ const HeaderMinimal: React.FC<HeaderProps> = ({
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-sm py-4' : 'bg-transparent py-6'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: isScrolled ? hexToRgba(theme.surface, 0.85) : 'transparent',
+        backdropFilter: isScrolled ? 'blur(8px)' : undefined,
+        padding: isScrolled ? '1rem 0' : '1.5rem 0',
+      }}
     >
       <Container>
         <nav className="flex items-center justify-between">
-          <a href="/" className="text-xl font-bold tracking-tight" style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}>
+          <a
+            href="/"
+            className="text-xl font-bold tracking-tight"
+            style={{ color: industry.colors.primary, fontFamily: 'var(--font-heading)' }}
+          >
             {industry.name}
           </a>
 
@@ -50,7 +59,8 @@ const HeaderMinimal: React.FC<HeaderProps> = ({
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
+                className="text-sm font-medium transition-colors hover:opacity-80"
+                style={{ color: hexToRgba(theme.text, 0.8) }}
               >
                 {item.label}
               </a>
@@ -59,6 +69,7 @@ const HeaderMinimal: React.FC<HeaderProps> = ({
 
           <button
             className="md:hidden p-2"
+            style={{ color: theme.text }}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -73,7 +84,8 @@ const HeaderMinimal: React.FC<HeaderProps> = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t"
+            className="md:hidden"
+            style={{ backgroundColor: theme.surface, borderTop: `1px solid ${theme.border}` }}
           >
             <Container>
               <div className="flex flex-col py-4 gap-4">
@@ -82,7 +94,8 @@ const HeaderMinimal: React.FC<HeaderProps> = ({
                     key={item.label}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-lg font-medium text-neutral-800"
+                    className="text-lg font-medium"
+                    style={{ color: theme.text }}
                   >
                     {item.label}
                   </a>

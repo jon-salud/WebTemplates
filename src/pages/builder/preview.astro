@@ -370,16 +370,26 @@ const customColors =
 
 // Determine theme mode from color scheme or default to light
 const themeMode = customColors?.mode || modeParam || "light";
+const defaultThemeColors =
+    themeMode === "dark"
+        ? {
+              background: "#0b1120",
+              surface: "#111827",
+              text: "#f8fafc",
+          }
+        : null;
 const themeColors = customColors
     ? {
           background: customColors.background,
           surface: customColors.surface,
           text: customColors.text,
       }
-    : undefined;
+    : defaultThemeColors || undefined;
 
 const industryConfig = {
     ...baseConfig,
+    themeMode,
+    ...(themeColors && { themeColors }),
     headerVariant: (headerVariantParam ||
         baseConfig.headerVariant ||
         "default") as typeof baseConfig.headerVariant,

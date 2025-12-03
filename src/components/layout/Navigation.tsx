@@ -5,6 +5,24 @@ import Button from '../ui/Button';
 import Container from '../ui/Container';
 import type { IndustryConfig } from '@/config/industries';
 
+const hexToRgba = (hex: string, alpha = 1) => {
+  const sanitized = hex?.replace('#', '');
+  if (!sanitized || (sanitized.length !== 6 && sanitized.length !== 3)) {
+    return `rgba(15, 23, 42, ${alpha})`;
+  }
+
+  const expand = sanitized.length === 3
+    ? sanitized.split('').map((char) => `${char}${char}`).join('')
+    : sanitized;
+
+  const bigint = parseInt(expand, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 interface NavItem {
   label: string;
   href: string;
@@ -45,6 +63,14 @@ const Navigation: React.FC<NavigationProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
+  const isDarkMode = industry.themeMode === 'dark';
+  const themeBackground = industry.themeColors?.background || (isDarkMode ? '#0b1120' : '#ffffff');
+  const themeSurface = industry.themeColors?.surface || (isDarkMode ? '#111827' : '#ffffff');
+  const themeText = industry.themeColors?.text || (isDarkMode ? '#f8fafc' : '#0f172a');
+  const translucentSurface = hexToRgba(themeSurface, isDarkMode ? 0.95 : 0.9);
+  const translucentBackground = hexToRgba(themeBackground, 0.65);
+  const borderColor = isDarkMode ? 'rgba(248, 250, 252, 0.15)' : 'rgba(15, 23, 42, 0.08)';
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -59,11 +85,12 @@ const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-all duration-300"
+      style={{
+        backgroundColor: isScrolled ? translucentSurface : translucentBackground,
+        borderBottomColor: isScrolled ? borderColor : 'transparent',
+        color: themeText,
+      }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -93,10 +120,10 @@ const Navigation: React.FC<NavigationProps> = ({
               >
                 <a
                   href={item.href}
-                  className="flex items-center gap-1 text-sm font-medium transition-colors text-neutral-700"
-                  style={{ '--hover-color': industry.colors.primary } as React.CSSProperties}
-                  onMouseEnter={(e) => e.currentTarget.style.color = industry.colors.primary}
-                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  className="flex items-center gap-1 text-sm font-medium transition-colors"
+                  style={{ color: themeText }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = industry.colors.primary)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = themeText)}
                   aria-haspopup={item.children ? 'true' : undefined}
                   aria-expanded={item.children && activeDropdown === item.label ? 'true' : 'false'}
                 >
@@ -116,18 +143,26 @@ const Navigation: React.FC<NavigationProps> = ({
                       transition={{ duration: 0.2 }}
                       className="absolute top-full left-0 pt-2"
                     >
-                      <div className="bg-white rounded-xl shadow-card-hover border border-neutral-100 p-2 min-w-[240px]">
+                      <div
+                        className="rounded-xl shadow-card-hover border p-2 min-w-[240px]"
+                        style={{
+                          backgroundColor: themeSurface,
+                          borderColor: borderColor,
+                          color: themeText,
+                        }}
+                      >
                         {item.children.map((child) => (
                           <a
                             key={child.label}
                             href={child.href}
-                            className="block px-4 py-3 rounded-lg hover:bg-neutral-50 transition-colors"
+                            className="block px-4 py-3 rounded-lg transition-colors"
+                            style={{ color: themeText }}
                           >
-                            <span className="block text-sm font-medium text-neutral-800">
+                            <span className="block text-sm font-medium" style={{ color: themeText }}>
                               {child.label}
                             </span>
                             {child.description && (
-                              <span className="block text-xs text-neutral-500 mt-0.5">
+                              <span className="block text-xs opacity-70" style={{ color: themeText }}>
                                 {child.description}
                               </span>
                             )}
@@ -142,7 +177,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4" style={{ color: themeText }}>
             <Button variant="ghost" size="sm">
               Sign In
             </Button>
@@ -158,7 +193,8 @@ const Navigation: React.FC<NavigationProps> = ({
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg transition-colors"
+            style={{ color: themeText, backgroundColor: 'transparent' }}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
           >
@@ -179,7 +215,8 @@ const Navigation: React.FC<NavigationProps> = ({
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-neutral-100"
+            className="lg:hidden"
+            style={{ backgroundColor: themeSurface, borderTop: `1px solid ${borderColor}` }}
           >
             <Container>
               <div className="py-4 space-y-2">
@@ -188,7 +225,8 @@ const Navigation: React.FC<NavigationProps> = ({
                     <a
                       href={item.href}
                       onClick={closeMenu}
-                      className="block px-4 py-3 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors"
+                      className="block px-4 py-3 font-medium rounded-lg transition-colors"
+                      style={{ color: themeText }}
                     >
                       {item.label}
                     </a>
@@ -199,7 +237,8 @@ const Navigation: React.FC<NavigationProps> = ({
                             key={child.label}
                             href={child.href}
                             onClick={closeMenu}
-                            className="block px-4 py-2 text-sm text-neutral-500 rounded-lg hover:bg-neutral-50 transition-colors"
+                            className="block px-4 py-2 text-sm rounded-lg transition-colors"
+                            style={{ color: themeText, opacity: 0.75 }}
                           >
                             {child.label}
                           </a>
@@ -208,7 +247,7 @@ const Navigation: React.FC<NavigationProps> = ({
                     )}
                   </div>
                 ))}
-                <div className="pt-4 border-t border-neutral-100 space-y-2">
+                <div className="pt-4 space-y-2" style={{ borderTop: `1px solid ${borderColor}` }}>
                   <Button variant="secondary" fullWidth>
                     Sign In
                   </Button>

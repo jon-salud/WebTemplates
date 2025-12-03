@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import Container from '../../ui/Container';
 import type { IndustryConfig } from '@/config/industries';
+import { getThemeTokens, hexToRgba } from '@/utils/theme';
 
 interface HeaderProps {
   industry: IndustryConfig;
@@ -11,6 +12,10 @@ interface HeaderProps {
 const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = getThemeTokens(industry);
+  const headerBg = hexToRgba(theme.surface, theme.isDarkMode ? 0.92 : 1);
+  const navColor = hexToRgba(theme.text, 0.75);
+  const dropdownBg = hexToRgba(theme.surface, theme.isDarkMode ? 0.98 : 1);
 
   const navLinks = [
     {
@@ -32,10 +37,14 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200" onMouseLeave={() => setActiveMenu(null)}>
+    <header
+      className="fixed top-0 left-0 right-0 z-50 border-b"
+      style={{ backgroundColor: headerBg, borderColor: theme.border, color: theme.text }}
+      onMouseLeave={() => setActiveMenu(null)}
+    >
       <Container>
         <div className="h-20 flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold text-neutral-900" style={{ fontFamily: 'var(--font-heading)' }}>
+          <a href="/" className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)', color: theme.text }}>
             {industry.name}
           </a>
 
@@ -48,8 +57,8 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
               >
                 <a
                   href={link.href || '#'}
-                  className="flex items-center gap-1 text-sm font-medium transition-colors text-neutral-600 hover:text-neutral-900"
-                  style={activeMenu === link.label ? { color: industry.colors.primary } : undefined}
+                  className="flex items-center gap-1 text-sm font-medium transition-colors"
+                  style={{ color: activeMenu === link.label ? industry.colors.primary : navColor }}
                 >
                   {link.label}
                   {link.columns && <ChevronDown size={14} />}
@@ -59,7 +68,9 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <a href="#login" className="text-sm font-medium text-neutral-600 hover:text-neutral-900">Log in</a>
+            <a href="#login" className="text-sm font-medium" style={{ color: navColor }}>
+              Log in
+            </a>
             <a 
               href="#demo" 
               className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:opacity-90"
@@ -69,7 +80,7 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
             </a>
           </div>
 
-          <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} style={{ color: theme.text }}>
             {mobileOpen ? <X /> : <Menu />}
           </button>
         </div>
@@ -81,17 +92,20 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute top-full left-0 right-0 bg-white border-b border-neutral-200 shadow-xl py-8"
+            className="absolute top-full left-0 right-0 shadow-xl py-8"
+            style={{ backgroundColor: dropdownBg, borderBottom: `1px solid ${theme.border}` }}
           >
             <Container>
               <div className="grid grid-cols-4 gap-8">
                 {navLinks.find(l => l.label === activeMenu)?.columns?.map((col, idx) => (
                   <div key={idx}>
-                    <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-4">{col.title}</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: hexToRgba(theme.text, 0.6) }}>
+                      {col.title}
+                    </h3>
                     <ul className="space-y-3">
                       {col.items.map(item => (
                         <li key={item}>
-                          <a href="#" className="text-sm text-neutral-700 font-medium block hover:opacity-80">
+                          <a href="#" className="text-sm font-medium block hover:opacity-80" style={{ color: navColor }}>
                             {item}
                           </a>
                         </li>
@@ -99,10 +113,17 @@ const HeaderMega: React.FC<HeaderProps> = ({ industry }) => {
                     </ul>
                   </div>
                 ))}
-                <div className="col-span-2 bg-neutral-50 rounded-xl p-6">
-                  <h3 className="text-lg font-bold mb-2">Featured Resource</h3>
-                  <p className="text-sm text-neutral-600 mb-4">Learn how to scale your operations with our latest guide.</p>
-                  <a href="#" className="text-sm font-bold hover:underline" style={{ color: industry.colors.primary }}>Read the guide &rarr;</a>
+                <div
+                  className="col-span-2 rounded-xl p-6"
+                  style={{ backgroundColor: hexToRgba(theme.surface, theme.isDarkMode ? 0.85 : 0.6) }}
+                >
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme.text }}>Featured Resource</h3>
+                  <p className="text-sm mb-4" style={{ color: hexToRgba(theme.text, 0.75) }}>
+                    Learn how to scale your operations with our latest guide.
+                  </p>
+                  <a href="#" className="text-sm font-bold hover:underline" style={{ color: industry.colors.primary }}>
+                    Read the guide &rarr;
+                  </a>
                 </div>
               </div>
             </Container>
