@@ -1,114 +1,309 @@
 ---
-import { templateBlueprints } from '../../config/templateFamilies';
-import type { IndustryConfig } from '../../config/industries';
-import { Hero, Services, Benefits, Testimonials, CTA, LogoMarquee, Footer } from '../sections';
+import { templateBlueprints } from "../../config/templateFamilies";
+import type { IndustryConfig } from "../../config/industries";
+import {
+    Hero,
+    Services,
+    Benefits,
+    Testimonials,
+    CTA,
+    LogoMarquee,
+    Footer,
+} from "../sections";
 
 // Custom sections - Professional Services
-import TeamCredentials from '../sections/custom/TeamCredentials.astro';
-import FAQ from '../sections/custom/FAQ.astro';
+import TeamCredentials from "../sections/custom/TeamCredentials.astro";
+import FAQ from "../sections/custom/FAQ.astro";
 
 // Custom sections - Health & Wellness
-import TransformationStory from '../sections/custom/TransformationStory.astro';
-import PractitionerShowcase from '../sections/custom/PractitionerShowcase.astro';
+import TransformationStory from "../sections/custom/TransformationStory.astro";
+import PractitionerShowcase from "../sections/custom/PractitionerShowcase.astro";
 
 // Custom sections - Hospitality & Culinary
-import AwardsBadges from '../sections/custom/AwardsBadges.astro';
-import MenuPreview from '../sections/custom/MenuPreview.astro';
-import AmbientGallery from '../sections/custom/AmbientGallery.astro';
+import AwardsBadges from "../sections/custom/AwardsBadges.astro";
+import MenuPreview from "../sections/custom/MenuPreview.astro";
+import AmbientGallery from "../sections/custom/AmbientGallery.astro";
 
 // Custom sections - Trades & Field Services
-import CertificationStrip from '../sections/custom/CertificationStrip.astro';
-import ServiceAreaMap from '../sections/custom/ServiceAreaMap.astro';
-import ProcessSteps from '../sections/custom/ProcessSteps.astro';
+import CertificationStrip from "../sections/custom/CertificationStrip.astro";
+import ServiceAreaMap from "../sections/custom/ServiceAreaMap.astro";
+import ProcessSteps from "../sections/custom/ProcessSteps.astro";
 
 // Custom sections - Creative & Events
-import CreativeMoodboard from '../sections/custom/CreativeMoodboard.astro';
-import ShowcaseGallery from '../sections/custom/ShowcaseGallery.astro';
-import ClientMarquee from '../sections/custom/ClientMarquee.astro';
-import AnimatedLogoSection from '../sections/AnimatedLogoSection.astro';
-import CreativeProcess from '../sections/custom/CreativeProcess.astro';
+import CreativeMoodboard from "../sections/custom/CreativeMoodboard.astro";
+import ShowcaseGallery from "../sections/custom/ShowcaseGallery.astro";
+import ClientMarquee from "../sections/custom/ClientMarquee.astro";
+import AnimatedLogoSection from "../sections/AnimatedLogoSection.astro";
+import CreativeProcess from "../sections/custom/CreativeProcess.astro";
 
 // Custom sections - SaaS & Startups
-import ProductShowcase from '../sections/custom/ProductShowcase.astro';
-import PricingTeaser from '../sections/custom/PricingTeaser.astro';
+import ProductShowcase from "../sections/custom/ProductShowcase.astro";
+import PricingTeaser from "../sections/custom/PricingTeaser.astro";
 
 export interface Props {
-  industryConfig: IndustryConfig;
-  customBlueprint?: any[];
+    industryConfig: IndustryConfig;
+    customBlueprint?: any[];
 }
 
 const { industryConfig, customBlueprint } = Astro.props as Props;
-const family = industryConfig.templateFamily || 'professionalServices';
+const family = industryConfig.templateFamily || "professionalServices";
 const blueprint = customBlueprint || templateBlueprints[family] || [];
 
 const getSectionOverride = (component: string) => {
-  return (industryConfig.sections && (industryConfig.sections as any)[component]) || null;
+    return (
+        (industryConfig.sections &&
+            (industryConfig.sections as any)[component]) ||
+        null
+    );
 };
 
 const resolveVariant = (bp: any) => {
-  const override = getSectionOverride(bp.component);
-  return override?.variant || bp.variant || undefined;
+    const override = getSectionOverride(bp.component);
+    return override?.variant || bp.variant || undefined;
 };
 
 const resolveProps = (bp: any) => {
-  let override = getSectionOverride(bp.component);
+    let override = getSectionOverride(bp.component);
 
-  if (bp.component === 'Custom' && bp.props?.component) {
-    const specificOverride = getSectionOverride(bp.props.component);
-    if (specificOverride) {
-      override = {
-        ...(override || {}),
-        ...specificOverride,
-        props: { ...(override?.props || {}), ...(specificOverride.props || {}) }
-      };
+    if (bp.component === "Custom" && bp.props?.component) {
+        const specificOverride = getSectionOverride(bp.props.component);
+        if (specificOverride) {
+            override = {
+                ...(override || {}),
+                ...specificOverride,
+                props: {
+                    ...(override?.props || {}),
+                    ...(specificOverride.props || {}),
+                },
+            };
+        }
     }
-  }
 
-  return { ...(bp.props || {}), ...(override?.props || {}) };
+    return { ...(bp.props || {}), ...(override?.props || {}) };
 };
 
 // Build a simple descriptor list for rendering in the template below.
 const renderedSections = blueprint.map((bp) => {
-  if (bp.component === 'Custom') {
-    const comp = (bp.props && (bp.props as any).component) || undefined;
-    return { name: comp || 'Custom', props: resolveProps(bp), variant: resolveVariant(bp) };
-  }
-  return { name: bp.component, props: resolveProps(bp), variant: resolveVariant(bp) };
+    if (bp.component === "Custom") {
+        const comp = (bp.props && (bp.props as any).component) || undefined;
+        return {
+            name: comp || "Custom",
+            props: resolveProps(bp),
+            variant: resolveVariant(bp),
+        };
+    }
+    return {
+        name: bp.component,
+        props: resolveProps(bp),
+        variant: resolveVariant(bp),
+    };
 });
 ---
 
 <div>
-  {renderedSections.map((rs, i) => {
-    const props = rs.props || {};
-    const variant = rs.variant;
+    {
+        renderedSections.map((rs, i) => {
+            const props = rs.props || {};
+            const variant = rs.variant;
 
-    if (rs.name === 'Hero') return <Hero key={i} client:load industry={industryConfig} variant={variant} {...props} />;
-    if (rs.name === 'Services') return <Services key={i} client:visible industry={industryConfig} variant={variant} {...props} />;
-    if (rs.name === 'Benefits') return <Benefits key={i} client:visible industry={industryConfig} variant={variant} {...props} />;
-    if (rs.name === 'Testimonials') return <Testimonials key={i} client:visible industry={industryConfig} variant={variant} {...props} />;
-    if (rs.name === 'CTA') return <CTA key={i} client:visible industry={industryConfig} variant={variant} {...props} />;
-    if (rs.name === 'LogoMarquee') return <LogoMarquee key={i} client:visible industry={industryConfig} {...props} />;
-    if (rs.name === 'Footer') return <Footer key={i} client:visible industry={industryConfig} {...props} />;
+            if (rs.name === "Hero")
+                return (
+                    <Hero
+                        key={i}
+                        client:load
+                        industry={industryConfig}
+                        variant={variant}
+                        {...props}
+                    />
+                );
+            if (rs.name === "Services")
+                return (
+                    <Services
+                        key={i}
+                        client:visible
+                        industry={industryConfig}
+                        variant={variant}
+                        {...props}
+                    />
+                );
+            if (rs.name === "Benefits")
+                return (
+                    <Benefits
+                        key={i}
+                        client:visible
+                        industry={industryConfig}
+                        variant={variant}
+                        {...props}
+                    />
+                );
+            if (rs.name === "Testimonials")
+                return (
+                    <Testimonials
+                        key={i}
+                        client:visible
+                        industry={industryConfig}
+                        variant={variant}
+                        {...props}
+                    />
+                );
+            if (rs.name === "CTA")
+                return (
+                    <CTA
+                        key={i}
+                        client:visible
+                        industry={industryConfig}
+                        variant={variant}
+                        {...props}
+                    />
+                );
+            if (rs.name === "LogoMarquee")
+                return (
+                    <LogoMarquee
+                        key={i}
+                        client:visible
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "Footer")
+                return (
+                    <Footer
+                        key={i}
+                        client:visible
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
 
-    // custom
-    if (rs.name === 'TeamCredentials') return <TeamCredentials key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'FAQ') return <FAQ key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'TransformationStory') return <TransformationStory key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'PractitionerShowcase') return <PractitionerShowcase key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'AwardsBadges') return <AwardsBadges key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'MenuPreview') return <MenuPreview key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'AmbientGallery') return <AmbientGallery key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'CertificationStrip') return <CertificationStrip key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'ServiceAreaMap') return <ServiceAreaMap key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'ProcessSteps') return <ProcessSteps key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'CreativeMoodboard') return <CreativeMoodboard key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'ShowcaseGallery') return <ShowcaseGallery key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'ClientMarquee') return <ClientMarquee key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'AnimatedLogoSection') return <AnimatedLogoSection key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'CreativeProcess') return <CreativeProcess key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'ProductShowcase') return <ProductShowcase key={i} industry={industryConfig} {...props} />;
-    if (rs.name === 'PricingTeaser') return <PricingTeaser key={i} industry={industryConfig} {...props} />;
+            // custom
+            if (rs.name === "TeamCredentials")
+                return (
+                    <TeamCredentials
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "FAQ")
+                return <FAQ key={i} industry={industryConfig} {...props} />;
+            if (rs.name === "TransformationStory")
+                return (
+                    <TransformationStory
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "PractitionerShowcase")
+                return (
+                    <PractitionerShowcase
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "AwardsBadges")
+                return (
+                    <AwardsBadges
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "MenuPreview")
+                return (
+                    <MenuPreview key={i} industry={industryConfig} {...props} />
+                );
+            if (rs.name === "AmbientGallery")
+                return (
+                    <AmbientGallery
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "CertificationStrip")
+                return (
+                    <CertificationStrip
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "ServiceAreaMap")
+                return (
+                    <ServiceAreaMap
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "ProcessSteps")
+                return (
+                    <ProcessSteps
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "CreativeMoodboard")
+                return (
+                    <CreativeMoodboard
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "ShowcaseGallery")
+                return (
+                    <ShowcaseGallery
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "ClientMarquee")
+                return (
+                    <ClientMarquee
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "AnimatedLogoSection")
+                return (
+                    <AnimatedLogoSection
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "CreativeProcess")
+                return (
+                    <CreativeProcess
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "ProductShowcase")
+                return (
+                    <ProductShowcase
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
+            if (rs.name === "PricingTeaser")
+                return (
+                    <PricingTeaser
+                        key={i}
+                        industry={industryConfig}
+                        {...props}
+                    />
+                );
 
-    return null;
-  })}
+            return null;
+        })
+    }
 </div>

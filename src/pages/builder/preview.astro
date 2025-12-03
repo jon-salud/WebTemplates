@@ -7,17 +7,24 @@ import HeaderSelector from "../../components/layout/HeaderSelector";
 import { getIndustryConfig, type IndustryType } from "../../config/industries";
 
 const industryId = Astro.url.searchParams.get("industry") as IndustryType;
+const headerVariantParam = Astro.url.searchParams.get("header");
 const blueprintParam = Astro.url.searchParams.get("blueprint");
 
 if (!industryId) {
     return new Response("Missing industry parameter", { status: 400 });
 }
 
-const industryConfig = getIndustryConfig(industryId);
+const baseConfig = getIndustryConfig(industryId);
 
-if (!industryConfig) {
+if (!baseConfig) {
     return new Response("Invalid industry parameter", { status: 400 });
 }
+
+// Override header variant if provided
+const industryConfig = {
+    ...baseConfig,
+    headerVariant: (headerVariantParam || baseConfig.headerVariant || 'default') as typeof baseConfig.headerVariant,
+};
 
 let customBlueprint = null;
 if (blueprintParam) {

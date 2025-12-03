@@ -35,8 +35,25 @@ const FAMILY_NAMES: Record<string, string> = {
   realtyArchitecture: 'Realty & Architecture',
 };
 
+const HEADER_VARIANTS = [
+  { value: 'default', label: 'Default' },
+  { value: 'minimal', label: 'Minimal' },
+  { value: 'centered', label: 'Centered' },
+  { value: 'double', label: 'Double Bar' },
+  { value: 'floating', label: 'Floating' },
+  { value: 'glass', label: 'Glass' },
+  { value: 'split', label: 'Split' },
+  { value: 'bold', label: 'Bold' },
+  { value: 'mega', label: 'Mega Menu' },
+  { value: 'sidebar', label: 'Sidebar' },
+  { value: 'search', label: 'Search Bar' },
+  { value: 'gradient', label: 'Gradient' },
+  { value: 'bordered', label: 'Bordered' },
+];
+
 const BuilderApp = () => {
   const [industryId, setIndustryId] = useState('realestate');
+  const [headerVariant, setHeaderVariant] = useState('default');
   const [sections, setSections] = useState<any[]>([]);
   const [iframeKey, setIframeKey] = useState(0);
 
@@ -58,6 +75,8 @@ const BuilderApp = () => {
       const initialBlueprint = templateBlueprints[family] || [];
       // Deep copy to avoid mutating the original config
       setSections(JSON.parse(JSON.stringify(initialBlueprint)));
+      // Set header variant from industry config
+      setHeaderVariant(config.headerVariant || 'default');
     }
   }, [industryId]);
 
@@ -89,7 +108,7 @@ const BuilderApp = () => {
 
   const getPreviewUrl = () => {
     const blueprintString = encodeURIComponent(JSON.stringify(sections));
-    return `/builder/preview?industry=${industryId}&blueprint=${blueprintString}`;
+    return `/builder/preview?industry=${industryId}&header=${headerVariant}&blueprint=${blueprintString}`;
   };
 
   const handleExport = async () => {
@@ -121,7 +140,7 @@ const BuilderApp = () => {
         <div className="p-4 border-b border-gray-200 bg-gray-50">
           <h1 className="text-lg font-bold text-gray-800 mb-4">Landing Page Builder</h1>
           
-          <div className="mb-4">
+          <div className="mb-3">
             <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Industry Template</label>
             <select 
               value={industryId}
@@ -134,6 +153,19 @@ const BuilderApp = () => {
                     <option key={ind.id} value={ind.id}>{ind.name}</option>
                   ))}
                 </optgroup>
+              ))}
+            </select>
+          </div>
+          
+          <div className="mb-4">
+            <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Header Style</label>
+            <select 
+              value={headerVariant}
+              onChange={(e) => setHeaderVariant(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              {HEADER_VARIANTS.map((h) => (
+                <option key={h.value} value={h.value}>{h.label}</option>
               ))}
             </select>
           </div>
