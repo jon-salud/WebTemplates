@@ -1,74 +1,108 @@
 ---
-import type { IndustryConfig } from '@/config/industries';
+import type { IndustryConfig } from "@/config/industries";
 
 interface MoodboardStat {
-  label: string;
-  value: string;
+    label: string;
+    value: string;
 }
 
 interface Props {
-  industry: IndustryConfig;
-  images?: string[];
-  title?: string;
-  description?: string;
-  stats?: MoodboardStat[];
+    industry: IndustryConfig;
+    images?: string[];
+    title?: string;
+    description?: string;
+    stats?: MoodboardStat[];
 }
 
-const { 
-  industry, 
-  images,
-  title = "Craft atmospheres your audience can feel.",
-  description = "We assemble color stories, texture studies, and lighting cues that translate your brief into a visceral direction within hours.",
-  stats = [
-    { label: "Texture", value: "Soft satin, smoked chrome" },
-    { label: "Lighting", value: "Neon rim + ambient haze" },
-    { label: "Tempo", value: "112 BPM · halftime switch" }
-  ]
+const {
+    industry,
+    images,
+    title = "Craft atmospheres your audience can feel.",
+    description = "We assemble color stories, texture studies, and lighting cues that translate your brief into a visceral direction within hours.",
+    stats = [
+        { label: "Texture", value: "Soft satin, smoked chrome" },
+        { label: "Lighting", value: "Neon rim + ambient haze" },
+        { label: "Tempo", value: "112 BPM · halftime switch" },
+    ],
 } = Astro.props as Props;
 
-const palette = [industry.colors.primary, industry.colors.accent, industry.colors.primaryLight];
+const palette = [
+    industry.colors.primary,
+    industry.colors.accent,
+    industry.colors.primaryLight,
+];
 
 const mainImage = images?.[0];
 const smallImages = images?.slice(1) || [];
 ---
 
-<section class="py-20 text-white" aria-label="Creative Moodboard" style="background: radial-gradient(circle at top, #1f1b2e 0%, #07060b 70%);">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-col lg:flex-row gap-12 items-start">
-      <div class="lg:w-1/3 space-y-5">
-        <p class="text-sm uppercase tracking-[0.35em] text-white/80">Moodboard</p>
-        <h2 class="text-4xl font-semibold leading-tight text-white">{title}</h2>
-        <p class="text-white/90 text-lg leading-relaxed">{description}</p>
-      </div>
-      <div class="lg:flex-1 grid grid-cols-2 md:grid-cols-6 gap-4">
-        {palette.map((color, idx) => (
-          <div class={`${idx === 2 ? 'col-span-2' : 'col-span-1'} md:col-span-2 h-36 rounded-3xl overflow-hidden relative group`} style={`background: ${color}`}>
-            {smallImages[idx] && (
-              <img 
-                src={smallImages[idx]} 
-                alt={`Moodboard detail ${idx + 1}`}
-                loading="lazy"
-                class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500" 
-              />
-            )}
-          </div>
-        ))}
-        <div class="col-span-2 md:col-span-4 h-full min-h-[14rem] rounded-3xl bg-[radial-gradient(circle_at_top,_#ffffff18,_transparent_60%)] border border-white/10 flex items-center justify-center text-5xl overflow-hidden relative">
-          {mainImage ? (
-            <img src={mainImage} alt="Moodboard texture" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" />
-          ) : (
-            <span>🎛️</span>
-          )}
-        </div>
-        <div class="col-span-2 md:col-span-2 h-full min-h-[14rem] rounded-3xl bg-white/15 backdrop-blur text-sm tracking-wide p-6 space-y-3 border border-white/30 text-white">
-          {stats.map((stat) => (
-            <div>
-              <p class="uppercase text-white/80 text-[11px]">{stat.label}</p>
-              <p class="text-base text-white">{stat.value}</p>
+<section
+    class="py-20 text-white"
+    aria-label="Creative Moodboard"
+    style="background: radial-gradient(circle at top, #1f1b2e 0%, #07060b 70%);"
+>
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-12 items-start">
+            <div class="lg:w-1/3 space-y-5">
+                <p class="text-sm uppercase tracking-[0.35em] text-white/80">
+                    Moodboard
+                </p>
+                <h2 class="text-4xl font-semibold leading-tight text-white">
+                    {title}
+                </h2>
+                <p class="text-white/90 text-lg leading-relaxed">
+                    {description}
+                </p>
             </div>
-          ))}
+            <div class="lg:flex-1 grid grid-cols-2 md:grid-cols-6 gap-4">
+                {
+                    palette.map((color, idx) => (
+                        <div
+                            class={`${idx === 2 ? "col-span-2" : "col-span-1"} md:col-span-2 h-36 rounded-3xl overflow-hidden relative group`}
+                            style={`background: ${color}`}
+                        >
+                            {smallImages[idx] && (
+                                <img
+                                    src={smallImages[idx]}
+                                    alt={`Moodboard detail ${idx + 1}`}
+                                    loading="lazy"
+                                    class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                                />
+                            )}
+                        </div>
+                    ))
+                }
+                <div
+                    class="col-span-2 md:col-span-4 h-full min-h-[14rem] rounded-3xl bg-[radial-gradient(circle_at_top,_#ffffff18,_transparent_60%)] border border-white/10 flex items-center justify-center text-5xl overflow-hidden relative"
+                >
+                    {
+                        mainImage ? (
+                            <img
+                                src={mainImage}
+                                alt="Moodboard texture"
+                                loading="lazy"
+                                class="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
+                            />
+                        ) : (
+                            <span>🎛️</span>
+                        )
+                    }
+                </div>
+                <div
+                    class="col-span-2 md:col-span-2 h-full min-h-[14rem] rounded-3xl bg-white/15 backdrop-blur text-sm tracking-wide p-6 space-y-3 border border-white/30 text-white"
+                >
+                    {
+                        stats.map((stat) => (
+                            <div>
+                                <p class="uppercase text-white/80 text-[11px]">
+                                    {stat.label}
+                                </p>
+                                <p class="text-base text-white">{stat.value}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
